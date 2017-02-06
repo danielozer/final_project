@@ -25,10 +25,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="client.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1" column="13" selection-start="39" selection-end="39" vertical-scroll-proportion="0.027868852" vertical-offset="0" max-vertical-offset="610">
+                <state line="45" column="0" selection-start="775" selection-end="775" vertical-scroll-proportion="0.80491805" vertical-offset="274" max-vertical-offset="884">
                   <folding />
                 </state>
               </provider>
@@ -38,11 +38,31 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://E:/project/TOR/client.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.11725293" vertical-offset="32" max-vertical-offset="731">
+                <state line="20" column="19" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="731">
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="m1.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://E:/yossi/m1/m1.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="5015">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="secure.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/secure.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="10" column="45" selection-start="268" selection-end="268" vertical-scroll-proportion="0.17085427" vertical-offset="68" max-vertical-offset="2040">
+                  <folding>
+                    <element signature="e#53#82#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -67,6 +87,7 @@
         <option value="$PROJECT_DIR$/design2.0.py" />
         <option value="$PROJECT_DIR$/client2.0.py" />
         <option value="$PROJECT_DIR$/client.py" />
+        <option value="$PROJECT_DIR$/secure.py" />
       </list>
     </option>
   </component>
@@ -275,7 +296,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -346,17 +367,42 @@
         <state line="0" column="26" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119" />
       </provider>
     </entry>
+    <entry file="file://E:/project/TOR/secure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="58" selection-start="1" selection-end="2403" vertical-scroll-proportion="0.0" vertical-offset="1324" max-vertical-offset="1989">
+          <folding>
+            <element signature="e#2#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://E:/project/TOR/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.11725293" vertical-offset="32" max-vertical-offset="731">
+        <state line="20" column="19" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/yossi/m1/m1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5015">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="13" selection-start="39" selection-end="39" vertical-scroll-proportion="0.027868852" vertical-offset="0" max-vertical-offset="610">
+        <state line="45" column="0" selection-start="775" selection-end="775" vertical-scroll-proportion="0.80491805" vertical-offset="274" max-vertical-offset="884">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/secure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="45" selection-start="268" selection-end="268" vertical-scroll-proportion="0.17085427" vertical-offset="68" max-vertical-offset="2040">
+          <folding>
+            <element signature="e#53#82#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
