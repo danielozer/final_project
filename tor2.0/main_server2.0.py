@@ -9,11 +9,18 @@ import sys
 from sys import argv
 import secure
 
+
+
 BUFFER=2048
+def enum(**enums):
+    return type('Enum', (), enums)
 
 
 def handler(clientsock,addr):
 
+    Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next" )
+
+    recvdata_order=enum(MESGTYPE=0,SENER_NAME=1,MESG=2)
 
     key=secure.create_key()
     public_key=secure.Publik_Key(key)
@@ -21,6 +28,34 @@ def handler(clientsock,addr):
     clientsock.send(public_key)
     print "public key sent "
     #recv the public key of the client
+    recv_data=clientsock.recv(BUFFER)
+
+    public_key_client=secure.DecryptMesg(recv_data,key)
+    print public_key_client
+
+    end=False
+
+    while(end==False):
+        recv_data=secure.DecryptMesg(clientsock.recv(BUFFER),key)
+
+        recv_data=break_to_pieces(recv_data)
+
+        mesgtype=recv_data[recvdata_order.MESGTYPE]
+
+        if (mesgtype==Mesg_Type.ENTER):
+            print
+
+        elif (mesgtype==Mesg_Type.request):
+            print
+        elif(mesgtype==Mesg_Type.request_next_ip):
+            print
+        else:
+            print "error!!!!!!!"
+            #error mesg
+
+
+
+
     """
     client_public_key=clientsock.recv(BUFFER)
     client_public_key=secure.DecryptMesg(client_public_key,key)
@@ -36,6 +71,14 @@ def handler(clientsock,addr):
 
 
 
+def break_to_pieces(mesg):
+    mesg=mesg.split("|")
+    if (mesg[0]==secure.checksum_md5_text(mesg[3])):
+        mesg.remove(mesg[0])
+
+        return mesg
+    else:
+        return "error!!"
 
 def main():
     """
