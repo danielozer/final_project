@@ -41,7 +41,7 @@ def handler(clientsock,addr):
         recv_data=break_to_pieces(recv_data)
 
         mesgtype=recv_data[recvdata_order.MESGTYPE]
-
+        mesg_sender_name=recv_data[recv_data.SENDER_NAME]
         if (mesgtype==Mesg_Type.ENTER):
             print
 
@@ -52,20 +52,6 @@ def handler(clientsock,addr):
         else:
             print "error!!!!!!!"
             #error mesg
-
-
-
-
-    """
-    client_public_key=clientsock.recv(BUFFER)
-    client_public_key=secure.DecryptMesg(client_public_key,key)
-
-    print "\n\n\n\n\n\n\n\n\n"
-    print client_public_key
-    print "\n\n\n\n\n\n\n\n\n"
-    user_data=secure.DecryptMesg(clientsock.recv(BUFFER),key)
-    print "$$$$$$$$"+user_data
-    """
 
 
 
