@@ -6,15 +6,33 @@ from Crypto.PublicKey import RSA
 from Crypto import Random
 import cPickle as pickle
 import hashlib
+import socket
 
-def get_public_key_from_server(pu_key):
-   return RSA.importKey(pickle.loads(pu_key))
+
+
+BUFFER=2048
+
+
+
+def get_public_key_from_other_side(recv_data):
+
+
+    pu_key = RSA.importKey(pickle.loads(recv_data))
+
+    print("***GOT PUBLIC KEY***"),pu_key.exportKey()
+
+    pu_key = RSA.importKey(pu_key.exportKey())
+
+    return pu_key
+
+
 
 def create_key():
     random_generator = Random.new().read#get new random key
     key = RSA.generate(1024, random_generator)#larger is more secure!
 
     return key
+
 def Publik_Key(key):
     """
     the function create a new public key and return it
@@ -112,3 +130,6 @@ def checksum_md5_file(file):
 
     """
     return hashlib.md5(open(file,'rb').read()).hexdigest()
+
+
+

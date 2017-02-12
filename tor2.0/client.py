@@ -1,21 +1,9 @@
 __author__ ="daniel ozer"
 import secure
-<<<<<<< HEAD:tor2.0/client.py
-<<<<<<< HEAD:tor2.0/client.py
 import sendMesg_client
-import show_page
-
-
-
-
-=======
-#import sendMesg_client
-=======
-import sendMesg_client
->>>>>>> origin/master:tor2.0/client2.0.py
 #import show_page
 import socket
-
+import cPickle as pickle
 
 IP="127.0.0.1"
 PORT=9999
@@ -47,29 +35,29 @@ def main():
   key=secure.create_key()
   public_key=secure.Publik_Key(key)
 
-  user_data.server_public_key=key
+  user_data.client_key=key
   user_data.client_public_key=public_key
 
   pu_key=sock.recv(BUFFER)
 
-  user_data.server_public_key=pu_key
-  print user_data.server_public_key
+  user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
+  sock.send(user_data.client_public_key)
 
   #GET FROM THE USER THE PASSWORD AND USERNAME
   password="password"
-  sendMesg_client.send_to_server_password(password,sock,user_data.client_key,SENDER_NAME)
+  sendMesg_client.send_to_server_password(password,sock,user_data.server_public_key,SENDER_NAME)
 
-
-  sock.recv()
-
-
-
+  #GET AN ANSWER IF THE PASSWORD IS AUTHORIZED
+  sock.recv(BUFFER)
 
 
 
 
 
-  sock.send(user_data.client_public_key)
+
+
+
+
 
 
 

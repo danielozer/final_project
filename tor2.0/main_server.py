@@ -9,9 +9,8 @@ import sys
 from sys import argv
 import secure
 
-
-
 BUFFER=2048
+
 def enum(**enums):
     return type('Enum', (), enums)
 
@@ -23,20 +22,20 @@ def handler(clientsock,addr):
     recvdata_order=enum(MESGTYPE=0,SENER_NAME=1,MESG=2)
 
     key=secure.create_key()
-    public_key=secure.Publik_Key(key)
+    pickle_key=secure.Publik_Key(key)
     #send the client the public key
-    clientsock.send(public_key)
+    clientsock.send(pickle_key)
     print "public key sent "
+
     #recv the public key of the client
     recv_data=clientsock.recv(BUFFER)
+    public_key_client=secure.get_public_key_from_other_side(recv_data)
 
-    public_key_client=secure.DecryptMesg(recv_data,key)
-    print public_key_client
 
     end=False
 
     while(end==False):
-        recv_data=secure.DecryptMesg(clientsock.recv(BUFFER),key)
+        recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),key)
 
         recv_data=break_to_pieces(recv_data)
 
@@ -61,6 +60,7 @@ def break_to_pieces(mesg):
     mesg=mesg.split("|")
     if (mesg[0]==secure.checksum_md5_text(mesg[3])):
         mesg.remove(mesg[0])
+        print mesg
 
         return mesg
     else:
