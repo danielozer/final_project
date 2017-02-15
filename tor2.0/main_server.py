@@ -41,11 +41,11 @@ init_spass_db = (
 
 # INTEGER PRIMARY KEY AUTOINCREMENT
 # PRIMARY KEY(Name,ApplName)
-col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT,  TEXT, InSystem BOOL, Password TEXT"
+col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT, password TEXT, InSystem BOOL,ID_of_single_conn TEXT"
 tbl_name2 = "server_accsses"
 # Id, user-ID-name, appl-name, user-hashed, password-hashed
 init_upass_db = (
-    (1, 'yaniv nana', 'nana10', -1, -1),
+    (1, 'daniel', 'nana10', -1, -1),
     (2, 'yossi cohen', 'nrg', -1, -1),
     (3, 'miki epstein', 'ynet', -1, -1),
     (4, 'rami verbin', 'themarker', -1, -1),

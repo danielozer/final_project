@@ -3,17 +3,36 @@ __author__ = "daniel ozer"
                         
 from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
-from Crypto import Random
 import cPickle as pickle
 import hashlib
-import socket
-
-
+from Crypto import Random
+import base64
+import os
 
 BUFFER=2048
 
+BLOCK_SIZE = 16
+
+# the character used for padding--with a block cipher such as AES, the value
+# you encrypt must be a multiple of BLOCK_SIZE in length.  This character is
+# used to ensure that your value is always a multiple of BLOCK_SIZE
+PADDING = '{'
+
+pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * PADDING
+
+EncodeAES = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
+DecodeAES = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(PADDING)
 
 
+
+def create_AES_key():
+    # generate a random secret key
+    secret = os.urandom(BLOCK_SIZE)
+
+    # create a cipher object using the random secret
+    cipher = AES.new(secret)
+
+    return cipher
 def get_public_key_from_other_side(recv_data):
 
 
@@ -88,9 +107,11 @@ def EncryptDB(stringMesg,key):
     output: string mesg encrpyt
     """
 
-    encryption_suite = AES.new(key, AES.MODE_CBC, 'This is an IV456')
-    cipher_text = encryption_suite.encrypt(stringMesg)
-    return cipher_text
+    return EncodeAES(key, stringMesg)
+
+
+
+
 
 
 def decryptDB(stringMesg,key):
@@ -102,12 +123,7 @@ def decryptDB(stringMesg,key):
 
     """
 
-    decryption_suite = AES.new(key, AES.MODE_CBC, 'This is an IV456')
-    plain_text = decryption_suite.decrypt(stringMesg)
-
-    return  plain_text
-
-
+    return DecodeAES(key, stringMesg)
 
 def checksum_md5_text(text):
 
@@ -118,7 +134,7 @@ def checksum_md5_text(text):
     output :string (md5)
 
     """
-    return hashlib.md5("filename.exe").hexdigest()
+    return hashlib.md5(text).hexdigest()
 
 def checksum_md5_file(file):
 
