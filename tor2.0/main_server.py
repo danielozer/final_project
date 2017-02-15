@@ -1,25 +1,79 @@
 __author__ = "daniel ozer"
 
 from socket import *
-import thread,threading
-from Crypto.PublicKey import RSA
-from Crypto import Random
+import thread
 import cPickle as pickle
-import sys
-from sys import argv
 import secure
+import mng_db
+from sys import argv
+import sys
+
+"""
+print 'The length of command line arguments:', len(argv)
+print 'Argv 0 :', argv[0]
+
+if len(argv) >=2:
+    print 'Argv 1 :', argv[1]
+
+else:
+    print 'Got less than 2 parameters at argv'
+    sys.exit(0)
+"""
+file_name="users_data"
+#PATHFILE=argv[1]+ '\\' +file_name
 
 BUFFER=2048
 
+
+
+
+col_name_type1 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, SupperUserFlag INT, UserHash TEXT, PasswordHash TEXT"
+tbl_name1 = "srvr_users"
+# Id, user-ID-name, supper-user-flag, srvr-password-hashed
+init_spass_db = (
+    (1, 'yaniv nana', 1, -1, -1),
+    (2, 'yossi cohen', 1, -1, -1),
+    (3, 'miki epstein', 0, -1, -1),
+    (4, 'rami verbin', 0, -1, -1),
+    (5, 'ziv tepper', 0, -1, -1))
+
+
+
+# INTEGER PRIMARY KEY AUTOINCREMENT
+# PRIMARY KEY(Name,ApplName)
+col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT,  TEXT, InSystem BOOL, Password TEXT"
+tbl_name2 = "server_accsses"
+# Id, user-ID-name, appl-name, user-hashed, password-hashed
+init_upass_db = (
+    (1, 'yaniv nana', 'nana10', -1, -1),
+    (2, 'yossi cohen', 'nrg', -1, -1),
+    (3, 'miki epstein', 'ynet', -1, -1),
+    (4, 'rami verbin', 'themarker', -1, -1),
+    (5, 'rami verbin', 'israel hayom', -1, -1),
+    (6, 'yaniv nana', 'ynet', -1, -1),
+    (7, 'ziv tepper', 'ebay', -1, -1))
+
+
+
+
+
+
+
+
+
 def enum(**enums):
     return type('Enum', (), enums)
+
+
+def create_db_if_not_exist():
+    mng_db.init_db()
 
 
 def handler(clientsock,addr):
 
     Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next" )
 
-    recvdata_order=enum(MESGTYPE=0,SENER_NAME=1,MESG=2)
+    recvdata_order=enum(MESGTYPE=0,SENDER_NAME=1,MESG=2)
 
     key=secure.create_key()
     pickle_key=secure.Publik_Key(key)
@@ -40,7 +94,7 @@ def handler(clientsock,addr):
         recv_data=break_to_pieces(recv_data)
 
         mesgtype=recv_data[recvdata_order.MESGTYPE]
-        mesg_sender_name=recv_data[recv_data.SENDER_NAME]
+        mesg_sender_name=recv_data[recvdata_order.SENDER_NAME]
         if (mesgtype==Mesg_Type.ENTER):
             print
 
@@ -66,6 +120,10 @@ def break_to_pieces(mesg):
     else:
         return "error!!"
 
+
+
+
+
 def main():
     """
     input: none
@@ -73,6 +131,8 @@ def main():
 
     the function start a new thread each time a client try to connect to the server
     """
+
+
     HOST="127.0.0.1"
     PORT=9999
     ADDR = (HOST, PORT)
