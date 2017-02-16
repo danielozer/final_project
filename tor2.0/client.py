@@ -60,7 +60,7 @@ def main():
 def client_server_recv(clientsock):
 
 
-def client_server(port):
+def client_server_other_clients(port):
     #the main server send the port that need to be used
 
 
@@ -82,7 +82,7 @@ def client_server(port):
 
 
 
-def handler_client(user_data):
+def handler_client_with_server(user_data):
     #all the client as a client sender
     port=9999
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -92,8 +92,15 @@ def handler_client(user_data):
 
     while 1:
 
+        ## should be locks
+        pull_next_mesg=user_data.mesg_for_send[0]
+        user_data.mesg_for_send.remove(pull_next_mesg)
+        ##end of the lock
 
-def handler_server(user_data):
+
+
+
+def handler_server_only_from_server(user_data):
     #act as a server for reciving
     port = 8888
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
