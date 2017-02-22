@@ -1,3 +1,4 @@
+
 __author__ = "daniel ozer"
 
 from socket import *
@@ -7,6 +8,7 @@ import secure
 import mng_db
 from sys import argv
 import sys
+import random
 
 """
 print 'The length of command line arguments:', len(argv)
@@ -56,9 +58,47 @@ init_upass_db = (
 
 
 
+def change_dic(dic,id):
+    """
+    this func recv dicintionary exmp{1:IP} and int id ,it return the dic that nees
+    input: dic dic_client[int : string (ip)],int id
+    output:  dic [int : string (ip)]
+    """
+    counter
+    for key in dic:
 
 
 
+def create_path_for_mesg(dic_client,rounds):
+    """
+    this func recv dicintionary exmp{1:IP} and int rounds , it return an array of of the ips that is hte path of the mesg
+    input: dic dic_client[int : string (ip)],int rounds
+    output: array of string (ips)
+    """
+
+    original_dic=dic_client
+    reverse=False
+    dic_length=len(dic_client)
+    array_path=[]
+    counter=dic_length
+    for n in range(0, rounds):
+        random_id=random.randint(0, counter)
+        array_path=array_path+[dic_client[random_id]]
+        if reverse==True:
+            reverse=False
+            counter=dic_length
+
+
+
+        counter=counter-1
+
+        if counter==0:
+            counter =dic_length-1
+            reverse=True
+
+
+
+    return array_path
 
 
 def enum(**enums):
