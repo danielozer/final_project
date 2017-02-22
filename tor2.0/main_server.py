@@ -64,9 +64,22 @@ def change_dic(dic,id):
     input: dic dic_client[int : string (ip)],int id
     output:  dic [int : string (ip)]
     """
-    counter
-    for key in dic:
 
+    for key in dic:
+        if key==id:
+            v=dic[key]
+            dic[v]=0
+        elif key>id:
+            v=dic[key]
+            dic[v]=dic[v]-1
+
+    return dic
+
+def change_id_(dic,id,value):
+    index = {id:value}
+    dic.update(index)
+
+    return dic
 
 
 def create_path_for_mesg(dic_client,rounds):
