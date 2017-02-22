@@ -5,6 +5,7 @@ import sendMesg_client
 import socket
 import cPickle as pickle
 import thread
+import threading
 
 
 IP="127.0.0.1"
@@ -12,6 +13,8 @@ PORT=9999
 BUFFER=2048
 SENDER_NAME="DONI"
 
+
+arr_mesg_lock=threading.Lock()
 
 class All_userdata:
     def __init__(self):
@@ -28,6 +31,12 @@ def user_data_string(user_name,password):
 
   userdata=str(user_name)+str(password)
   return userdata
+
+def user_usage(user_data):
+
+
+    #show the interface of the password
+    get_password=
 
 
 def main():
@@ -92,11 +101,13 @@ def handler_client_with_server(user_data):
 
     while 1:
 
-        ## should be locks
+
+        arr_mesg_lock.acquire()
+
         pull_next_mesg=user_data.mesg_for_send[0]
         user_data.mesg_for_send.remove(pull_next_mesg)
-        ##end of the lock
 
+        arr_mesg_lock.release()
 
 
 
