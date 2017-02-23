@@ -1,3 +1,6 @@
+
+
+
 __author__ = "daniel ozer"
 
                         
@@ -100,7 +103,7 @@ def EncryptMesg(data,pu_key):
 
 
 
-def EncryptDB(stringMesg,key):
+def EncryptDB(key, stringMesg):
     """
     this func recv mesg then it encrypt the mesg using AES
     input: string (mesg ),key
@@ -114,7 +117,7 @@ def EncryptDB(stringMesg,key):
 
 
 
-def decryptDB(stringMesg,key):
+def DecryptDB(key,stringMesg):
     """
 
     this func recv mesg then it decrypt the mesg using AES
@@ -146,6 +149,4 @@ def checksum_md5_file(file):
 
     """
     return hashlib.md5(open(file,'rb').read()).hexdigest()
-
-
 
