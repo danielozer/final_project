@@ -47,47 +47,67 @@ col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT, password
 tbl_name2 = "server_accsses"
 # Id, user-ID-name, appl-name, user-hashed, password-hashed
 init_upass_db = (
-    (1, 'daniel', 'nana10', -1, -1),
-    (2, 'yossi cohen', 'nrg', -1, -1),
-    (3, 'miki epstein', 'ynet', -1, -1),
-    (4, 'rami verbin', 'themarker', -1, -1),
-    (5, 'rami verbin', 'israel hayom', -1, -1),
-    (6, 'yaniv nana', 'ynet', -1, -1),
-    (7, 'ziv tepper', 'ebay', -1, -1))
-
+    (1, 'daniel', '1', False, -1),
+    (2, 'e', '2', False, -1),
+    (3, 'r', '3', False, -1),
+    (4, 't', '4', False, -1),
+    (5, 'y', '5', False, -1),
+    (6, 'u', '6', False, -1),
+    (7, 'i', '7', False, -1))
 
 
 
 def change_dic(dic,id):
     """
-    this func recv dicintionary exmp{1:IP} and int id ,it return the dic that nees
+    this func recv dicintionary exmp{1:IP} and int id ,it return the dic without the specif id (index) and the ids is sort by value
     input: dic dic_client[int : string (ip)],int id
     output:  dic [int : string (ip)]
     """
-    changed_dic=dic.copy()
+
     for key in dic.keys():
 
-        if key==id:
-
-            changed_dic[0] = changed_dic.pop(key)
-
-        elif key>id:
-
-            changed_dic[key-1] = changed_dic.pop(key)
+        if key == id:
+			del dic[key]
 
 
+        elif key >id:
+
+            dic[key-1] = dic.pop(key)
 
 
-    return changed_dic
+def put_in_id( dic, value1):
 
-def change_id(dic,id,value1):
-
-    lKey = [key for key, value in dic.iteritems() if value == value1][0]
-    del dic[lKey]
-    index = {id:value1}
+    dic_length = len(dic)
+    index = {dic_length+1: value1}
     dic.update(index)
 
 
+def take_out_id( dic, value1):
+
+
+    print  "***************************** CHANGE ID *****************************"
+
+
+
+    print "diccc sss+" +str(dic)
+    for key, value in dic.iteritems():
+        if value == value1:
+            print " point "+str(key)
+            lKey=key
+            break
+    del dic[lKey]
+    print lKey
+    change_dic(dic,lKey)
+
+
+
+    print dic
+    print  "***************************** CHANGE ID *****************************"
+
+
+#dic ={1:"dan",2:"noa",3:"lea",4:"ssss"}
+#change_id(dic,12,"noa")
+#print dic
 def create_path_for_mesg(dic_client1,rounds):
     """
     this func recv dicintionary exmp{1:IP} and int rounds , it return an array of of the ips that is hte path of the mesg
@@ -95,48 +115,50 @@ def create_path_for_mesg(dic_client1,rounds):
     output: array of string (ips)
     """
 
-    dic_client=dic_client1.copy()
-    reverse=False
-    dic_length=len(dic_client)
-    array_path=[]
-    counter=dic_length
-    return_val=0
+    dic_client = dic_client1.copy()
+    reverse = False
+    dic_length = len(dic_client)
+    array_path = []
+    counter = dic_length
+    return_val = 0
 
     for n in range(0, rounds):
 
         random_id=random.randint(1, counter)
-        print random_id
+
+        print "arrrrrr: "+str(array_path)
+        print "dic_client"+str(dic_client)
         array_path=array_path+[dic_client[random_id]]
-        print array_path
+
         last_random_val=dic_client[random_id]
-        print last_random_val
-        dic_client=change_dic(dic_client,random_id)
+
+        change_dic(dic_client,random_id)
 
         counter=counter-1
-        print "counter: "+str(counter)
+        print "counter:"+str(counter)
         if reverse==True:
             reverse=False
-            counter=dic_length
-            change_id(dic_client,counter,return_val)
-
-
+            counter=dic_length-1
+            print "return val: "+return_val
+            put_in_id(dic_client,return_val)
 
 
         if counter==0:
             counter =dic_length-1
-            print "the dic length: "+str(counter)
+
             reverse=True
             dic_client=dic_client1.copy()
             return_val=last_random_val
-            change_id(dic_client,0,last_random_val)
+            print last_random_val
+            take_out_id(dic_client,last_random_val)
 
     return array_path
 
-dic ={1:"dan",2:"noa",3:"lea",4:"ssss"}
+dic ={1:"dan",2:"noa",3:"lea",4:"ssss",5:"lllll",6:"dsdsds"}
 
-arr=create_path_for_mesg(dic,10)
+arr=create_path_for_mesg(dic,100)
 
-print "yyyyyuyuy:   "+arr
+print "yyyyyuyuy:   "+str(arr)
 
 
 
