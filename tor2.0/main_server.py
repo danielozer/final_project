@@ -64,54 +64,80 @@ def change_dic(dic,id):
     input: dic dic_client[int : string (ip)],int id
     output:  dic [int : string (ip)]
     """
+    changed_dic=dic.copy()
+    for key in dic.keys():
 
-    for key in dic:
         if key==id:
-            v=dic[key]
-            dic[v]=0
+
+            changed_dic[0] = changed_dic.pop(key)
+
         elif key>id:
-            v=dic[key]
-            dic[v]=dic[v]-1
 
-    return dic
+            changed_dic[key-1] = changed_dic.pop(key)
 
-def change_id_(dic,id,value):
-    index = {id:value}
+
+
+
+    return changed_dic
+
+def change_id(dic,id,value1):
+
+    lKey = [key for key, value in dic.iteritems() if value == value1][0]
+    del dic[lKey]
+    index = {id:value1}
     dic.update(index)
 
-    return dic
 
-
-def create_path_for_mesg(dic_client,rounds):
+def create_path_for_mesg(dic_client1,rounds):
     """
     this func recv dicintionary exmp{1:IP} and int rounds , it return an array of of the ips that is hte path of the mesg
     input: dic dic_client[int : string (ip)],int rounds
     output: array of string (ips)
     """
 
-    original_dic=dic_client
+    dic_client=dic_client1.copy()
     reverse=False
     dic_length=len(dic_client)
     array_path=[]
     counter=dic_length
+    return_val=0
+
     for n in range(0, rounds):
-        random_id=random.randint(0, counter)
+
+        random_id=random.randint(1, counter)
+        print random_id
         array_path=array_path+[dic_client[random_id]]
+        print array_path
+        last_random_val=dic_client[random_id]
+        print last_random_val
+        dic_client=change_dic(dic_client,random_id)
+
+        counter=counter-1
+        print "counter: "+str(counter)
         if reverse==True:
             reverse=False
             counter=dic_length
+            change_id(dic_client,counter,return_val)
 
 
 
-        counter=counter-1
 
         if counter==0:
             counter =dic_length-1
+            print "the dic length: "+str(counter)
             reverse=True
-
-
+            dic_client=dic_client1.copy()
+            return_val=last_random_val
+            change_id(dic_client,0,last_random_val)
 
     return array_path
+
+dic ={1:"dan",2:"noa",3:"lea",4:"ssss"}
+
+arr=create_path_for_mesg(dic,10)
+
+print "yyyyyuyuy:   "+arr
+
 
 
 def enum(**enums):
@@ -199,6 +225,7 @@ def main():
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
         thread.start_new_thread(handler, (clientsock, addr))
-
+"""
 if __name__=='__main__':
     main()
+"""
