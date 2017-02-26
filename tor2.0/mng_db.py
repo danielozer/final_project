@@ -39,13 +39,13 @@ col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, ApplName TEXT
 tbl_name2 = "passwords_records"
 # Id, user-ID-name, appl-name, user-hashed, password-hashed
 init_upass_db = (
-    (1, 'yaniv nana', 'nana10', -1, -1),
-    (2, 'yossi cohen', 'nrg', -1, -1),
-    (3, 'miki epstein', 'ynet', -1, -1),
-    (4, 'rami verbin', 'themarker', -1, -1),
-    (5, 'rami verbin', 'israel hayom', -1, -1),
-    (6, 'yaniv nana', 'ynet', -1, -1),
-    (7, 'ziv tepper', 'ebay', -1, -1))
+    (1, 'yaniv nana', 'nana10', -1, -1, -1),
+    (2, 'yossi cohen', 'nrg', -1, -1, -1),
+    (3, 'miki epstein', 'ynet', -1, -1, -1, -1),
+    (4, 'rami verbin', 'themarker', -1, -1, -1),
+    (5, 'rami verbin', 'israel hayom', -1, -1, -1),
+    (6, 'yaniv nana', 'ynet', -1, -1, -1),
+    (7, 'ziv tepper', 'ebay', -1, -1, -1))
 
 
 
