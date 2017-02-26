@@ -85,29 +85,20 @@ def put_in_id( dic, value1):
 def take_out_id( dic, value1):
 
 
-    print  "***************************** CHANGE ID *****************************"
-
-
-
-    print "diccc sss+" +str(dic)
     for key, value in dic.iteritems():
         if value == value1:
-            print " point "+str(key)
+
             lKey=key
             break
+
     del dic[lKey]
-    print lKey
+
     change_dic(dic,lKey)
 
 
 
-    print dic
-    print  "***************************** CHANGE ID *****************************"
 
 
-#dic ={1:"dan",2:"noa",3:"lea",4:"ssss"}
-#change_id(dic,12,"noa")
-#print dic
 def create_path_for_mesg(dic_client1,rounds):
     """
     this func recv dicintionary exmp{1:IP} and int rounds , it return an array of of the ips that is hte path of the mesg
@@ -126,8 +117,7 @@ def create_path_for_mesg(dic_client1,rounds):
 
         random_id=random.randint(1, counter)
 
-        print "arrrrrr: "+str(array_path)
-        print "dic_client"+str(dic_client)
+
         array_path=array_path+[dic_client[random_id]]
 
         last_random_val=dic_client[random_id]
@@ -135,11 +125,12 @@ def create_path_for_mesg(dic_client1,rounds):
         change_dic(dic_client,random_id)
 
         counter=counter-1
-        print "counter:"+str(counter)
+
         if reverse==True:
+
             reverse=False
             counter=dic_length-1
-            print "return val: "+return_val
+
             put_in_id(dic_client,return_val)
 
 
@@ -149,7 +140,7 @@ def create_path_for_mesg(dic_client1,rounds):
             reverse=True
             dic_client=dic_client1.copy()
             return_val=last_random_val
-            print last_random_val
+
             take_out_id(dic_client,last_random_val)
 
     return array_path
