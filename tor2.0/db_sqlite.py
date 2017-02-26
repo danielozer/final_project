@@ -23,10 +23,17 @@ dbg_mode = 0
 def gen_db(db_fname, tbl_name, col_name_type, tbl_values):
     """ function to generate an SQL lite database.
     """
-
+    print col_name_type.split(' ')
     num_of_items = len(col_name_type.split(' '))
+    print "num_of_items : "+str(num_of_items)
     row0 = list(tbl_values)[0]
+    print "l1: "+str(row0)
     row0 = list(row0)
+    print "l2: "+str(row0)
+
+    print 0x1
+    print len(row0)
+    print num_of_items/2
 
     if num_of_items & 0x1 or len(row0) != (num_of_items/2):
         print "error: in argument 'col_name_type'.."

@@ -15,7 +15,7 @@ from db_sqlite import *
 
 
 
-db_path = r'C:\Cyber\final_os\proj'
+db_path = r'E:\music'
 db_fname = 'userpass.db'
 db_path_fname = db_path + '\\' + db_fname
 

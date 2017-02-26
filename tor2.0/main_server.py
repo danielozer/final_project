@@ -43,7 +43,7 @@ init_spass_db = (
 
 # INTEGER PRIMARY KEY AUTOINCREMENT
 # PRIMARY KEY(Name,ApplName)
-col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT, password TEXT, InSystem BOOL,ID_of_single_conn TEXT"
+col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT, password TEXT, InSystem TEXT,ID_of_single_conn TEXT"
 tbl_name2 = "server_accsses"
 # Id, user-ID-name, appl-name, user-hashed, password-hashed
 init_upass_db = (
@@ -154,11 +154,7 @@ def create_path_for_mesg(dic_client1,rounds):
 
     return array_path
 
-dic ={1:"dan",2:"noa",3:"lea",4:"ssss",5:"lllll",6:"dsdsds"}
 
-arr=create_path_for_mesg(dic,100)
-
-print "yyyyyuyuy:   "+str(arr)
 
 
 
@@ -166,9 +162,16 @@ def enum(**enums):
     return type('Enum', (), enums)
 
 
-def create_db_if_not_exist():
-    mng_db.init_db()
+def create_db_if_not_exist(fname):
+    mng_db.init_db(fname)
 
+
+
+db_path = r'E:\music'
+db_fname = 'userpass.db'
+db_path_fname = db_path + '\\' + db_fname
+
+create_db_if_not_exist(db_path_fname)
 
 def handler(clientsock,addr):
 
