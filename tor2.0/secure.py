@@ -1,6 +1,7 @@
 
 
 
+
 __author__ = "daniel ozer"
 
                         
@@ -27,6 +28,9 @@ EncodeAES = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
 DecodeAES = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(PADDING)
 
 
+
+def create_32_bit_num():
+    return os.urandom(32)
 
 def create_AES_key():
     # generate a random secret key
