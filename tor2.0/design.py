@@ -1,119 +1,79 @@
 __author__ = "daniel ozer"
 
-
 import wx
-
-if "2.8" in wx.version():
-    import wx.lib.pubsub.setupkwargs
-    from wx.lib.pubsub import pub
-else:
-    from wx.lib.pubsub import pub
+from wx.lib import sized_controls
 
 
-########################################################################
-class LoginDialog(wx.Dialog):
-    """
-    Class to define login dialog
-    """
+class MainFrame(sized_controls.SizedFrame):
 
-    #----------------------------------------------------------------------
-    def __init__(self,user_title):
-        """Constructor"""
-        wx.Dialog.__init__(self, None, title=user_title)
-
-        self.Centre()
-        self.enter_frame()
-
-    #----------------------------------------------------------------------
+    def __init__(self, *args, **kwargs):
+        super(MainFrame, self).__init__(*args, **kwargs)
+        self.SetTitle('MainFrame')
+        pane = self.GetContentsPane()
+        wx.Button(pane, label='No access until logged in')
+        self.SetInitialSize((400, 400))
 
 
-    #----------------------------------------------------------------------
-    def enter_frame(self):
+class LoginFrame(sized_controls.SizedDialog):
 
-        user_sizer = wx.BoxSizer(wx.HORIZONTAL)
+    def __init__(self, *args, **kwargs):
+        super(LoginFrame, self).__init__(*args, **kwargs)
+        self.parent = args[0]
+        self.logged_in = False
 
-        user_lbl = wx.StaticText(self, label="Username:")
-        user_sizer.Add(user_lbl, 0, wx.ALL|wx.CENTER, 5)
-        self.user = wx.TextCtrl(self)
-        user_sizer.Add(self.user, 0, wx.ALL, 5)
+        pane = self.GetContentsPane()
 
-        # pass info
-        p_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        pane_form = sized_controls.SizedPanel(pane)
+        pane_form.SetSizerType('form')
 
-        p_lbl = wx.StaticText(self, label="Password:")
-        p_sizer.Add(p_lbl, 0, wx.ALL|wx.CENTER, 5)
-        self.password = wx.TextCtrl(self, style=wx.TE_PASSWORD|wx.TE_PROCESS_ENTER)
-        p_sizer.Add(self.password, 0, wx.ALL, 5)
+        label = wx.StaticText(pane_form, label='User Name')
+        label.SetSizerProps(halign='right', valign='center')
 
-        main_sizer = wx.BoxSizer(wx.VERTICAL)
-        main_sizer.Add(user_sizer, 0, wx.ALL, 5)
-        main_sizer.Add(p_sizer, 0, wx.ALL, 5)
+        self.user_name_ctrl = wx.TextCtrl(pane_form, size=((200, -1)))
 
-        btn = wx.Button(self, label="Login")
-        btn.Bind(wx.EVT_BUTTON, self.onLogin)
-        main_sizer.Add(btn, 0, wx.ALL|wx.CENTER, 5)
+        label = wx.StaticText(pane_form, label='Password')
+        label.SetSizerProps(halign='right', valign='center')
 
-        self.SetSizer(main_sizer)
-    #----------------------------------------------------------------------
-    def create_error_frame(self):
-        self.__init__("dssd")
-        sizer = wx.BoxSizer(wx.HORIZONTAL)
-        sizer.Add( wx.StaticBitmap(self,bitmap=wx.ArtProvider.GetBitmap(wx.ART_INFORMATION)) )
-        sizer.Add( wx.StaticBitmap(self,bitmap=wx.ArtProvider.GetBitmap(wx.ART_QUESTION)) )
-        sizer.Add( wx.StaticBitmap(self,bitmap=wx.ArtProvider.GetBitmap(wx.ART_WARNING)) )
-        sizer.Add( wx.StaticBitmap(self,bitmap=wx.ArtProvider.GetBitmap(wx.ART_ERROR)) )
-        self.SetSizerAndFit(sizer)
-        self.Show()
+        self.password_ctrl = wx.TextCtrl(
+            pane_form, size=((200, -1)), style=wx.TE_PASSWORD)
 
+        pane_btns = sized_controls.SizedPanel(pane)
+        pane_btns.SetSizerType('horizontal')
+        pane_btns.SetSizerProps(halign='right')
 
-    #----------------------------------------------------------------------
-    def onLogin(self, event):
-        """
-        Check credentials and login
-        """
-        stupid_password = "pa$$w0rd!"
-        user_password = self.password.GetValue()
-        if user_password == stupid_password:
-            print "You are now logged in!"
-            pub.sendMessage("frameListener", message="show")
-            self.Destroy()
-        else:
-            print "Username or password is incorrect!"
-            self.create_error_frame()
-########################################################################
-class MyPanel(wx.Panel):
-    """"""
+        login_btn = wx.Button(pane_btns, label='Login')
+        login_btn.SetDefault()
+        cancel_btn = wx.Button(pane_btns, label='Cancel')
+        self.Fit()
+        self.SetTitle('Login')
+        self.CenterOnParent()
+        self.parent.Disable()
 
-    #----------------------------------------------------------------------
-    def __init__(self, parent):
-        """Constructor"""
-        wx.Panel.__init__(self, parent)
+        login_btn.Bind(wx.EVT_BUTTON, self.on_btn_login)
+        cancel_btn.Bind(wx.EVT_BUTTON, self.on_btn_cancel)
+        self.Bind(wx.EVT_CLOSE, self.on_close)
+
+    def on_btn_login(self, event):
+        user_name = self.user_name_ctrl.GetValue()
+        password = self.password_ctrl.GetValue()
+        print 'logged in as {} with password {}'.format(user_name, password)
+        self.logged_in = True
+        self.Close()
+
+    def on_btn_cancel(self, event):
+        self.Close()
+
+    def on_close(self, event):
+        if not self.logged_in:
+            self.parent.Close()
+        self.parent.Enable()
+        event.Skip()
 
 
-########################################################################
-class MainFrame(wx.Frame):
-    """"""
-
-    #----------------------------------------------------------------------
-    def __init__(self):
-        """Constructor"""
-        wx.Frame.__init__(self, None, title="Main App")
-        panel = MyPanel(self)
-        pub.subscribe(self.myListener, "frameListener")
-
-        # Ask user to login
-
-        dlg = LoginDialog("LOG")
-        dlg.ShowModal()
-
-    #----------------------------------------------------------------------
-    def myListener(self, message, arg2=None):
-        """
-        Show the frame
-        """
-        self.Show()
-
-if __name__ == "__main__":
-    app = wx.App(False)
-    frame = MainFrame()
-    app.MainLoop()
+if __name__ == '__main__':
+    wxapp = wx.App(False)
+    parent_frame = MainFrame(None)
+    parent_frame.Show()
+    login_frame = LoginFrame(parent_frame)
+    login_frame.Show()
+    wxapp.MainLoop()
