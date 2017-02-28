@@ -34,9 +34,9 @@ def user_data_string(user_name,password):
 
 def user_usage(user_data):
 
-
+    print
     #show the interface of the password
-    get_password=
+    #get_password
 
 
 def main():
@@ -67,7 +67,7 @@ def main():
 
 
 def client_server_recv(clientsock):
-
+    print
 
 def client_server_other_clients(port):
     #the main server send the port that need to be used
@@ -85,11 +85,6 @@ def client_server_other_clients(port):
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
         thread.start_new_thread(client_server_recv, (clientsock))
-
-
-
-
-
 
 def handler_client_with_server(user_data):
     #all the client as a client sender
@@ -109,8 +104,6 @@ def handler_client_with_server(user_data):
 
         arr_mesg_lock.release()
 
-
-
 def handler_server_only_from_server(user_data):
     #act as a server for reciving
     port = 8888
@@ -121,16 +114,10 @@ def handler_server_only_from_server(user_data):
     pu_key=sock.recv(BUFFER)
     user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
 
-
-
-
-
 def control_the_client():
     #all the usage of the user
     #its create all the mesg built already
-
-
-
+    print
 
 if __name__=='__main__':
     main()

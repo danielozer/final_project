@@ -36,6 +36,7 @@ def create_AES_key():
     cipher = AES.new(secret)
 
     return cipher
+
 def get_public_key_from_other_side(recv_data):
 
 
@@ -46,8 +47,6 @@ def get_public_key_from_other_side(recv_data):
     pu_key = RSA.importKey(pu_key.exportKey())
 
     return pu_key
-
-
 
 def create_key():
     random_generator = Random.new().read#get new random key
@@ -101,8 +100,6 @@ def EncryptMesg(data,pu_key):
     return data_encrypt
 
 
-
-
 def EncryptDB(key, stringMesg):
     """
     this func recv mesg then it encrypt the mesg using AES
@@ -111,10 +108,6 @@ def EncryptDB(key, stringMesg):
     """
 
     return EncodeAES(key, stringMesg)
-
-
-
-
 
 
 def DecryptDB(key,stringMesg):
