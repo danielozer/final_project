@@ -3,12 +3,13 @@ __author__ = "daniel ozer"
 
 from socket import *
 import thread
+from threading import Thread
 import cPickle as pickle
 import secure
 import mng_db
 from sys import argv
 import sys
-import random
+import random,time
 
 """
 print 'The length of command line arguments:', len(argv)
@@ -162,7 +163,7 @@ db_path = r'E:\music'
 db_fname = 'userpass.db'
 db_path_fname = db_path + '\\' + db_fname
 
-create_db_if_not_exist(db_path_fname)
+#create_db_if_not_exist(db_path_fname)
 
 def handler(clientsock,addr):
 
@@ -184,10 +185,14 @@ def handler(clientsock,addr):
     end=False
 
     while(end==False):
+
+        recv_data=clientsock.recv(BUFFER)
+        print recv_data
+
+        """
         recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),key)
 
         recv_data=break_to_pieces(recv_data)
-
         mesgtype=recv_data[recvdata_order.MESGTYPE]
         mesg_sender_name=recv_data[recvdata_order.SENDER_NAME]
         if (mesgtype==Mesg_Type.ENTER):
@@ -201,7 +206,7 @@ def handler(clientsock,addr):
             print "error!!!!!!!"
             #error mesg
 
-
+        """
 
 
 
@@ -215,8 +220,20 @@ def break_to_pieces(mesg):
     else:
         return "error!!"
 
+def handler_client(port,ip):
+    while 1:
+        try:
+            port=9393
+            ip="127.0.0.1"
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect((ip, port))
 
-
+            while 1:
+                sock.send("opsaaaaa")
+                print "%^%^%^%^%^%^%^%^%^%^^%^%^%^%^%^%%%^%^%^%^%^%^%%%^%^%^%^%^%^^%^%^%^%"
+                time.sleep(5)
+        except:
+            print
 
 
 def main():
@@ -241,7 +258,7 @@ def main():
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
         thread.start_new_thread(handler, (clientsock, addr))
-"""
+
 if __name__=='__main__':
     main()
-"""
+

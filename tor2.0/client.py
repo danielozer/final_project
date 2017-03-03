@@ -3,10 +3,11 @@ import secure
 import sendMesg_client
 #import show_page
 import socket
+from socket import *
 import cPickle as pickle
 import thread
+from threading import Thread
 import threading
-
 
 IP="127.0.0.1"
 PORT=9999
@@ -39,35 +40,45 @@ def user_usage(user_data):
     #get_password
 
 def main():
-
+    print
 
 def main():
 
-  user_data=All_userdata()
+    user_data=All_userdata()
 
-  key=secure.create_key()
-  public_key=secure.Publik_Key(key)
+    key=secure.create_key()
+    public_key=secure.Publik_Key(key)
 
-  user_data.client_key=key
-  user_data.client_public_key=public_key
+    user_data.client_key=key
+    user_data.client_public_key=public_key
 
+    t = Thread(target=handler_client_with_server, args=(user_data,))
+    t.start()
 
+    p = Thread(target=handler_server_only_from_server, args=(user_data,))
+    p.start()
+    #thread.start_new_thread(handler_client_with_server, (user_data,))
+    #thread.start_new_thread(handler_server_only_from_server, (user_data,))
+    #port=1901
+    #thread.start_new_thread(client_server_other_clients, (user_data,port))
 
+"""
 
-  #GET FROM THE USER THE PASSWORD AND USERNAME
-  while 1:
+    #GET FROM THE USER THE PASSWORD AND USERNAME
+    while 1:
 
-      password="password"
-      sendMesg_client.send_to_server_password(password,sock,user_data.server_public_key,SENDER_NAME)
+        password="password"
+        sendMesg_client.send_to_server_password(password,sock,user_data.server_public_key,SENDER_NAME)
 
-      #GET AN ANSWER IF THE PASSWORD IS AUTHORIZED
-      check=sock.recv(BUFFER)
+        #GET AN ANSWER IF THE PASSWORD IS AUTHORIZED
+        check=sock.recv(BUFFER)
 
-      while check is True:
+        while check is True:
 
-          get_data_from_frame()
+            get_data_from_frame()
+"""
 
-def client_to_other_clients(client_sock):
+def client_to_other_clients(user_data,client_sock):
     #c-client-->c-server
 
     #def check for right mesg
@@ -77,9 +88,10 @@ def client_to_other_clients(client_sock):
 def client_server_recv(clientsock):
     #c-server-->c-client
     client_recv=clientsock.recv()
+    print  client_recv
     #insert it to database
 
-def client_server_other_clients(port):
+def client_server_other_clients(user_data,port):
     #c-server-->c-client
 
     #the main server send the port that need to be used
@@ -107,7 +119,7 @@ def handler_client_with_server(user_data):
     #c-client-->s-server
     #all the client as a client sender
     port=9999
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock = socket(AF_INET, SOCK_STREAM)
     sock.connect((IP, port))
 
     sock.send(user_data.client_public_key)
@@ -117,14 +129,18 @@ def handler_client_with_server(user_data):
 
         arr_mesg_lock.acquire()
 
-        pull_next_mesg=user_data.mesg_for_send[0]
-        user_data.mesg_for_send.remove(pull_next_mesg)
+        #pull_next_mesg=user_data.mesg_for_send[0]
+        pull_next_mesg="dsdsdsdsdsd"
+        #user_data.mesg_for_send.remove(pull_next_mesg)
         sock.send(pull_next_mesg)
         arr_mesg_lock.release()
 
-def handler_server_only_from_server(user_data,port):
+def handler_server_only_from_server(user_data):
     #c-server-->s-client
     #act as a server for reciving#need to get the port from the server
+
+    port=9393
+
     host="127.0.0.1"
     ADDR = (host, port)
     serversock = socket(AF_INET, SOCK_STREAM)
@@ -133,7 +149,7 @@ def handler_server_only_from_server(user_data,port):
     serversock.listen(5)
 
     while 1:
-        print 'waiting for connection... listening on port', PORT
+        print 'waiting for connection... listening on port', port
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
         thread.start_new_thread(client_server_recv, (clientsock))
