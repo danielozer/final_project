@@ -7,7 +7,7 @@ from socket import *
 import cPickle as pickle
 import thread
 from threading import Thread
-import threading
+import threading,time
 
 IP="127.0.0.1"
 PORT=9999
@@ -87,7 +87,7 @@ def client_to_other_clients(user_data,client_sock):
 
 def client_server_recv(clientsock):
     #c-server-->c-client
-    client_recv=clientsock.recv()
+    client_recv=clientsock.recv(BUFFER)
     print  client_recv
     #insert it to database
 
@@ -96,7 +96,7 @@ def client_server_other_clients(user_data,port):
 
     #the main server send the port that need to be used
 
-
+    port =9899
     host="127.0.0.1"
     ADDR = (host, port)
     serversock = socket(AF_INET, SOCK_STREAM)
@@ -134,7 +134,7 @@ def handler_client_with_server(user_data):
         #user_data.mesg_for_send.remove(pull_next_mesg)
         sock.send(pull_next_mesg)
         arr_mesg_lock.release()
-
+        time.sleep(5)
 def handler_server_only_from_server(user_data):
     #c-server-->s-client
     #act as a server for reciving#need to get the port from the server
@@ -152,7 +152,7 @@ def handler_server_only_from_server(user_data):
         print 'waiting for connection... listening on port', port
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
-        thread.start_new_thread(client_server_recv, (clientsock))
+        thread.start_new_thread(client_server_recv, (clientsock,))
 
    # pu_key=sock.recv(BUFFER)
     #user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)

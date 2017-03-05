@@ -181,6 +181,8 @@ def handler(clientsock,addr):
     recv_data=clientsock.recv(BUFFER)
     public_key_client=secure.get_public_key_from_other_side(recv_data)
 
+    t = Thread(target=handler_client, args=(11,2))
+    t.start()
 
     end=False
 
@@ -225,7 +227,9 @@ def handler_client(port,ip):
         try:
             port=9393
             ip="127.0.0.1"
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+            sock = socket(AF_INET,SOCK_STREAM)
+            print "%^%"
             sock.connect((ip, port))
 
             while 1:
@@ -233,7 +237,7 @@ def handler_client(port,ip):
                 print "%^%^%^%^%^%^%^%^%^%^^%^%^%^%^%^%%%^%^%^%^%^%^%%%^%^%^%^%^%^^%^%^%^%"
                 time.sleep(5)
         except:
-            print
+            p=1
 
 
 def main():
