@@ -22,154 +22,129 @@
     <favorites_list name="tor2.0" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4355356">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="99" column="20" selection-start="2296" selection-end="2296" vertical-scroll-proportion="0.5169753" vertical-offset="1348" max-vertical-offset="2924">
-                  <folding>
-                    <element signature="e#26#39#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main_server.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main_server.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="185" column="0" selection-start="3958" selection-end="3958" vertical-scroll-proportion="0.0" vertical-offset="1451" max-vertical-offset="3366">
-                  <folding>
-                    <element signature="e#29#49#0" expanded="true" />
-                    <element signature="e#1426#1788#0" expanded="false" />
-                    <element signature="e#1825#1903#0" expanded="false" />
-                    <element signature="e#1943#2090#0" expanded="false" />
-                    <element signature="e#2146#3148#0" expanded="false" />
-                    <element signature="e#3177#3207#0" expanded="false" />
-                    <element signature="e#3249#3270#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="design.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/design.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="93" column="0" selection-start="3138" selection-end="3138" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
-                  <folding>
-                    <element signature="e#3169#3721#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="db_sqlite.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/db_sqlite.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="107" column="0" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1713" max-vertical-offset="2176">
-                  <folding>
-                    <element signature="e#623#1694#0" expanded="false" />
-                    <element signature="e#1821#2968#0" expanded="false" />
-                    <element signature="e#3095#3471#0" expanded="false" />
-                    <element signature="e#3607#3946#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mng_db.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mng_db.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="97" column="0" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.0" vertical-offset="2002" max-vertical-offset="2465">
-                  <folding>
-                    <element signature="e#1637#2005#0" expanded="false" />
-                    <element signature="e#2127#2294#0" expanded="false" />
-                    <element signature="e#2426#2962#0" expanded="false" />
-                    <element signature="e#3083#3652#0" expanded="false" />
-                    <element signature="e#3794#4870#0" expanded="false" />
-                    <element signature="e#5017#5949#0" expanded="false" />
-                    <element signature="e#6065#6395#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="secure.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/secure.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
-                  <folding>
-                    <element signature="e#928#1096#0" expanded="false" />
-                    <element signature="e#1120#1261#0" expanded="false" />
-                    <element signature="e#1288#1539#0" expanded="false" />
-                    <element signature="e#1577#1907#0" expanded="false" />
-                    <element signature="e#1944#2293#0" expanded="false" />
-                    <element signature="e#2332#2503#0" expanded="false" />
-                    <element signature="e#2541#2706#0" expanded="false" />
-                    <element signature="e#2742#2901#0" expanded="false" />
-                    <element signature="e#2937#3135#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sendMesg_client.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="663">
-                  <folding>
-                    <element signature="e#417#677#0" expanded="false" />
-                    <element signature="e#748#994#0" expanded="false" />
-                    <element signature="e#1057#1267#0" expanded="false" />
-                    <element signature="e#1335#1481#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="show_page.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/show_page.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sendMesg_server.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="main_server.py" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/main_server.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="233" column="0" selection-start="5018" selection-end="5018" vertical-scroll-proportion="0.40895522" vertical-offset="2395" max-vertical-offset="3366">
-                  <folding>
-                    <element signature="e#29#49#0" expanded="true" />
-                    <element signature="e#1426#1788#0" expanded="false" />
-                    <element signature="e#1825#1903#0" expanded="false" />
-                    <element signature="e#1943#2090#0" expanded="false" />
-                    <element signature="e#2146#3148#0" expanded="false" />
-                    <element signature="e#3177#3207#0" expanded="false" />
-                    <element signature="e#3249#3270#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="db_sqlite.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db_sqlite.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="107" column="0" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1466" max-vertical-offset="2176">
+              <folding>
+                <element signature="e#623#1694#0" expanded="false" />
+                <element signature="e#1821#2968#0" expanded="false" />
+                <element signature="e#3095#3471#0" expanded="false" />
+                <element signature="e#3607#3946#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="101" column="23" selection-start="2345" selection-end="2345" vertical-scroll-proportion="-16.814816" vertical-offset="1263" max-vertical-offset="2941">
+              <folding>
+                <element signature="e#26#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main_server.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_server.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="13" selection-start="1441" selection-end="1441" vertical-scroll-proportion="-16.37037" vertical-offset="561" max-vertical-offset="3536">
+              <folding>
+                <element signature="e#29#49#0" expanded="true" />
+                <element signature="e#1700#2062#0" expanded="false" />
+                <element signature="e#2099#2177#0" expanded="false" />
+                <element signature="e#2217#2364#0" expanded="false" />
+                <element signature="e#2420#3422#0" expanded="false" />
+                <element signature="e#3451#3481#0" expanded="false" />
+                <element signature="e#3523#3544#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mng_db.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mng_db.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="0" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.0" vertical-offset="1768" max-vertical-offset="2465">
+              <folding>
+                <element signature="e#1637#2005#0" expanded="false" />
+                <element signature="e#2127#2294#0" expanded="false" />
+                <element signature="e#2426#2962#0" expanded="false" />
+                <element signature="e#3083#3652#0" expanded="false" />
+                <element signature="e#3794#4870#0" expanded="false" />
+                <element signature="e#5017#5949#0" expanded="false" />
+                <element signature="e#6065#6395#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="design.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/design.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="39" selection-start="1984" selection-end="1988" vertical-scroll-proportion="0.7262079" vertical-offset="575" max-vertical-offset="1564">
+              <folding>
+                <element signature="e#28#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="secure.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/secure.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
+              <folding>
+                <element signature="e#928#1096#0" expanded="false" />
+                <element signature="e#1120#1261#0" expanded="false" />
+                <element signature="e#1288#1539#0" expanded="false" />
+                <element signature="e#1577#1907#0" expanded="false" />
+                <element signature="e#1944#2293#0" expanded="false" />
+                <element signature="e#2332#2503#0" expanded="false" />
+                <element signature="e#2541#2706#0" expanded="false" />
+                <element signature="e#2742#2901#0" expanded="false" />
+                <element signature="e#2937#3135#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sendMesg_client.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+              <folding>
+                <element signature="e#417#677#0" expanded="false" />
+                <element signature="e#748#994#0" expanded="false" />
+                <element signature="e#1057#1267#0" expanded="false" />
+                <element signature="e#1335#1481#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show_page.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/show_page.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sendMesg_server.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -189,10 +164,10 @@
         <option value="$PROJECT_DIR$/db_server.py" />
         <option value="$PROJECT_DIR$/db_sqlite.py" />
         <option value="$PROJECT_DIR$/mng_db.py" />
-        <option value="$PROJECT_DIR$/design.py" />
         <option value="$PROJECT_DIR$/secure.py" />
-        <option value="$PROJECT_DIR$/main_server.py" />
         <option value="$PROJECT_DIR$/client.py" />
+        <option value="$PROJECT_DIR$/main_server.py" />
+        <option value="$PROJECT_DIR$/design.py" />
       </list>
     </option>
   </component>
@@ -268,7 +243,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
   </component>
-  <component name="RunManager" selected="Python.client">
+  <component name="RunManager" selected="Python.design">
     <configuration default="false" name="secure" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -470,9 +445,9 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.client" />
+        <item index="0" class="java.lang.String" itemvalue="Python.design" />
         <item index="1" class="java.lang.String" itemvalue="Python.main_server" />
-        <item index="2" class="java.lang.String" itemvalue="Python.design" />
+        <item index="2" class="java.lang.String" itemvalue="Python.client" />
         <item index="3" class="java.lang.String" itemvalue="Python.secure" />
       </list>
     </recent_temporary>
@@ -498,7 +473,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19804135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19804135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -547,12 +522,12 @@
         <state line="76" column="0" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
           <folding>
             <element signature="e#29#49#0" expanded="true" />
-            <element signature="e#1426#1788#0" expanded="false" />
-            <element signature="e#1825#1903#0" expanded="false" />
-            <element signature="e#1943#2090#0" expanded="false" />
-            <element signature="e#2146#3148#0" expanded="false" />
-            <element signature="e#3177#3207#0" expanded="false" />
-            <element signature="e#3249#3270#0" expanded="false" />
+            <element signature="e#1700#2062#0" expanded="false" />
+            <element signature="e#2099#2177#0" expanded="false" />
+            <element signature="e#2217#2364#0" expanded="false" />
+            <element signature="e#2420#3422#0" expanded="false" />
+            <element signature="e#3451#3481#0" expanded="false" />
+            <element signature="e#3523#3544#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -588,7 +563,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
           <folding>
-            <element signature="e#3169#3721#0" expanded="false" />
+            <element signature="e#28#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -650,12 +625,12 @@
         <state line="76" column="0" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="2669">
           <folding>
             <element signature="e#29#49#0" expanded="true" />
-            <element signature="e#1426#1788#0" expanded="false" />
-            <element signature="e#1825#1903#0" expanded="false" />
-            <element signature="e#1943#2090#0" expanded="false" />
-            <element signature="e#2146#3148#0" expanded="false" />
-            <element signature="e#3177#3207#0" expanded="false" />
-            <element signature="e#3249#3270#0" expanded="false" />
+            <element signature="e#1700#2062#0" expanded="false" />
+            <element signature="e#2099#2177#0" expanded="false" />
+            <element signature="e#2217#2364#0" expanded="false" />
+            <element signature="e#2420#3422#0" expanded="false" />
+            <element signature="e#3451#3481#0" expanded="false" />
+            <element signature="e#3523#3544#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -691,7 +666,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
           <folding>
-            <element signature="e#3169#3721#0" expanded="false" />
+            <element signature="e#28#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -753,12 +728,12 @@
         <state line="42" column="57" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1649">
           <folding>
             <element signature="e#29#49#0" expanded="true" />
-            <element signature="e#1426#1788#0" expanded="false" />
-            <element signature="e#1825#1903#0" expanded="false" />
-            <element signature="e#1943#2090#0" expanded="false" />
-            <element signature="e#2146#3148#0" expanded="false" />
-            <element signature="e#3177#3207#0" expanded="false" />
-            <element signature="e#3249#3270#0" expanded="false" />
+            <element signature="e#1700#2062#0" expanded="false" />
+            <element signature="e#2099#2177#0" expanded="false" />
+            <element signature="e#2217#2364#0" expanded="false" />
+            <element signature="e#2420#3422#0" expanded="false" />
+            <element signature="e#3451#3481#0" expanded="false" />
+            <element signature="e#3523#3544#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,7 +769,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
           <folding>
-            <element signature="e#3169#3721#0" expanded="false" />
+            <element signature="e#28#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -856,12 +831,12 @@
         <state line="43" column="57" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="1649">
           <folding>
             <element signature="e#29#49#0" expanded="true" />
-            <element signature="e#1426#1788#0" expanded="false" />
-            <element signature="e#1825#1903#0" expanded="false" />
-            <element signature="e#1943#2090#0" expanded="false" />
-            <element signature="e#2146#3148#0" expanded="false" />
-            <element signature="e#3177#3207#0" expanded="false" />
-            <element signature="e#3249#3270#0" expanded="false" />
+            <element signature="e#1700#2062#0" expanded="false" />
+            <element signature="e#2099#2177#0" expanded="false" />
+            <element signature="e#2217#2364#0" expanded="false" />
+            <element signature="e#2420#3422#0" expanded="false" />
+            <element signature="e#3451#3481#0" expanded="false" />
+            <element signature="e#3523#3544#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -870,7 +845,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
           <folding>
-            <element signature="e#3169#3721#0" expanded="false" />
+            <element signature="e#28#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -973,17 +948,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mng_db.py">
+    <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="0" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.0" vertical-offset="2002" max-vertical-offset="2465">
+        <state line="101" column="23" selection-start="2345" selection-end="2345" vertical-scroll-proportion="-16.814816" vertical-offset="1263" max-vertical-offset="2941">
           <folding>
-            <element signature="e#1637#2005#0" expanded="false" />
-            <element signature="e#2127#2294#0" expanded="false" />
-            <element signature="e#2426#2962#0" expanded="false" />
-            <element signature="e#3083#3652#0" expanded="false" />
-            <element signature="e#3794#4870#0" expanded="false" />
-            <element signature="e#5017#5949#0" expanded="false" />
-            <element signature="e#6065#6395#0" expanded="false" />
+            <element signature="e#26#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1000,37 +969,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/show_page.py">
+    <entry file="file://$PROJECT_DIR$/mng_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="610">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="663">
+        <state line="97" column="0" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.0" vertical-offset="2002" max-vertical-offset="2465">
           <folding>
-            <element signature="e#417#677#0" expanded="false" />
-            <element signature="e#748#994#0" expanded="false" />
-            <element signature="e#1057#1267#0" expanded="false" />
-            <element signature="e#1335#1481#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/design.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="0" selection-start="3138" selection-end="3138" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
-          <folding>
-            <element signature="e#3169#3721#0" expanded="false" />
+            <element signature="e#1637#2005#0" expanded="false" />
+            <element signature="e#2127#2294#0" expanded="false" />
+            <element signature="e#2426#2962#0" expanded="false" />
+            <element signature="e#3083#3652#0" expanded="false" />
+            <element signature="e#3794#4870#0" expanded="false" />
+            <element signature="e#5017#5949#0" expanded="false" />
+            <element signature="e#6065#6395#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1052,26 +1001,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client.py">
+    <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="20" selection-start="2296" selection-end="2296" vertical-scroll-proportion="0.5169753" vertical-offset="1348" max-vertical-offset="2924">
+        <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="663">
           <folding>
-            <element signature="e#26#39#0" expanded="true" />
+            <element signature="e#417#677#0" expanded="false" />
+            <element signature="e#748#994#0" expanded="false" />
+            <element signature="e#1057#1267#0" expanded="false" />
+            <element signature="e#1335#1481#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="610">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="233" column="0" selection-start="5018" selection-end="5018" vertical-scroll-proportion="0.40895522" vertical-offset="2395" max-vertical-offset="3366">
+        <state line="59" column="13" selection-start="1441" selection-end="1441" vertical-scroll-proportion="-16.37037" vertical-offset="561" max-vertical-offset="3536">
           <folding>
             <element signature="e#29#49#0" expanded="true" />
-            <element signature="e#1426#1788#0" expanded="false" />
-            <element signature="e#1825#1903#0" expanded="false" />
-            <element signature="e#1943#2090#0" expanded="false" />
-            <element signature="e#2146#3148#0" expanded="false" />
-            <element signature="e#3177#3207#0" expanded="false" />
-            <element signature="e#3249#3270#0" expanded="false" />
+            <element signature="e#1700#2062#0" expanded="false" />
+            <element signature="e#2099#2177#0" expanded="false" />
+            <element signature="e#2217#2364#0" expanded="false" />
+            <element signature="e#2420#3422#0" expanded="false" />
+            <element signature="e#3451#3481#0" expanded="false" />
+            <element signature="e#3523#3544#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/design.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="39" selection-start="1984" selection-end="1988" vertical-scroll-proportion="0.7262079" vertical-offset="575" max-vertical-offset="1564">
+          <folding>
+            <element signature="e#28#37#0" expanded="true" />
           </folding>
         </state>
       </provider>

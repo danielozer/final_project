@@ -87,9 +87,10 @@ def client_to_other_clients(user_data,client_sock):
 
 def client_server_recv(clientsock):
     #c-server-->c-client
-    client_recv=clientsock.recv(BUFFER)
-    print  client_recv
-    #insert it to database
+    while 1:
+        client_recv=clientsock.recv(BUFFER)
+        print  client_recv
+        #insert it to database
 
 def client_server_other_clients(user_data,port):
     #c-server-->c-client

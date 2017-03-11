@@ -56,7 +56,17 @@ init_upass_db = (
     (6, 'u', '6', False, -1),
     (7, 'i', '7', False, -1))
 
+def get_password_from_db(self):
+        print
 
+def check_passwords(user_name,password):
+    data=get_password_from_db()
+
+    true_user_name=data[0]
+    true_password=data[1]
+    if (true_password==password and true_user_name==user_name):
+        return True
+    return False
 
 def change_dic(dic,id):
     """
