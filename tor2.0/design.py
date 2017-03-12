@@ -10,8 +10,11 @@ class MainFrame(sized_controls.SizedFrame):
         super(MainFrame, self).__init__(*args, **kwargs)
         self.SetTitle('MainFrame')
         pane = self.GetContentsPane()
-        wx.Button(pane, label='No access until logged in')
-        self.SetInitialSize((400, 400))
+
+        #pane=wx.Panel(self)
+        start_btn=wx.Button(pane, label='START',  )
+        start_btn.Position((240, 240))
+        self.SetInitialSize((500, 500))
         self.Centre()
 
 class LoginFrame(sized_controls.SizedDialog):
