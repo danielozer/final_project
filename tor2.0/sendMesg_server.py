@@ -73,8 +73,8 @@ class start_frame(wx.App):
         panel = wx.Panel(self.frame)
         box = wx.BoxSizer(wx.VERTICAL)
 
-        lbl1 = wx.StaticText(panel,-1, style = wx.ALIGN_CENTER | wx.ST_ELLIPSIZE_MIDDLE,pos=(175,50))
-        lbl1.SetLabel("welcome to\n TOR")
+        lbl1 = wx.StaticText(panel,-1, style = wx.ALIGN_CENTER | wx.ST_ELLIPSIZE_MIDDLE,pos=(17,50))
+        lbl1.SetLabel("$$$$$$$$$$ welcome to $$$$$$$$$$\n TOR")
         lbl1.SetForegroundColour((255,0,0))
         lbl1.SetBackgroundColour((0,0,0))
         font = lbl1.GetFont()
@@ -108,24 +108,45 @@ class second_frame(wx.App):
 
     def OnInit(self):
 
+
+
+
+        #self.start_btn_box = wx.Button(panel, label='Enter',pos=(300,180))
+
+
+        #self.start_btn_send=wx.Button(panel, label='Enter',pos=(100,180))
+
+        #
+
         self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
+
         panel = wx.Panel(self.frame)
 
-        self.SetBackgroundColour((100, 179, 179))
-        self.start_btn_box = wx.Button(panel, label='START')
-        self.start_btn_send=wx.Button(panel, label='START')
+        rev = wx.StaticText(panel, -1, "choose your option",(200, 50),
+                (200, 100))
+        rev.SetForegroundColour('white')
+        rev.SetBackgroundColour('black')
+
+
+        self.frame.SetBackgroundColour((100, 179, 179))
 
         self.frame.Centre()
         self.frame.Show()
 
+
         return True
+    def OnButtonClick(self,event):
+        self.frame.Close()
 
 def main():
 
-    login_app=LoginFrame()
-    login_app.MainLoop()
+  #  login_app=LoginFrame()
+   # login_app.MainLoop()
 
     start_app=start_frame()
     start_app.MainLoop()
+
+    second_app=second_frame()
+    second_app.MainLoop()
 if __name__ == '__main__':
     main()
