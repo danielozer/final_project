@@ -1,6 +1,11 @@
 _author__ = "daniel ozer"
 import wx
 
+
+#global variable
+frame_state="first"
+
+
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
 
@@ -122,12 +127,17 @@ class second_frame(wx.App):
 
         panel = wx.Panel(self.frame)
 
-        rev = wx.StaticText(panel, -1, "choose your option",(200, 50),
-                (200, 100))
+        rev = wx.StaticText(panel, -1, "choose your option",(185, 50),
+                (105, 20))
         rev.SetForegroundColour('white')
         rev.SetBackgroundColour('black')
 
 
+        self.send_btn = wx.Button(panel, label='send mesg',size=(200,200),pos=(45,200))
+        self.inbox_btn = wx.Button(panel, label='check inbox',size=(200,200),pos=(255,200))
+
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_send, self.send_btn)
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox , self.inbox_btn)
         self.frame.SetBackgroundColour((100, 179, 179))
 
         self.frame.Centre()
@@ -135,18 +145,38 @@ class second_frame(wx.App):
 
 
         return True
-    def OnButtonClick(self,event):
+    def OnButtonClick_send(self,event):
+        global frame_state
+        frame_state="send mesg"
         self.frame.Close()
 
-def main():
+    def OnButtonClick_inbox(self,event):
+        global frame_state
+        frame_state="inbox"
+        self.frame.Close()
 
-  #  login_app=LoginFrame()
-   # login_app.MainLoop()
+class inbox_frame(wx.App):
+    """Application class."""
+
+    def OnInit(self):
+
+        return True
+
+
+def main():
+    global frame_state
+    login_app=LoginFrame()
+    login_app.MainLoop()
 
     start_app=start_frame()
     start_app.MainLoop()
 
     second_app=second_frame()
     second_app.MainLoop()
+
+    if frame_state=="inbox":
+        print "in"
+    else:
+        print "send"
 if __name__ == '__main__':
     main()
