@@ -2,9 +2,15 @@ _author__ = "daniel ozer"
 import wx
 
 
+<<<<<<< HEAD
 #global variable
 frame_state="first"
 
+=======
+#global verials
+class glo_var():
+    next_frame=4
+>>>>>>> origin/master
 
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
@@ -116,10 +122,6 @@ class second_frame(wx.App):
 
 
 
-        #self.start_btn_box = wx.Button(panel, label='Enter',pos=(300,180))
-
-
-        #self.start_btn_send=wx.Button(panel, label='Enter',pos=(100,180))
 
         #
 
@@ -127,10 +129,15 @@ class second_frame(wx.App):
 
         panel = wx.Panel(self.frame)
 
+<<<<<<< HEAD
         rev = wx.StaticText(panel, -1, "choose your option",(185, 50),
                 (105, 20))
+=======
+        rev = wx.StaticText(panel, -1, "choose your option",(180, 70),
+                (110, 20))
+>>>>>>> origin/master
         rev.SetForegroundColour('white')
-        rev.SetBackgroundColour('black')
+        rev.SetBackgroundColour('red')
 
 
         self.send_btn = wx.Button(panel, label='send mesg',size=(200,200),pos=(45,200))
@@ -140,16 +147,40 @@ class second_frame(wx.App):
         self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox , self.inbox_btn)
         self.frame.SetBackgroundColour((100, 179, 179))
 
+        self.start_btn_box = wx.Button(panel, label='inbox',pos=(300,180))
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox, self.start_btn_box)
+
+        self.start_btn_send=wx.Button(panel, label='send',pos=(100,180))
+
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_send, self.start_btn_send)
+
         self.frame.Centre()
         self.frame.Show()
 
 
         return True
+<<<<<<< HEAD
     def OnButtonClick_send(self,event):
         global frame_state
         frame_state="send mesg"
+=======
+    def OnButtonClick_inbox(self,event):
+>>>>>>> origin/master
         self.frame.Close()
+        glo_var.next_frame= "box"
 
+
+    def OnButtonClick_send(self,event):
+        self.frame.Close()
+        glo_var.next_frame= "send"
+
+
+class mesg_box_frame(wx.App):
+    def OnInit(self):
+
+
+
+<<<<<<< HEAD
     def OnButtonClick_inbox(self,event):
         global frame_state
         frame_state="inbox"
@@ -167,16 +198,42 @@ def main():
     global frame_state
     login_app=LoginFrame()
     login_app.MainLoop()
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+def main():
+  #  login_app=LoginFrame()
+   # login_app.MainLoop()
+>>>>>>> origin/master
 
     start_app=start_frame()
+
     start_app.MainLoop()
 
     second_app=second_frame()
     second_app.MainLoop()
+<<<<<<< HEAD
 
     if frame_state=="inbox":
         print "in"
     else:
         print "send"
+=======
+    if glo_var.next_frame=="box":
+
+    else:
+
+
+>>>>>>> origin/master
 if __name__ == '__main__':
     main()
