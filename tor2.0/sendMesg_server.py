@@ -2,15 +2,13 @@ _author__ = "daniel ozer"
 import wx
 
 
-<<<<<<< HEAD
-#global variable
-frame_state="first"
 
-=======
+
+
 #global verials
 class glo_var():
     next_frame=4
->>>>>>> origin/master
+
 
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
@@ -129,13 +127,11 @@ class second_frame(wx.App):
 
         panel = wx.Panel(self.frame)
 
-<<<<<<< HEAD
-        rev = wx.StaticText(panel, -1, "choose your option",(185, 50),
-                (105, 20))
-=======
+
+
         rev = wx.StaticText(panel, -1, "choose your option",(180, 70),
                 (110, 20))
->>>>>>> origin/master
+
         rev.SetForegroundColour('white')
         rev.SetBackgroundColour('red')
 
@@ -147,25 +143,17 @@ class second_frame(wx.App):
         self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox , self.inbox_btn)
         self.frame.SetBackgroundColour((100, 179, 179))
 
-        self.start_btn_box = wx.Button(panel, label='inbox',pos=(300,180))
-        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox, self.start_btn_box)
 
-        self.start_btn_send=wx.Button(panel, label='send',pos=(100,180))
-
-        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_send, self.start_btn_send)
 
         self.frame.Centre()
         self.frame.Show()
 
 
         return True
-<<<<<<< HEAD
-    def OnButtonClick_send(self,event):
-        global frame_state
-        frame_state="send mesg"
-=======
+
+
     def OnButtonClick_inbox(self,event):
->>>>>>> origin/master
+
         self.frame.Close()
         glo_var.next_frame= "box"
 
@@ -175,46 +163,63 @@ class second_frame(wx.App):
         glo_var.next_frame= "send"
 
 
-class mesg_box_frame(wx.App):
-    def OnInit(self):
-
-
-
-<<<<<<< HEAD
-    def OnButtonClick_inbox(self,event):
-        global frame_state
-        frame_state="inbox"
-        self.frame.Close()
 
 class inbox_frame(wx.App):
     """Application class."""
 
     def OnInit(self):
 
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
+        panel = wx.Panel(self.frame)
+
+
+        rev = wx.StaticText(panel, -1, "***INBOX***",(200,40),
+                (78, 20))
+
+        rev.SetForegroundColour('white')
+        rev.SetBackgroundColour('red')
+
+
+        sampleList = ['zero        sdfsdfjsd j     sdfslf ksdlf                     asdsdasda        asadafsdfsdfdfsdfsdf', 'one  fsdfsdfs    fffddds', 'two', 'three', 'four', 'five',
+                      'six', 'seven', 'eight', 'nine', 'ten', 'eleven',
+                      'twelve', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven']
+
+        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300), sampleList,
+                wx.LB_SINGLE,)
+        self.listBox.SetSelection(0)
+        self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
+
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_open, self.open_btn)
+
+        self.frame.SetBackgroundColour((100, 179, 179))
+
+        self.frame.Centre()
+        self.frame.Show()
+        return True
+    def OnButtonClick_open(self,event):
+        print self.listBox.GetString(self.listBox.GetSelection())
+
+class send_box(wx.App):
+    """Application class."""
+
+    def OnInit(self):
+
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
+        panel = wx.Panel(self.frame)
+
+
+        
+
         return True
 
-
 def main():
-    global frame_state
+    send_box_app=LoginFrame()
+    send_box_app.MainLoop()
+"""
     login_app=LoginFrame()
     login_app.MainLoop()
-=======
 
 
-
-
-
-
-
-
-
-
-
-
-def main():
-  #  login_app=LoginFrame()
-   # login_app.MainLoop()
->>>>>>> origin/master
 
     start_app=start_frame()
 
@@ -222,18 +227,15 @@ def main():
 
     second_app=second_frame()
     second_app.MainLoop()
-<<<<<<< HEAD
 
-    if frame_state=="inbox":
-        print "in"
+
+
+    if glo_var.next_frame=="box":
+         inbox_app=inbox_frame()
+         inbox_app.MainLoop()
     else:
         print "send"
-=======
-    if glo_var.next_frame=="box":
 
-    else:
-
-
->>>>>>> origin/master
+"""
 if __name__ == '__main__':
     main()
