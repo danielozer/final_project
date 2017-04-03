@@ -39,8 +39,7 @@ def user_usage(user_data):
     #show the interface of the password
     #get_password
 
-def main():
-    print
+
 
 def main():
 

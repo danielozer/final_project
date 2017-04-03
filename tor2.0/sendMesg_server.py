@@ -2,15 +2,16 @@ _author__ = "daniel ozer"
 import wx
 
 
-<<<<<<< HEAD
-#global variable
-frame_state="first"
-
-=======
 #global verials
 class glo_var():
     next_frame=4
->>>>>>> origin/master
+    send_mesg_type="regular"
+
+class glo_current_mesg():
+    sender_name=None
+    conn_id=None
+    recv_date=None
+    data="shfijsdbfijahfosdhfdsjaoidfsfsjfklsnflkjsflkgkdjnglfsgkjfd \n gkdfngkdjfngkdfjgkfdjgnkdjbkdfjgkjfdgndfkjgbkdfljsgbslkjgbbd"
 
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
@@ -20,7 +21,7 @@ class MainFrame(wx.Frame):
 class LoginFrame(wx.App):
     def OnInit(self):
 
-        self.frame = MainFrame(None,-1,wx.DefaultPosition,"Login",(400,400))
+        self.frame = MainFrame(None,-1,wx.DefaultPosition,"Login",(400,300))
 
         self.panel=wx.Panel(self.frame)
         self.showLoginBox()
@@ -48,7 +49,7 @@ class LoginFrame(wx.App):
         # Submit button
         btn_Process = wx.Button(self.panel, -1, "&Login",pos=(150,150))
         self.panel.Bind(wx.EVT_BUTTON, self.OnSubmit, btn_Process)
-        #sizer.Add(btn_Process,0, wx.LEFT, 50)
+
 
         self.panel.SetSizer(sizer)
     def check_pass(self,pass_user):
@@ -129,13 +130,11 @@ class second_frame(wx.App):
 
         panel = wx.Panel(self.frame)
 
-<<<<<<< HEAD
-        rev = wx.StaticText(panel, -1, "choose your option",(185, 50),
-                (105, 20))
-=======
+
+
         rev = wx.StaticText(panel, -1, "choose your option",(180, 70),
                 (110, 20))
->>>>>>> origin/master
+
         rev.SetForegroundColour('white')
         rev.SetBackgroundColour('red')
 
@@ -147,93 +146,199 @@ class second_frame(wx.App):
         self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox , self.inbox_btn)
         self.frame.SetBackgroundColour((100, 179, 179))
 
-        self.start_btn_box = wx.Button(panel, label='inbox',pos=(300,180))
-        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox, self.start_btn_box)
 
-        self.start_btn_send=wx.Button(panel, label='send',pos=(100,180))
-
-        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_send, self.start_btn_send)
 
         self.frame.Centre()
         self.frame.Show()
 
 
         return True
-<<<<<<< HEAD
-    def OnButtonClick_send(self,event):
-        global frame_state
-        frame_state="send mesg"
-=======
+
+
     def OnButtonClick_inbox(self,event):
->>>>>>> origin/master
+
         self.frame.Close()
+        glo_var.send_mesg_type="reply"
         glo_var.next_frame= "box"
 
 
     def OnButtonClick_send(self,event):
         self.frame.Close()
+        glo_var.send_mesg_type="regular"
         glo_var.next_frame= "send"
 
 
-class mesg_box_frame(wx.App):
-    def OnInit(self):
-
-
-
-<<<<<<< HEAD
-    def OnButtonClick_inbox(self,event):
-        global frame_state
-        frame_state="inbox"
-        self.frame.Close()
 
 class inbox_frame(wx.App):
     """Application class."""
 
     def OnInit(self):
 
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
+        panel = wx.Panel(self.frame)
+
+
+        rev = wx.StaticText(panel, -1, "***INBOX***",(200,40),
+                (78, 20))
+
+        rev.SetForegroundColour('white')
+        rev.SetBackgroundColour('red')
+
+
+        sampleList = ['zero        sdfsdfjsd j     sdfslf ksdlf                     asdsdasda        asadafsdfsdfdfsdfsdf', 'one  fsdfsdfs    fffddds', 'two', 'three', 'four', 'five',
+                      'six', 'seven', 'eight', 'nine', 'ten', 'eleven',
+                      'twelve', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven']
+
+        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300), sampleList,
+                wx.LB_SINGLE,)
+        self.listBox.SetSelection(0)
+        self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
+
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_open, self.open_btn)
+
+        self.frame.SetBackgroundColour((100, 179, 179))
+
+        self.frame.Centre()
+        self.frame.Show()
+        return True
+    def OnButtonClick_open(self,event):
+        print self.listBox.GetString(self.listBox.GetSelection())
+        glo_var.next_frame="show_mesg"
+        self.frame.Close()
+
+
+class send_box(wx.App):
+    """Application class."""
+
+    def OnInit(self):
+
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (700, 700))
+        panel = wx.Panel(self.frame)
+
+        lbl1 = wx.StaticText(panel,-1, style = wx.ALIGN_CENTER | wx.ST_ELLIPSIZE_MIDDLE,pos=(280,50))
+        lbl1.SetLabel("SEND BOX")
+        lbl1.SetForegroundColour((255,0,0))
+        lbl1.SetBackgroundColour((0,0,0))
+        font = lbl1.GetFont()
+        font.SetPointSize(20)
+        lbl1.SetFont(font)
+
+
+        if glo_var.send_mesg_type=="regular":
+
+            self.ip_ = wx.StaticText(panel, -1, "IP:",pos=(30,130))
+            self.ip_text = wx.TextCtrl(panel, pos=(170,130),)
+
+            self.select_txt = wx.StaticText(panel, -1, "selct security level:",pos=(30,190))
+            self.select_choice=wx.Choice(panel, -1, (170, 190), choices=["LOW","MEDIUM","HIGH"])
+
+
+        self.write_mesg = wx.StaticText(panel, -1, "write your mesg here:",pos=(30,250))
+        self.mesg = wx.TextCtrl(panel, pos=(170,260),size=(250,300),style=wx.TE_MULTILINE)
+
+        self.sumbit_btn = wx.Button(panel, label='SUMBIT',pos=(290,600))
+
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_sumbit, self.sumbit_btn)
+
+
+        self.frame.SetBackgroundColour((100, 179, 179))
+        self.frame.Centre()
+        self.frame.Show()
         return True
 
 
+    def OnButtonClick_sumbit(self,event):
+        self.frame.Close()
+        mesg=self.mesg.GetValue()
+        glo_var.next_frame="regular"
+        if glo_var.send_mesg_type=="regular":
+            ip=self.ip_text.GetValue()
+            choice=self.select_choice.GetString(self.select_choice.GetSelection())
+
+            secu_lvl=4
+
+            if choice=="HIGH":
+                secu_lvl=16
+            elif choice=="MEDIUM":
+                secu_lvl=8
+
+
+            print ip
+            print secu_lvl
+
+        else:
+            conn=glo_current_mesg.conn_id
+
+
+        print mesg
+
+class see_mesg_box(wx.App):
+    """Application class."""
+
+    def OnInit(self):
+
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (700, 700))
+        panel = wx.Panel(self.frame)
+
+        lbl1 = wx.StaticText(panel,-1, style = wx.ALIGN_CENTER | wx.ST_ELLIPSIZE_MIDDLE,pos=(280,50))
+        lbl1.SetLabel("MESSAGE")
+        lbl1.SetForegroundColour((255,0,0))
+        lbl1.SetBackgroundColour((0,0,0))
+        font = lbl1.GetFont()
+        font.SetPointSize(20)
+        lbl1.SetFont(font)
+
+        self.sender_txt    = wx.StaticText(panel,-1,    "sender name     :    "+str(glo_current_mesg.sender_name),pos=(30,150))
+        self.connection_id = wx.StaticText(panel,-1,    "connection id   :    "+str(glo_current_mesg.conn_id),pos=(30,190))
+        self.recv_date     = wx.StaticText(panel,-1,    "receive date      :    "+str(glo_current_mesg.recv_date),pos=(30,230))
+        self.data          = wx.StaticText(panel,-1,    "data                   :    ",pos=(30,280))
+
+        self.contents = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.HSCROLL | wx.TE_READONLY, pos=(120,280),size=(450,300))
+        self.contents.SetValue(str(glo_current_mesg.data))
+
+        self.reply_btn = wx.Button(panel, label='REPLY',pos=(290,600))
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_reply, self.reply_btn)
+
+        self.frame.SetBackgroundColour((100, 179, 179))
+        self.frame.Centre()
+        self.frame.Show()
+        return True
+    def OnButtonClick_reply(self,event):
+        self.frame.Close()
+        glo_var.next_frame="send_reply"
+
+
 def main():
-    global frame_state
+
+
+
     login_app=LoginFrame()
     login_app.MainLoop()
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-def main():
-  #  login_app=LoginFrame()
-   # login_app.MainLoop()
->>>>>>> origin/master
-
     start_app=start_frame()
-
     start_app.MainLoop()
 
-    second_app=second_frame()
-    second_app.MainLoop()
-<<<<<<< HEAD
+    finish=False
 
-    if frame_state=="inbox":
-        print "in"
-    else:
-        print "send"
-=======
-    if glo_var.next_frame=="box":
+    while finish==False:
+        if glo_var.next_frame=="send_reply":
+            send_app=send_box()
+            send_app.MainLoop()
 
-    else:
+        elif glo_var.next_frame== "show_mesg" :
+            see_mesg_app=see_mesg_box()
+            see_mesg_app.MainLoop()
+        else:
+            second_app=second_frame()
+            second_app.MainLoop()
+            if glo_var.next_frame == "box":
+                inbox_app=inbox_frame()
+                inbox_app.MainLoop()
 
 
->>>>>>> origin/master
+            else:
+
+                send_app=send_box()
+                send_app.MainLoop()
+
 if __name__ == '__main__':
     main()
