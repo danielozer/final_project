@@ -22,7 +22,7 @@
     <favorites_list name="tor2.0" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.53443706">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
           <file leaf-file-name="db_sqlite.py" pinned="false" current="false" current-in-tab="false">
@@ -37,7 +37,7 @@
           <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="101" column="23" selection-start="2345" selection-end="2345" vertical-scroll-proportion="0.0" vertical-offset="2249" max-vertical-offset="2924">
+                <state line="56" column="45" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.0" vertical-offset="670" max-vertical-offset="2907">
                   <folding />
                 </state>
               </provider>
@@ -46,7 +46,7 @@
           <file leaf-file-name="main_server.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main_server.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="59" column="13" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.0" vertical-offset="3660" max-vertical-offset="4692">
+                <state line="59" column="13" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="4692">
                   <folding />
                 </state>
               </provider>
@@ -64,10 +64,8 @@
           <file leaf-file-name="design.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/design.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="19" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1615">
-                  <folding>
-                    <element signature="e#28#37#0" expanded="true" />
-                  </folding>
+                <state line="38" column="0" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="1615">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -75,7 +73,7 @@
           <file leaf-file-name="secure.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/secure.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="2465">
+                <state line="25" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2465">
                   <folding />
                 </state>
               </provider>
@@ -84,7 +82,7 @@
           <file leaf-file-name="sendMesg_client.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1071">
+                <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="347" max-vertical-offset="1071">
                   <folding />
                 </state>
               </provider>
@@ -102,7 +100,7 @@
           <file leaf-file-name="sendMesg_server.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="155" column="26" selection-start="4502" selection-end="4502" vertical-scroll-proportion="0.5958042" vertical-offset="2209" max-vertical-offset="3196">
+                <state line="337" column="11" selection-start="10433" selection-end="10433" vertical-scroll-proportion="0.58912385" vertical-offset="5339" max-vertical-offset="6375">
                   <folding />
                 </state>
               </provider>
@@ -112,13 +110,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="design.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/design.py">
+          <file leaf-file-name="sendMesg_server.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="0" selection-start="520" selection-end="1066" vertical-scroll-proportion="0.7842605" vertical-offset="51" max-vertical-offset="1615">
-                  <folding>
-                    <element signature="e#28#37#0" expanded="true" />
-                  </folding>
+                <state line="366" column="0" selection-start="11139" selection-end="11139" vertical-scroll-proportion="8.475146" vertical-offset="425" max-vertical-offset="6375">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -145,9 +141,9 @@
         <option value="$PROJECT_DIR$/db_sqlite.py" />
         <option value="$PROJECT_DIR$/mng_db.py" />
         <option value="$PROJECT_DIR$/secure.py" />
-        <option value="$PROJECT_DIR$/client.py" />
         <option value="$PROJECT_DIR$/main_server.py" />
         <option value="$PROJECT_DIR$/design.py" />
+        <option value="$PROJECT_DIR$/client.py" />
         <option value="$PROJECT_DIR$/sendMesg_server.py" />
       </list>
     </option>
@@ -184,7 +180,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -207,12 +202,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Portable Python 2.7 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pycrypto-2.6-py2.7-win32.egg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tor2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="tor2.0" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -476,11 +490,11 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10119048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1686616" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1828074" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -505,7 +519,9 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/client.py">
@@ -539,9 +555,7 @@
     <entry file="file://$PROJECT_DIR$/design.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-          <folding>
-            <element signature="e#28#37#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -604,9 +618,7 @@
     <entry file="file://$PROJECT_DIR$/design.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-          <folding>
-            <element signature="e#28#37#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -669,9 +681,7 @@
     <entry file="file://$PROJECT_DIR$/design.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-          <folding>
-            <element signature="e#28#37#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -720,9 +730,7 @@
     <entry file="file://$PROJECT_DIR$/design.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-          <folding>
-            <element signature="e#28#37#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -788,44 +796,26 @@
         <state line="0" column="26" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_sqlite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="0" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1713" max-vertical-offset="2176">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mng_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="0" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.0" vertical-offset="2002" max-vertical-offset="2465">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/site-packages/wx-3.0-msw/wx/lib/sized_controls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="741" column="8" selection-start="25195" selection-end="25195" vertical-scroll-proportion="6.123944" vertical-offset="8232" max-vertical-offset="12767">
-          <folding />
-        </state>
+        <state line="741" column="8" selection-start="25195" selection-end="25195" vertical-scroll-proportion="6.123944" vertical-offset="8232" max-vertical-offset="12767" />
       </provider>
     </entry>
     <entry file="file://C:/Heights/PortableApps/PortablePython2.7.6.1/App/Lib/site-packages/wx-3.0-msw/wx/_controls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="8" selection-start="6750" selection-end="6750" vertical-scroll-proportion="0.33333334" vertical-offset="2784" max-vertical-offset="133892">
+        <state line="178" column="8" selection-start="6750" selection-end="6750" vertical-scroll-proportion="0.33333334" vertical-offset="2784" max-vertical-offset="133892" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/design.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="1615">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/show_page.py">
+    <entry file="file://$PROJECT_DIR$/db_sqlite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="610">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1071">
+        <state line="107" column="0" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1713" max-vertical-offset="2176">
           <folding />
         </state>
       </provider>
@@ -837,9 +827,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client.py">
+    <entry file="file://$PROJECT_DIR$/mng_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="23" selection-start="2345" selection-end="2345" vertical-scroll-proportion="0.0" vertical-offset="889" max-vertical-offset="2924">
+        <state line="97" column="0" selection-start="3042" selection-end="3042" vertical-scroll-proportion="0.0" vertical-offset="2002" max-vertical-offset="2465">
           <folding />
         </state>
       </provider>
@@ -851,18 +841,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/design.py">
+    <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="19" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1615">
-          <folding>
-            <element signature="e#28#37#0" expanded="true" />
-          </folding>
+        <state line="15" column="56" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1071">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="610">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="45" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.0" vertical-offset="670" max-vertical-offset="2907">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sendMesg_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="26" selection-start="4502" selection-end="4502" vertical-scroll-proportion="0.5958042" vertical-offset="2209" max-vertical-offset="3196">
+        <state line="337" column="11" selection-start="10433" selection-end="10433" vertical-scroll-proportion="0.58912385" vertical-offset="5339" max-vertical-offset="6375">
           <folding />
         </state>
       </provider>

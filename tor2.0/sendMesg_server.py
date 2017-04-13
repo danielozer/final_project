@@ -6,7 +6,7 @@ import wx
 class glo_var():
     next_frame=4
     send_mesg_type="regular"
-
+    kill=False
 class glo_current_mesg():
     sender_name=None
     conn_id=None
@@ -17,6 +17,7 @@ class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
 
         wx.Frame.__init__(self, parent, id, title, pos, size)
+
 
 class LoginFrame(wx.App):
     def OnInit(self):
@@ -121,11 +122,7 @@ class second_frame(wx.App):
     def OnInit(self):
 
 
-
-
-
-        #
-
+        glo_var.kill=True
         self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
 
         panel = wx.Panel(self.frame)
@@ -142,11 +139,11 @@ class second_frame(wx.App):
         self.send_btn = wx.Button(panel, label='send mesg',size=(200,200),pos=(45,200))
         self.inbox_btn = wx.Button(panel, label='check inbox',size=(200,200),pos=(255,200))
 
+
         self.Bind(wx.EVT_BUTTON, self.OnButtonClick_send, self.send_btn)
         self.Bind(wx.EVT_BUTTON, self.OnButtonClick_inbox , self.inbox_btn)
+
         self.frame.SetBackgroundColour((100, 179, 179))
-
-
 
         self.frame.Centre()
         self.frame.Show()
@@ -156,16 +153,20 @@ class second_frame(wx.App):
 
 
     def OnButtonClick_inbox(self,event):
-
+        glo_var.kill=False
         self.frame.Close()
         glo_var.send_mesg_type="reply"
         glo_var.next_frame= "box"
 
 
     def OnButtonClick_send(self,event):
+        glo_var.kill=False
         self.frame.Close()
         glo_var.send_mesg_type="regular"
         glo_var.next_frame= "send"
+
+
+
 
 
 
@@ -307,9 +308,34 @@ class see_mesg_box(wx.App):
         self.frame.Close()
         glo_var.next_frame="send_reply"
 
+#have to see if its doesnt hurt the security
+
+class see_send_path(wx.App):
+    """Application class."""
+    def OnInit(self):
+
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", size=wx.DisplaySize())
+        panel = wx.Panel(self.frame)
+        dir="--->"
+
+        imageFile="computerIcon.png"
+        path_ips=[]
+        for ip in path_ips:
+
+            image = wx.Image(imageFile, wx.BITMAP_TYPE_PNG)
+            temp = image.ConvertToBitmap()
+            size = temp.GetWidth(), temp.GetHeight()
+            self.bmp = wx.StaticBitmap(parent=self.frame, bitmap=temp,pos=(100,100))
+
+        self.frame.Show()
+        self.SetTopWindow(self.frame)
+        return True
+
+
+
+
 
 def main():
-
 
 
     login_app=LoginFrame()
@@ -317,9 +343,9 @@ def main():
     start_app=start_frame()
     start_app.MainLoop()
 
-    finish=False
+    glo_var.kill=False
 
-    while finish==False:
+    while glo_var.kill==False:
         if glo_var.next_frame=="send_reply":
             send_app=send_box()
             send_app.MainLoop()
@@ -330,12 +356,12 @@ def main():
         else:
             second_app=second_frame()
             second_app.MainLoop()
-            if glo_var.next_frame == "box":
+            if glo_var.next_frame == "box" and glo_var.kill==False:
                 inbox_app=inbox_frame()
                 inbox_app.MainLoop()
 
 
-            else:
+            elif glo_var.kill==False:
 
                 send_app=send_box()
                 send_app.MainLoop()
