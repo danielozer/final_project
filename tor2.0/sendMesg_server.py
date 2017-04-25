@@ -4,9 +4,13 @@ import wx
 
 #global verials
 class glo_var():
+    premision=True
     next_frame=4
     send_mesg_type="regular"
     kill=False
+    return_to_chFrame=False
+
+
 class glo_current_mesg():
     sender_name=None
     conn_id=None
@@ -16,17 +20,19 @@ class glo_current_mesg():
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
 
-        wx.Frame.__init__(self, parent, id, title, pos, size)
+        wx.Frame.__init__(self, parent, id, title, pos, size,)
 
 
-class LoginFrame(wx.App):
+class loginFrame(wx.App):
     def OnInit(self):
 
         self.frame = MainFrame(None,-1,wx.DefaultPosition,"Login",(400,300))
-
         self.panel=wx.Panel(self.frame)
-        self.showLoginBox()
 
+        glo_var.kill=True
+
+        self.showLoginBox()
+        print "lop"
         self.frame.SetBackgroundColour((100, 179, 179))
         self.frame.Show()
         self.frame.Centre()
@@ -50,7 +56,7 @@ class LoginFrame(wx.App):
         # Submit button
         btn_Process = wx.Button(self.panel, -1, "&Login",pos=(150,150))
         self.panel.Bind(wx.EVT_BUTTON, self.OnSubmit, btn_Process)
-
+        print "fdsfdfd"
 
         self.panel.SetSizer(sizer)
     def check_pass(self,pass_user):
@@ -62,7 +68,8 @@ class LoginFrame(wx.App):
             return True
         return False
     def OnSubmit(self, event):
-
+        glo_var.kill=False
+        print "polp"
         UserText = self.txt_Username.GetValue()
         PasswordText = self.txt_Password.GetValue()
         print "user_name: "+str(UserText)
@@ -70,10 +77,12 @@ class LoginFrame(wx.App):
         combo= (UserText,PasswordText)
         check=self.check_pass(combo)
         if check:
+            glo_var.premision=True
             self.frame.Close()
             return True
-
-        return False
+        self.frame.Close()
+        glo_var.premision=False
+        return True
 
 
 class start_frame(wx.App):
@@ -85,6 +94,8 @@ class start_frame(wx.App):
 
         panel = wx.Panel(self.frame)
         box = wx.BoxSizer(wx.VERTICAL)
+
+        glo_var.kill=True
 
         lbl1 = wx.StaticText(panel,-1, style = wx.ALIGN_CENTER | wx.ST_ELLIPSIZE_MIDDLE,pos=(17,50))
         lbl1.SetLabel("$$$$$$$$$$ welcome to $$$$$$$$$$\n TOR")
@@ -113,6 +124,7 @@ class start_frame(wx.App):
 
         return True
     def OnButtonClick(self,event):
+        glo_var.kill=False
         self.frame.Close()
 
 
@@ -212,7 +224,7 @@ class send_box(wx.App):
     """Application class."""
 
     def OnInit(self):
-
+        glo_var.return_to_chFrame=True
         self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (700, 700))
         panel = wx.Panel(self.frame)
 
@@ -249,6 +261,7 @@ class send_box(wx.App):
 
 
     def OnButtonClick_sumbit(self,event):
+        glo_var.return_to_chFrame=False
         self.frame.Close()
         mesg=self.mesg.GetValue()
         glo_var.next_frame="regular"
@@ -278,6 +291,7 @@ class see_mesg_box(wx.App):
 
     def OnInit(self):
 
+        glo_var.return_to_chFrame=True
         self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (700, 700))
         panel = wx.Panel(self.frame)
 
@@ -305,6 +319,7 @@ class see_mesg_box(wx.App):
         self.frame.Show()
         return True
     def OnButtonClick_reply(self,event):
+        glo_var.return_to_chFrame=False
         self.frame.Close()
         glo_var.next_frame="send_reply"
 
@@ -331,40 +346,51 @@ class see_send_path(wx.App):
         self.SetTopWindow(self.frame)
         return True
 
+class error(wx.App):
+    """Application class."""
+    def OnInit(self):
+
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", size=(100,100))
+        panel = wx.Panel(self.frame)
 
 
-
+        self.frame.SetBackgroundColour((100, 179, 179))
+        self.frame.Centre()
+        self.frame.Show()
 
 def main():
+        login_app=loginFrame()
+        login_app.MainLoop()
+
+        if glo_var.premision and glo_var.kill==False:
+            start_app=start_frame()
+            start_app.MainLoop()
 
 
-    login_app=LoginFrame()
-    login_app.MainLoop()
-    start_app=start_frame()
-    start_app.MainLoop()
 
-    glo_var.kill=False
+            while glo_var.kill==False:
+                print 1
 
-    while glo_var.kill==False:
-        if glo_var.next_frame=="send_reply":
-            send_app=send_box()
-            send_app.MainLoop()
+                if glo_var.next_frame=="send_reply" and glo_var.return_to_chFrame==False:
+                    send_app=send_box()
+                    send_app.MainLoop()
 
-        elif glo_var.next_frame== "show_mesg" :
-            see_mesg_app=see_mesg_box()
-            see_mesg_app.MainLoop()
+                elif glo_var.next_frame== "show_mesg" and glo_var.return_to_chFrame==False:
+                    see_mesg_app=see_mesg_box()
+                    see_mesg_app.MainLoop()
+                else:
+                    second_app=second_frame()
+                    second_app.MainLoop()
+                    if glo_var.next_frame == "box" and glo_var.kill==False:
+                        inbox_app=inbox_frame()
+                        inbox_app.MainLoop()
+
+
+                    elif glo_var.kill==False:
+
+                        send_app=send_box()
+                        send_app.MainLoop()
         else:
-            second_app=second_frame()
-            second_app.MainLoop()
-            if glo_var.next_frame == "box" and glo_var.kill==False:
-                inbox_app=inbox_frame()
-                inbox_app.MainLoop()
-
-
-            elif glo_var.kill==False:
-
-                send_app=send_box()
-                send_app.MainLoop()
-
+            print
 if __name__ == '__main__':
     main()
