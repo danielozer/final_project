@@ -1,6 +1,6 @@
 _author__ = "daniel ozer"
 import wx
-
+import db_sqlite_client
 
 #global verials
 class glo_var():
@@ -9,13 +9,16 @@ class glo_var():
     send_mesg_type="regular"
     kill=False
     return_to_chFrame=False
-
+    mesg_data=0
 
 class glo_current_mesg():
     sender_name=None
     conn_id=None
     recv_date=None
     data="shfijsdbfijahfosdhfdsjaoidfsfsjfklsnflkjsflkgkdjnglfsgkjfd \n gkdfngkdjfngkdfjgkfdjgnkdjbkdfjgkjfdgndfkjgbkdfljsgbslkjgbbd"
+
+def insert_data_to_glo_current_mesg(data):
+
 
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
@@ -197,12 +200,11 @@ class inbox_frame(wx.App):
         rev.SetForegroundColour('white')
         rev.SetBackgroundColour('red')
 
+        database= "E:\music\client_db.db"
+        mesg_inbox = db_sqlite_client.get_the_list(database)
+        glo_current_mesg.
 
-        sampleList = ['zero        sdfsdfjsd j     sdfslf ksdlf                     asdsdasda        asadafsdfsdfdfsdfsdf', 'one  fsdfsdfs    fffddds', 'two', 'three', 'four', 'five',
-                      'six', 'seven', 'eight', 'nine', 'ten', 'eleven',
-                      'twelve', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'thirteen', 'fourteen','six', 'seven', 'eight', 'nine', 'ten', 'eleven']
-
-        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300), sampleList,
+        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300), mesg_inbox,
                 wx.LB_SINGLE,)
         self.listBox.SetSelection(0)
         self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
