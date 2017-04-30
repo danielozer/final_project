@@ -62,4 +62,4 @@ def get_the_list(database):
     print data
     return data
 
-get_the_list("d")
+get_the_list("E:\music\client_db.db")

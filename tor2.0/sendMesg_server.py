@@ -18,7 +18,7 @@ class glo_current_mesg():
     data="shfijsdbfijahfosdhfdsjaoidfsfsjfklsnflkjsflkgkdjnglfsgkjfd \n gkdfngkdjfngkdfjgkfdjgnkdjbkdfjgkjfdgndfkjgbkdfljsgbslkjgbbd"
 
 def insert_data_to_glo_current_mesg(data):
-
+    print
 
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
@@ -183,6 +183,40 @@ class second_frame(wx.App):
 
 
 
+def list_of_name(lst_tpls):
+    """
+    this func recv list of tuples with all the data of the messesages
+    recv: list of tuples
+    return:list of senderNames
+    """
+
+    arr=[]
+    i=0
+    for tp in lst_tpls:
+        arr.insert(i,"sender_name:  "+tp[0]+ "     "+tp[1]+ "  conn_ID:  "+ tp[2],)
+        i+=1
+
+    return arr
+
+
+
+
+
+
+
+
+def put_values(data_when_click,):
+    print
+    i=0
+    for tp in glo_var.mesg_data:
+        line="sender_name:  "+tp[0]+ "     "+tp[1]+ "  conn_ID:  "+ tp[2]
+        i+=1
+        if data_when_click==line:
+
+            glo_current_mesg.sender_name=tp[0]
+            glo_current_mesg.recv_date=tp[1]
+            glo_current_mesg.conn_id=tp[2]
+            glo_current_mesg.data=tp[3]
 
 
 class inbox_frame(wx.App):
@@ -202,9 +236,9 @@ class inbox_frame(wx.App):
 
         database= "E:\music\client_db.db"
         mesg_inbox = db_sqlite_client.get_the_list(database)
-        glo_current_mesg.
-
-        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300), mesg_inbox,
+        glo_var.mesg_data=mesg_inbox
+        inbox_firstfarme_show=list_of_name(mesg_inbox)
+        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300),inbox_firstfarme_show,
                 wx.LB_SINGLE,)
         self.listBox.SetSelection(0)
         self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
@@ -217,7 +251,7 @@ class inbox_frame(wx.App):
         self.frame.Show()
         return True
     def OnButtonClick_open(self,event):
-        print self.listBox.GetString(self.listBox.GetSelection())
+        put_values( self.listBox.GetString(self.listBox.GetSelection()))
         glo_var.next_frame="show_mesg"
         self.frame.Close()
 
