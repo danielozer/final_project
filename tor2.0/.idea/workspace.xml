@@ -57,7 +57,7 @@
           <file leaf-file-name="design.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/design.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="440" column="39" selection-start="12874" selection-end="12874" vertical-scroll-proportion="0.4871795" vertical-offset="7157" max-vertical-offset="8041">
+                <state line="473" column="12" selection-start="13431" selection-end="13431" vertical-scroll-proportion="0.6666667" vertical-offset="7599" max-vertical-offset="8262">
                   <folding>
                     <element signature="e#26#35#0" expanded="true" />
                   </folding>
@@ -104,8 +104,10 @@
           <file leaf-file-name="mainclient_use.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mainclient_use.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="40" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-                  <folding />
+                <state line="7" column="0" selection-start="40" selection-end="84" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+                  <folding>
+                    <element signature="e#0#20#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -117,7 +119,7 @@
           <file leaf-file-name="design.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/design.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="249" column="18" selection-start="6498" selection-end="6503" vertical-scroll-proportion="0.3328467" vertical-offset="4005" max-vertical-offset="8041">
+                <state line="83" column="17" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.59562045" vertical-offset="1003" max-vertical-offset="8262">
                   <folding>
                     <element signature="e#26#35#0" expanded="true" />
                   </folding>
@@ -326,24 +328,6 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="design" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="tor2.0" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/design.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -483,21 +467,38 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
+    <configuration default="false" name="design" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="tor2.0" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/design.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.sendMesg_server" />
-      <item index="1" class="java.lang.String" itemvalue="Python.frame_show" />
-      <item index="2" class="java.lang.String" itemvalue="Python.client" />
-      <item index="3" class="java.lang.String" itemvalue="Python.main_server" />
-      <item index="4" class="java.lang.String" itemvalue="Python.mainclient_use" />
-      <item index="5" class="java.lang.String" itemvalue="Python.design" />
+      <item index="1" class="java.lang.String" itemvalue="Python.design" />
+      <item index="2" class="java.lang.String" itemvalue="Python.frame_show" />
+      <item index="3" class="java.lang.String" itemvalue="Python.client" />
+      <item index="4" class="java.lang.String" itemvalue="Python.main_server" />
+      <item index="5" class="java.lang.String" itemvalue="Python.mainclient_use" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.design" />
-        <item index="1" class="java.lang.String" itemvalue="Python.mainclient_use" />
-        <item index="2" class="java.lang.String" itemvalue="Python.client" />
-        <item index="3" class="java.lang.String" itemvalue="Python.main_server" />
-        <item index="4" class="java.lang.String" itemvalue="Python.frame_show" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.mainclient_use" />
+        <item index="1" class="java.lang.String" itemvalue="Python.client" />
+        <item index="2" class="java.lang.String" itemvalue="Python.main_server" />
+        <item index="3" class="java.lang.String" itemvalue="Python.frame_show" />
       </list>
     </recent_temporary>
   </component>
@@ -599,7 +600,9 @@
     <entry file="file://$PROJECT_DIR$/mainclient_use.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-          <folding />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -889,13 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="60" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0" vertical-offset="331" max-vertical-offset="1071">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/show_page.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
@@ -905,14 +901,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainclient_use.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="40" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="306">
+        <state line="7" column="0" selection-start="40" selection-end="84" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sendMesg_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="60" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0" vertical-offset="331" max-vertical-offset="1071">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/design.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="440" column="39" selection-start="12874" selection-end="12874" vertical-scroll-proportion="0.4871795" vertical-offset="7157" max-vertical-offset="8041">
+        <state line="473" column="12" selection-start="13431" selection-end="13431" vertical-scroll-proportion="0.6666667" vertical-offset="7599" max-vertical-offset="8262">
           <folding>
             <element signature="e#26#35#0" expanded="true" />
           </folding>
