@@ -41,7 +41,7 @@ def user_usage(user_data):
 
 
 
-def main():
+def main(one,tep):
 
     user_data=All_userdata()
 
@@ -61,7 +61,7 @@ def main():
     #port=1901
     #thread.start_new_thread(client_server_other_clients, (user_data,port))
 
-"""
+
 
     #GET FROM THE USER THE PASSWORD AND USERNAME
     while 1:
@@ -75,7 +75,7 @@ def main():
         while check is True:
 
             get_data_from_frame()
-"""
+
 
 def client_to_other_clients(user_data,client_sock):
     #c-client-->c-server

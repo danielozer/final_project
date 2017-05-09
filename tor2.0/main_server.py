@@ -10,6 +10,8 @@ import mng_db
 from sys import argv
 import sys
 import random,time
+import db_sqlite_server
+
 
 """
 print 'The length of command line arguments:', len(argv)
@@ -27,37 +29,8 @@ file_name="users_data"
 
 BUFFER=2048
 
-
-
-
-col_name_type1 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, SupperUserFlag INT, UserHash TEXT, PasswordHash TEXT"
-tbl_name1 = "srvr_users"
-# Id, user-ID-name, supper-user-flag, srvr-password-hashed
-init_spass_db = (
-    (1, 'yaniv nana', 1, -1, -1),
-    (2, 'yossi cohen', 1, -1, -1),
-    (3, 'miki epstein', 0, -1, -1),
-    (4, 'rami verbin', 0, -1, -1),
-    (5, 'ziv tepper', 0, -1, -1))
-
-
-
-# INTEGER PRIMARY KEY AUTOINCREMENT
-# PRIMARY KEY(Name,ApplName)
-col_name_type2 = "Id INTEGER PRIMARY KEY AUTOINCREMENT, User_name TEXT, password TEXT, InSystem TEXT,ID_of_single_conn TEXT"
-tbl_name2 = "server_accsses"
-# Id, user-ID-name, appl-name, user-hashed, password-hashed
-init_upass_db = (
-    (1, 'daniel', '1', False, -1),
-    (2, 'e', '2', False, -1),
-    (3, 'r', '3', False, -1),
-    (4, 't', '4', False, -1),
-    (5, 'y', '5', False, -1),
-    (6, 'u', '6', False, -1),
-    (7, 'i', '7', False, -1))
-
 def get_password_from_db(self):
-        print
+
 
 def check_passwords(user_name,password):
     data=get_password_from_db()
@@ -176,6 +149,7 @@ db_path_fname = db_path + '\\' + db_fname
 #create_db_if_not_exist(db_path_fname)
 
 def handler(clientsock,addr):
+    print "my name is jeff"
 
     Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next" )
 
@@ -191,8 +165,8 @@ def handler(clientsock,addr):
     recv_data=clientsock.recv(BUFFER)
     public_key_client=secure.get_public_key_from_other_side(recv_data)
 
-    t = Thread(target=handler_client, args=(11,2))
-    t.start()
+    #t = Thread(target=handler_client, args=(11,2))
+   # t.start()
 
     end=False
 
@@ -201,14 +175,14 @@ def handler(clientsock,addr):
         recv_data=clientsock.recv(BUFFER)
         print recv_data
 
-        """
+
         recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),key)
 
         recv_data=break_to_pieces(recv_data)
         mesgtype=recv_data[recvdata_order.MESGTYPE]
         mesg_sender_name=recv_data[recvdata_order.SENDER_NAME]
         if (mesgtype==Mesg_Type.ENTER):
-            print
+            check_passwords()
 
         elif (mesgtype==Mesg_Type.request):
             print
@@ -218,7 +192,7 @@ def handler(clientsock,addr):
             print "error!!!!!!!"
             #error mesg
 
-        """
+
 
 
 
@@ -235,6 +209,7 @@ def break_to_pieces(mesg):
 def handler_client(port,ip):
     while 1:
         try:
+            print "trust no one"
             port=9393
             ip="127.0.0.1"
 
