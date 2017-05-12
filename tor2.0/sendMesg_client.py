@@ -1,16 +1,21 @@
-__author__ = "daniel ozer"
-import secure
-import socket
-import cPickle as pickle
-
 """
 ---------------------------------------------------------------
 Author          :   Daniel Ozer
 Date            :   XXXX
 Version         :   1.0
-Description     :   all the send function in the client
+Description     :   all the function the client use for sending messeges for the server or to other client
 ---------------------------------------------------------------
 """
+
+#imports
+
+import secure
+import socket
+import cPickle as pickle
+
+#imports
+
+
 
 
 def send_to_server_data(user_data,sock,key,sender_name):

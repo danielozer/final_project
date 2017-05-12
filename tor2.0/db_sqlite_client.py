@@ -1,5 +1,17 @@
+"""
+---------------------------------------------------------------
+Author          :   Daniel Ozer
+Date            :   XXXX
+Version         :   1.0
+Description     :   all the function the have connection the client data-base (sqlite3)
+---------------------------------------------------------------
+"""
+
+#imports
+
 import sqlite3
 
+#imports
 def create_connection(db_file):
     """ create a database connection to the SQLite database
         specified by db_file

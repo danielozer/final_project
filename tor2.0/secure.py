@@ -1,9 +1,14 @@
+"""
+---------------------------------------------------------------
+Author          :   Daniel Ozer
+Date            :   XXXX
+Version         :   1.0
+Description     :   all the function the have connection with security and encryptions
+---------------------------------------------------------------
+"""
 
+#imports
 
-
-__author__ = "daniel ozer"
-
-                        
 from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
 import cPickle as pickle
@@ -11,6 +16,8 @@ import hashlib
 from Crypto import Random
 import base64
 import os
+
+#imports
 
 BUFFER=2048
 

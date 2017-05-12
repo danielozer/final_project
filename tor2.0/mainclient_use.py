@@ -1,7 +1,19 @@
+"""
+---------------------------------------------------------------
+Author          :   Daniel Ozer
+Date            :   XXXX
+Version         :   1.0
+Description     :   combing the back-end with the front-end
+---------------------------------------------------------------
+"""
+
+
+#imports
+
 import design,client
 import thread
 
-
+#imports
 
 
 

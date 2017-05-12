@@ -1,5 +1,13 @@
+"""
+---------------------------------------------------------------
+Author          :   Daniel Ozer
+Date            :   XXXX
+Version         :   1.0
+Description     :   the server back-end (the brain)
+---------------------------------------------------------------
+"""
 
-__author__ = "daniel ozer"
+#imports
 
 from socket import *
 import thread
@@ -12,6 +20,7 @@ import sys
 import random,time
 import db_sqlite_server
 
+#imports
 
 """
 print 'The length of command line arguments:', len(argv)

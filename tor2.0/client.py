@@ -1,4 +1,14 @@
-__author__ ="daniel ozer"
+"""
+---------------------------------------------------------------
+Author          :   Daniel Ozer
+Date            :   XXXX
+Version         :   1.0
+Description     :   the client back-end (the brain)
+---------------------------------------------------------------
+"""
+
+#imports
+
 import secure
 import sendMesg_client
 #import show_page
@@ -8,6 +18,9 @@ import cPickle as pickle
 import thread
 from threading import Thread
 import threading,time
+
+
+#imports
 
 IP="127.0.0.1"
 PORT=9999

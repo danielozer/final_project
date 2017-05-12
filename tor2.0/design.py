@@ -1,11 +1,19 @@
-_author__ = "daniel ozer"
+"""
+---------------------------------------------------------------
+Author          :   Daniel Ozer
+Date            :   XXXX
+Version         :   1.0
+Description     :   the front end show and recv data
+---------------------------------------------------------------
+"""
+
+#imports
+
 import wx
 import db_sqlite_client
 import thread
-
-
-
-
+import sys, glob
+#imports
 
 
 #global verials
@@ -390,23 +398,64 @@ class see_send_path(wx.App):
     """Application class."""
     def OnInit(self):
 
-        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", size=wx.DisplaySize())
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", size=(600,400))
         panel = wx.Panel(self.frame)
         dir="--->"
 
         imageFile="computerIcon.png"
-        path_ips=[]
+        path_ips=["129m120",1,1,1,1,1,1,1,1,1,1]
+
+        x=100
+        y=100
+        counter =1
+
+        il = wx.ImageList(32,32, True)
         for ip in path_ips:
 
-            image = wx.Image(imageFile, wx.BITMAP_TYPE_PNG)
-            temp = image.ConvertToBitmap()
-            size = temp.GetWidth(), temp.GetHeight()
-            self.bmp = wx.StaticBitmap(parent=self.frame, bitmap=temp,pos=(100,100))
+            if counter==6:
+                self.forward = wx.StaticText(panel,-1,   dir,pos=(x+100,y))
+                #counter =1
+                x=100
+                y=y+200
+
+
+
+            bmp = wx.Bitmap(imageFile, wx.BITMAP_TYPE_PNG)
+            il_max = il.Add(bmp)
+            x+=200
+            #y+=50
+            counter+=1
+            #self.ips = wx.StaticText(panel,-1,    "192.]0.01",pos=(x,y))
+
+        # create the list control
+        self.list = wx.ListCtrl(self.frame, -1,
+                style=wx.LC_ICON | wx.LC_AUTOARRANGE,size=(600,400))
+
+        # assign the image list to it
+        self.list.AssignImageList(il, wx.IMAGE_LIST_NORMAL)
+
+        # create some items for the list
+        for x in range(25):
+            img = x % (il_max+1)
+            self.list.InsertImageStringItem(x,
+                    "This is item %02d" % x, img)
+
+
+
+
+            #image = wx.Image(imageFile, wx.BITMAP_TYPE_PNG)
+            #temp = image.ConvertToBitmap()
+
+            #self.bmp = wx.StaticBitmap(parent=self.frame, bitmap=temp,pos=(x,y))
+
 
         self.frame.Show()
-        self.SetTopWindow(self.frame)
+       # self.SetTopWindow(self.frame)
         return True
 
+
+start_app=see_send_path()
+start_app.MainLoop()
 class error(wx.App):
     """Application class."""
     def OnInit(self):
@@ -471,10 +520,11 @@ def main(one,teo):
                             send_app=send_box()
                             send_app.MainLoop()
 
-            
 
 
 
 
+"""
 if __name__ == '__main__':
     main(1,1)
+"""
