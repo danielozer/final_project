@@ -13,6 +13,7 @@ import wx
 import db_sqlite_client
 import thread
 import sys, glob
+
 #imports
 
 
@@ -380,13 +381,25 @@ class see_mesg_box(wx.App):
         self.contents = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.HSCROLL | wx.TE_READONLY, pos=(120,280),size=(450,300))
         self.contents.SetValue(str(glo_current_mesg.data))
 
-        self.reply_btn = wx.Button(panel, label='REPLY',pos=(290,600))
+        self.see_path_btn = wx.Button(panel, label='see_path',pos=(200,600))
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_see_path, self.see_path_btn)
+
+
+        self.reply_btn = wx.Button(panel, label='REPLY',pos=(350,600))
         self.Bind(wx.EVT_BUTTON, self.OnButtonClick_reply, self.reply_btn)
 
         self.frame.SetBackgroundColour((100, 179, 179))
         self.frame.Centre()
         self.frame.Show()
         return True
+
+    def OnButtonClick_see_path(self,event):
+        glo_var.return_to_chFrame=False
+        self.frame.Close()
+        glo_var.next_frame="see_path"
+
+
+
     def OnButtonClick_reply(self,event):
         glo_var.return_to_chFrame=False
         self.frame.Close()
@@ -397,65 +410,66 @@ class see_mesg_box(wx.App):
 class see_send_path(wx.App):
     """Application class."""
     def OnInit(self):
-
-        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", size=(600,400))
+        glo_var.next_frame="show_mesg"
+        self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", size=wx.DisplaySize())
         panel = wx.Panel(self.frame)
-        dir="--->"
 
-        imageFile="computerIcon.png"
-        path_ips=["129m120",1,1,1,1,1,1,1,1,1,1]
+        image_computer="computerIcon.png"
+        image_right="right.png"
+        path_ips=["129m120","192.90.09.00","129m120","192.90.09.00","129m120","192.90.09.00","192.90.09.00","129m120","192.90.09.00","129m120","192.90.09.00"]
 
-        x=100
-        y=100
-        counter =1
 
-        il = wx.ImageList(32,32, True)
+
+        il = wx.ImageList(100,100, True)
         for ip in path_ips:
 
-            if counter==6:
-                self.forward = wx.StaticText(panel,-1,   dir,pos=(x+100,y))
-                #counter =1
-                x=100
-                y=y+200
 
 
 
-            bmp = wx.Bitmap(imageFile, wx.BITMAP_TYPE_PNG)
-            il_max = il.Add(bmp)
-            x+=200
-            #y+=50
-            counter+=1
-            #self.ips = wx.StaticText(panel,-1,    "192.]0.01",pos=(x,y))
+            bmp_right = wx.Bitmap(image_right, wx.BITMAP_TYPE_PNG)
+            bmp_computer = wx.Bitmap(image_computer, wx.BITMAP_TYPE_PNG)
+            il_max = il.Add(bmp_computer)
+            il_max = il.Add(bmp_right)
+
+
+
 
         # create the list control
         self.list = wx.ListCtrl(self.frame, -1,
-                style=wx.LC_ICON | wx.LC_AUTOARRANGE,size=(600,400))
+                style=wx.LC_ICON | wx.LC_AUTOARRANGE,size=wx.DisplaySize())
 
         # assign the image list to it
         self.list.AssignImageList(il, wx.IMAGE_LIST_NORMAL)
 
         # create some items for the list
-        for x in range(25):
+        counter=0
+        for x in range(2*len(path_ips)):
             img = x % (il_max+1)
-            self.list.InsertImageStringItem(x,
-                    "This is item %02d" % x, img)
+            if x%2==0:
+                self.list.InsertImageStringItem(x,str(path_ips[counter]), img)
+                counter+=1
+            else:
+                if x!=2*len(path_ips)-1:
+                    self.list.InsertImageStringItem(x,"", img)
 
 
+        ##actully dont do nothing but some how it keeps from the program to break down
+        self.nothing_btn = wx.Button(panel, label='',pos=(0,0))
+        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_nothing , self.nothing_btn)
+        ##actully dont do nothing but some how it keeps from the program to break down
 
-
-            #image = wx.Image(imageFile, wx.BITMAP_TYPE_PNG)
-            #temp = image.ConvertToBitmap()
-
-            #self.bmp = wx.StaticBitmap(parent=self.frame, bitmap=temp,pos=(x,y))
 
 
         self.frame.Show()
-       # self.SetTopWindow(self.frame)
+
         return True
 
+    def OnButtonClick_nothing(self,event):
+        pass
+        ##actully dont do nothing but some how it keeps from the program to break down
 
-start_app=see_send_path()
-start_app.MainLoop()
+
+
 class error(wx.App):
     """Application class."""
     def OnInit(self):
@@ -496,10 +510,10 @@ def main(one,teo):
                 start_app.MainLoop()
 
 
-
+                counter=0
                 while glo_var.kill==False:
-                    print 1
-
+                    print str(counter)
+                    counter+=1
                     if glo_var.next_frame=="send_reply" and glo_var.return_to_chFrame==False:
                         send_app=send_box()
                         send_app.MainLoop()
@@ -507,6 +521,11 @@ def main(one,teo):
                     elif glo_var.next_frame== "show_mesg" and glo_var.return_to_chFrame==False:
                         see_mesg_app=see_mesg_box()
                         see_mesg_app.MainLoop()
+                    elif glo_var.next_frame== "see_path" and glo_var.return_to_chFrame==False:
+
+                        path_app=see_send_path()
+                        path_app.MainLoop()
+                        print "yyyyy"
                     else:
                         second_app=second_frame()
                         second_app.MainLoop()
@@ -524,7 +543,5 @@ def main(one,teo):
 
 
 
-"""
 if __name__ == '__main__':
     main(1,1)
-"""

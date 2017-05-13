@@ -22,7 +22,7 @@
     <favorites_list name="tor2.0" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.5246455">
       <split-first>
         <leaf>
           <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
@@ -39,7 +39,7 @@
           <file leaf-file-name="db_sqlite_client.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db_sqlite_client.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="67" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1394">
+                <state line="5" column="67" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1394">
                   <folding />
                 </state>
               </provider>
@@ -48,7 +48,7 @@
           <file leaf-file-name="main_server.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main_server.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="51" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="4556">
+                <state line="5" column="51" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="3624" max-vertical-offset="4403">
                   <folding>
                     <marker date="1494330369974" expanded="true" signature="3063:4241" placeholder="..." />
                   </folding>
@@ -59,20 +59,9 @@
           <file leaf-file-name="design.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/design.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="422" column="55" selection-start="11848" selection-end="11848" vertical-scroll-proportion="0.4906205" vertical-offset="6834" max-vertical-offset="9095">
+                <state line="455" column="27" selection-start="12955" selection-end="12955" vertical-scroll-proportion="0.5375375" vertical-offset="7377" max-vertical-offset="9401">
                   <folding>
                     <element signature="e#281#290#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="list_icon.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://E:/project/wxPython-master/Chapter-13/list_icon.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="45" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -108,8 +97,19 @@
           <file leaf-file-name="mainclient_use.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/mainclient_use.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="63" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="510">
+                <state line="6" column="63" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="list_icon.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://E:/project/wxPython-master/Chapter-13/list_icon.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="9" column="45" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -118,12 +118,13 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="list_icon.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://E:/project/wxPython-master/Chapter-13/list_icon.py">
+          <file leaf-file-name="design.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/design.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="49" selection-start="278" selection-end="872" vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="728">
+                <state line="414" column="8" selection-start="11720" selection-end="11720" vertical-scroll-proportion="-0.9216783" vertical-offset="7697" max-vertical-offset="9401">
                   <folding>
-                    <element signature="e#0#9#0" expanded="true" />
+                    <element signature="e#281#290#0" expanded="true" />
+                    <marker date="1494717847706" expanded="true" signature="11530:13295" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -841,11 +842,25 @@
         <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.024182077" vertical-offset="0" max-vertical-offset="703" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_server.py">
+    <entry file="file://$PROJECT_DIR$/client.pyc">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="51" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4556">
+        <state line="10" column="40" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.19340159" vertical-offset="0" max-vertical-offset="879" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3145">
           <folding>
-            <marker date="1494330369974" expanded="true" signature="3063:4241" placeholder="..." />
+            <element signature="e#280#293#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/project/wxPython-master/Chapter-13/list_icon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="45" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -878,39 +893,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client.pyc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="40" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.19340159" vertical-offset="0" max-vertical-offset="879" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_sqlite_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="67" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
+        <state line="5" column="67" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1394">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client.py">
+    <entry file="file://$PROJECT_DIR$/main_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3145">
+        <state line="5" column="51" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4556">
           <folding>
-            <element signature="e#280#293#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/project/wxPython-master/Chapter-13/list_icon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="45" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1494330369974" expanded="true" signature="3063:4241" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/design.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="422" column="55" selection-start="11848" selection-end="11848" vertical-scroll-proportion="0.4906205" vertical-offset="6834" max-vertical-offset="9095">
+        <state line="455" column="27" selection-start="12955" selection-end="12955" vertical-scroll-proportion="0.5375375" vertical-offset="7377" max-vertical-offset="9401">
           <folding>
             <element signature="e#281#290#0" expanded="true" />
           </folding>
