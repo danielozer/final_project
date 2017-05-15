@@ -11,14 +11,10 @@ Description     :   the client back-end (the brain)
 
 import secure
 import sendMesg_client
-#import show_page
-import socket
 from socket import *
-import cPickle as pickle
 import thread
 from threading import Thread
 import threading,time
-
 
 #imports
 
@@ -64,18 +60,37 @@ def main(one,tep):
     user_data.client_key=key
     user_data.client_public_key=public_key
 
-    t = Thread(target=handler_client_with_server, args=(user_data,))
-    t.start()
+    port=9999
+    sock = socket(AF_INET, SOCK_STREAM)
+    sock.connect((IP, port))
+
+    pu_key=sock.recv(BUFFER)
+    user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
+
+    sock.send(user_data.client_public_key)
+
+    print "###############################################################"
+    print user_data.server_public_key
+    print "###############################################################"
+    print user_data.client_public_key
+
+    print "###############################################################"
+
+    print
 
     p = Thread(target=handler_server_only_from_server, args=(user_data,))
     p.start()
+    t = Thread(target=handler_client_with_server, args=(user_data,))
+    t.start()
+
+
     #thread.start_new_thread(handler_client_with_server, (user_data,))
     #thread.start_new_thread(handler_server_only_from_server, (user_data,))
     #port=1901
     #thread.start_new_thread(client_server_other_clients, (user_data,port))
 
 
-
+"""
     #GET FROM THE USER THE PASSWORD AND USERNAME
     while 1:
 
@@ -89,7 +104,7 @@ def main(one,tep):
 
             get_data_from_frame()
 
-
+"""
 def client_to_other_clients(user_data,client_sock):
     #c-client-->c-server
 
@@ -167,8 +182,8 @@ def handler_server_only_from_server(user_data):
         print '...connected from:', addr
         thread.start_new_thread(client_server_recv, (clientsock,))
 
-   # pu_key=sock.recv(BUFFER)
-    #user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
+    pu_key=serversock.recv(BUFFER)
+    user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
 
 def control_the_client():
     #all the usage of the user
@@ -176,4 +191,4 @@ def control_the_client():
     print
 
 if __name__=='__main__':
-    main()
+    main(1,1)

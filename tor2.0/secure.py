@@ -70,8 +70,8 @@ def Publik_Key(key):
     """
 
 
-    print "The public Key IS:\n ", key.publickey().exportKey()
-    print type(key)
+    print "The public Key IS self:\n ", key.publickey().exportKey()
+
 
 
     return pickle.dumps(key.publickey().exportKey())

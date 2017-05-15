@@ -39,7 +39,7 @@ file_name="users_data"
 BUFFER=2048
 
 def get_password_from_db(self):
-
+    print
 
 def check_passwords(user_name,password):
     data=get_password_from_db()
@@ -174,8 +174,12 @@ def handler(clientsock,addr):
     recv_data=clientsock.recv(BUFFER)
     public_key_client=secure.get_public_key_from_other_side(recv_data)
 
-    #t = Thread(target=handler_client, args=(11,2))
-   # t.start()
+    print "###############################################################"
+    print public_key_client
+    print "###############################################################"
+
+    t = Thread(target=handler_client_only_send, args=(11,2))
+    t.start()
 
     end=False
 
@@ -215,7 +219,24 @@ def break_to_pieces(mesg):
     else:
         return "error!!"
 
-def handler_client(port,ip):
+def handler_client_only_send(ip):
+    while 1:
+        try:
+            print "trust no one"
+            port=9393
+            ip="127.0.0.1"
+
+            sock = socket(AF_INET,SOCK_STREAM)
+            print "%^%"
+            sock.connect((ip, port))
+
+            while 1:
+                sock.send("opsaaaaa")
+                print "%^%^%^%^%^%^%^%^%^%^^%^%^%^%^%^%%%^%^%^%^%^%^%%%^%^%^%^%^%^^%^%^%^%"
+                time.sleep(5)
+        except:
+            p=1
+def handler_client_only_recv(ip):
     while 1:
         try:
             print "trust no one"

@@ -11,7 +11,7 @@ Description     :   combing the back-end with the front-end
 #imports
 
 import design,client
-import thread
+import thread,time
 
 #imports
 
@@ -21,5 +21,6 @@ thread.start_new_thread( design.main ,(1,1))
 
 
 thread.start_new_thread(client.main,(1,1))
+
 while 1:
     pass
