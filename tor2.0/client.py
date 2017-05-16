@@ -80,7 +80,7 @@ def main(one,tep):
 
     p = Thread(target=handler_server_only_from_server, args=(user_data,))
     p.start()
-    t = Thread(target=handler_client_with_server, args=(user_data,))
+    t = Thread(target=handler_client_with_server, args=(user_data,sock))
     t.start()
 
 
@@ -142,27 +142,28 @@ def client_server_other_clients(user_data,port):
         #put the recv in some db
 
 
-def handler_client_with_server(user_data):
+def handler_client_with_server(user_data,sock):
 
-    #c-client-->s-server
-    #all the client as a client sender
-    port=9999
-    sock = socket(AF_INET, SOCK_STREAM)
-    sock.connect((IP, port))
-
-    sock.send(user_data.client_public_key)
 
     while 1:
 
+        if len(user_data.mesg_for_send)>0:
 
-        arr_mesg_lock.acquire()
+            arr_mesg_lock.acquire()
 
-        #pull_next_mesg=user_data.mesg_for_send[0]
-        pull_next_mesg="dsdsdsdsdsd"
-        #user_data.mesg_for_send.remove(pull_next_mesg)
-        sock.send(pull_next_mesg)
-        arr_mesg_lock.release()
-        time.sleep(5)
+            pull_next_mesg=user_data.mesg_for_send[0]
+            if pull_next_mesg[1]=="enter":
+                sendMesg_client.send_to_server_password(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+            elif pull_next_mesg[1]=="request":
+                sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+
+            elif pull_next_mesg[1]=="mesg_next":
+                sendMesg_client.ask_what_next(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+
+            user_data.mesg_for_send.remove(pull_next_mesg)
+
+            arr_mesg_lock.release()
+            time.sleep(0.1)
 def handler_server_only_from_server(user_data):
     #c-server-->s-client
     #act as a server for reciving#need to get the port from the server
