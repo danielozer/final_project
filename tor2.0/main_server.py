@@ -178,7 +178,7 @@ def handler(clientsock,addr):
     print public_key_client
     print "###############################################################"
 
-    t = Thread(target=handler_client_only_send, args=(11,2))
+    t = Thread(target=handler_client_only_send, args=(1,))
     t.start()
 
     end=False

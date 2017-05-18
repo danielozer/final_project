@@ -21,7 +21,7 @@ def create_connection(db_file):
     try:
 
         conn = sqlite3.connect(db_file)
-        print "fine"
+
         return conn
     except :
         print("error")
@@ -42,21 +42,30 @@ def msg_disassembly (mesg):
     else:
         return "error!!"
 
-
-def insert_msg(database,data):
-
-    database = "E:\music\client_db.db"
-    data=['d5435345345','20/10/10','ASD112S','what a nice day' ]
-    # create a database connection
+def insert_msg(type,database,data):
     conn = create_connection(database)
-    if conn is not None:
-        cur=conn.cursor()
-        # create projects table
-        cur.execute("INSERT INTO client_db_data  VALUES (?,?,?,?)",data)
+    cur=conn.cursor()
+
+    if type=="reg_internal_backend_db":
+
+
+        cur.execute("INSERT INTO data_for_backend VALUES (?)",[data])
         conn.commit()
+
+    elif type=="reg_internal_frontend_db":
+
+        cur.execute("INSERT INTO data_for_frontend VALUES (?)",data)
+        conn.commit()
+    elif type== "mesg_db":
+        cur.execute("INSERT INTO client_db_data  VALUES (?,?,?,?)",[data])
+        conn.commit()
+
+
+
     else:
         print("Error! cannot create the database connection.")
     conn.close()
+
 
 def get_the_list(database):
     data=[]

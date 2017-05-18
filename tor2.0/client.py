@@ -15,6 +15,7 @@ from socket import *
 import thread
 from threading import Thread
 import threading,time
+import db_sqlite_client
 
 #imports
 
@@ -48,7 +49,12 @@ def user_usage(user_data):
     #show the interface of the password
     #get_password
 
+def insert_interanl_data(type,data):
+        database= "E:\music\client_inter_data.db"
 
+        data="logging answer "+data[0]
+
+        db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
 
 def main(one,tep):
 
@@ -155,6 +161,8 @@ def handler_client_with_server(user_data,sock):
             if pull_next_mesg[1]=="enter":
                 sendMesg_client.send_to_server_password(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
             elif pull_next_mesg[1]=="request":
+                sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+            elif pull_next_mesg[1]=="reply":
                 sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
 
             elif pull_next_mesg[1]=="mesg_next":

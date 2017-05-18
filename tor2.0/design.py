@@ -34,6 +34,56 @@ class glo_current_mesg():
     recv_date=None
     data=None
 
+def get_():
+    print
+
+def check_for_answer_pass():
+    database= "E:\music\client_inter_data.db"
+    while 1:
+
+        conn=db_sqlite_client.create_connection(database)
+        if conn is not None:
+
+            cur=conn.cursor()
+            # create projects table
+
+            for row in cur.execute('SELECT * FROM data_for_frontend'):
+                data=row[0]
+                if "logging answer" in data:
+                    print "got answer"
+                    if "True" in data:
+
+                        sql = 'DELETE FROM data_for_frontend WHERE ?'
+
+                        cur.execute(sql, (data,))
+
+                        conn.close()
+                        return True
+                    else:
+                        conn.close()
+                        return False
+
+            conn.close()
+
+
+        else:
+            print("any answer yet")
+
+def insert_interanl_data(type,data):
+        database= "E:\music\client_inter_data.db"
+
+        if type=="logging":
+            data="logging~"+data[0]+"~"+data[1]
+
+        elif type=="request":
+            data="request~"+data[0]+"~"+data[1]+"~"+data[2]
+        elif type=="reply":
+            data="reply~"+data[0]+"~"+data[1]
+
+        db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
+
+
+
 def insert_data_to_glo_current_mesg(data):
     print
 
@@ -107,7 +157,9 @@ class loginFrame(wx.App):
         PasswordText = self.txt_Password.GetValue()
         print "user_name: "+str(UserText)
         print "password: "+str(PasswordText)
-        combo= (UserText,PasswordText)
+        combo= (str(UserText),str(PasswordText))
+        insert_interanl_data("logging",combo)
+
         self.check_pass(combo)
 
         glo_var.kill=False
@@ -235,9 +287,6 @@ def list_of_name(lst_tpls):
 
 
 
-
-
-
 def put_values(data_when_click,):
     print
     i=0
@@ -271,6 +320,7 @@ class inbox_frame(wx.App):
         mesg_inbox = db_sqlite_client.get_the_list(database)
         glo_var.mesg_data=mesg_inbox
         inbox_firstfarme_show=list_of_name(mesg_inbox)
+
         self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300),inbox_firstfarme_show,
                 wx.LB_SINGLE,)
         self.listBox.SetSelection(0)
@@ -349,10 +399,11 @@ class send_box(wx.App):
 
             print ip
             print secu_lvl
+            insert_interanl_data("request",[ip,str(secu_lvl),mesg])
 
         else:
             conn=glo_current_mesg.conn_id
-
+            insert_interanl_data("reply",[conn,mesg])
 
         print mesg
 
