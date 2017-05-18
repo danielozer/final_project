@@ -30,13 +30,13 @@ arr_mesg_lock=threading.Lock()
 class All_userdata:
     def __init__(self):
 
-      self.client_key=""
-      self.client_public_key=""
-      self.server_public_key=""
-      self.loggin=False#true \ false
-      self.mesg_for_send=[] #an array of all the mesg that need  to sent (the mesg is already ready to be send as is.)
-      self.recv_mesg=[]#an array of all the mesg that recieved from the main server
-
+        self.client_key=""
+        self.client_public_key=""
+        self.server_public_key=""
+        self.loggin=False#true \ false
+        self.mesg_for_send=[] #an array of all the mesg that need  to sent (the mesg is already ready to be send as is.)
+        self.recv_mesg=[]#an array of all the mesg that recieved from the main server
+        self.mesg_for_next_ip=[]
 
 def user_data_string(user_name,password):
 
@@ -147,18 +147,45 @@ def client_server_other_clients(user_data,port):
         recv=clientsock.recv(BUFFER)
         #put the recv in some db
 
+def put_mesg_for_send():
+    user_data=All_userdata()
+    database= "E:\music\client_inter_data.db"
+    conn=db_sqlite_client.create_connection(database)
+    data=[]
+
+    if conn is not None:
+        cur=conn.cursor()
+        for row in cur.execute('SELECT * FROM data_for_backend'):
+            data.insert(len(data),row)
+
+
+        #%%%%%%%%%%%% neee dto delete all hte data from the backend
+
+
+
+    arr=user_data.mesg_for_next_ip
+    user_data.mesg_for_next_ip=[]
+
+    for msg in arr:
+
+        data.insert(len(data),msg)
+
+
+
+
+    return data
 
 def handler_client_with_server(user_data,sock):
 
 
     while 1:
-
+        #need to put lock
         if len(user_data.mesg_for_send)>0:
 
             arr_mesg_lock.acquire()
 
             pull_next_mesg=user_data.mesg_for_send[0]
-            if pull_next_mesg[1]=="enter":
+            if pull_next_mesg[1]=="logging":
                 sendMesg_client.send_to_server_password(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
             elif pull_next_mesg[1]=="request":
                 sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
