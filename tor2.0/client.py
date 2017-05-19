@@ -159,7 +159,7 @@ def put_mesg_for_send():
             data.insert(len(data),row)
 
 
-        #%%%%%%%%%%%% neee dto delete all hte data from the backend
+        #%%%%%%%%%%%% need to delete all the data from the backend
 
 
 
