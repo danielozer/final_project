@@ -312,13 +312,13 @@ def put_values(data_when_click,):
 
 class inbox_frame(wx.App):
     """Application class."""
+class inbox_frame(wx.App):
+    """Application class."""
 
     def OnInit(self):
-
         glo_var.return_to_chFrame=True
         self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
         panel = wx.Panel(self.frame)
-
 
 
         rev = wx.StaticText(panel, -1, "***INBOX***",(200,40),
@@ -331,14 +331,18 @@ class inbox_frame(wx.App):
         mesg_inbox = db_sqlite_client.get_the_list(database)
         glo_var.mesg_data=mesg_inbox
         inbox_firstfarme_show=list_of_name(mesg_inbox)
+        if inbox_firstfarme_show:
+            self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300),inbox_firstfarme_show,
+                    wx.LB_SINGLE,)
 
-        self.listBox = wx.ListBox(panel, -1, (50,70), (400, 300),inbox_firstfarme_show,
-                wx.LB_SINGLE,)
-        self.listBox.SetSelection(0)
-        self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
+            self.listBox.SetSelection(0)
 
-        self.Bind(wx.EVT_BUTTON, self.OnButtonClick_open, self.open_btn)
+            self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
 
+            self.Bind(wx.EVT_BUTTON, self.OnButtonClick_open, self.open_btn)
+        else:
+            rev = wx.StaticText(panel, -1, "empty",(220,140),
+                (78, 20))
         self.frame.SetBackgroundColour((100, 179, 179))
 
         self.frame.Centre()
@@ -351,8 +355,13 @@ class inbox_frame(wx.App):
         self.frame.Close()
 
 
+
+
+
 class send_box(wx.App):
     """Application class."""
+
+
 
     def OnInit(self):
         glo_var.return_to_chFrame=True
@@ -610,10 +619,7 @@ def main(one,teo):
 
 
 
-"""
+
 
 if __name__ == '__main__':
     main(1,1)
-"""
-inbox_app=inbox_frame()
-inbox_app.MainLoop()

@@ -63,8 +63,7 @@ def get_password_from_db():
 
 
 def check_passwords(user_name,password):
-    print "?"+user_name
-    print "?"+password
+
     data=get_password_from_db()
     for d in data:
 
@@ -178,7 +177,7 @@ def enum(**enums):
 
 
 def handler(clientsock,addr):
-    print "my name is jeff"
+
 
     Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next",path_request="path" )
 
@@ -216,7 +215,12 @@ def handler(clientsock,addr):
             sp_data=recv_data[2].split("~")
 
             if (check_passwords(sp_data[0],sp_data[1])):
-                print "trueeeeeeeeeeeeeeeeeeeeeeeee"
+                conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
+                cur=conn.cursor()
+
+                cur.execute("UPDATE passwords SET ip=? WHERE user_name=? AND password=?", (addr[0], sp_data[0],sp_data[1]))
+                conn.commit()
+
                 glo_var.counter+=1
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True"+str(glo_var.counter))
             else:
@@ -315,6 +319,7 @@ def main():
         print 'waiting for connection... listening on port', PORT
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
+
         thread.start_new_thread(handler, (clientsock, addr))
 
 
