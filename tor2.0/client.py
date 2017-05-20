@@ -16,6 +16,7 @@ import thread
 from threading import Thread
 import threading,time
 import db_sqlite_client
+import cPickle as pickle
 
 #imports
 
@@ -27,16 +28,16 @@ SENDER_NAME="DONI"
 
 arr_mesg_lock=threading.Lock()
 
-class All_userdata:
-    def __init__(self):
+class user_data:
 
-        self.client_key=""
-        self.client_public_key=""
-        self.server_public_key=""
-        self.loggin=False#true \ false
-        self.mesg_for_send=[] #an array of all the mesg that need  to sent (the mesg is already ready to be send as is.)
-        self.recv_mesg=[]#an array of all the mesg that recieved from the main server
-        self.mesg_for_next_ip=[]
+
+        client_key=""
+        client_public_key=""
+        server_public_key=""
+        loggin=False#true \ false
+        mesg_for_send=[] #an array of all the mesg that need  to sent (the mesg is already ready to be send as is.)
+        recv_mesg=[]#an array of all the mesg that recieved from the main server
+        mesg_for_next_ip=[]
 
 
 
@@ -61,7 +62,7 @@ def insert_interanl_data(data):
         db_sqlite_client.insert_msg("mesg_db",database,data)
 def main(one,tep):
 
-    user_data=All_userdata()
+
 
     key=secure.create_key()
     public_key=secure.Public_Key(key)
@@ -110,11 +111,12 @@ def client_to_other_clients(user_data,client_sock):
 
 def client_server_recv(clientsock):
     #c-server-->c-client
-    user_data=All_userdata()
+
 
     while 1:
-        client_recv=secure.DecryptMesg(clientsock.recv(BUFFER),user_data.client_key)
-        insert_interanl_data(client_recv)
+        recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),user_data.client_key)
+        print "recv  : "+recv_data
+        insert_interanl_data(recv_data)
 
         #insert it to database
 
@@ -141,7 +143,7 @@ def client_server_other_clients(user_data,port):
         #put the recv in some db
 
 def put_mesg_for_send():
-    user_data=All_userdata()
+
     database= "E:\music\client_inter_data.db"
     conn=db_sqlite_client.create_connection(database)
     data=[]

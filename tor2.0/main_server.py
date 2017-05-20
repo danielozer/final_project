@@ -57,16 +57,20 @@ def get_password_from_db():
     data=[]
     for row in cur.execute('SELECT * FROM passwords '):
             data.insert(len(data),row)
+    conn.close()
+    print
     return data
 
 
 def check_passwords(user_name,password):
     data=get_password_from_db()
+    for d in data:
 
-    true_user_name=data[1]
-    true_password=data[2]
-    if (true_password==password and true_user_name==user_name):
-        return True
+        true_user_name=data[1]
+        true_password=data[2]
+        if (true_password==password and true_user_name==user_name):
+            return True
+
     return False
 
 def change_dic(dic,id):
@@ -209,9 +213,12 @@ def handler(clientsock,addr):
             sp_data=recv_data[2].split("~")
 
             if (check_passwords(sp_data[0],sp_data[1])):
+
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True")
             else:
+
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False")
+
         elif (mesgtype==Mesg_Type.request):
             print
         elif(mesgtype==Mesg_Type.request_next_ip):
@@ -265,14 +272,18 @@ def handler_client_only_send (ip):
             sock = socket(AF_INET,SOCK_STREAM)
 
             sock.connect((ip, port))
-
+            check_for_timming_del=False
             while 1:
                 #lock
+
                 for msg in glo_var.msg_arr:
 
-
-                    sock.send(secure.EncryptMesg(msg,glo_var.client_public_key))
-                glo_var.msg_arr=[]
+                    enc_data=pickle.dumps(secure.EncryptMesg(msg,glo_var.client_public_key))
+                    sock.send(enc_data)
+                    check_for_timming_del=True
+                if check_for_timming_del:
+                    check_for_timming_del=False
+                    glo_var.msg_arr=[]
 
 
         except:

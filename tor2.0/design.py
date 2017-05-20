@@ -46,20 +46,29 @@ def check_for_answer_pass():
 
             cur=conn.cursor()
             # create projects table
-
+            print "ppppppppppppppppppppppp"
             for row in cur.execute('SELECT * FROM data_for_frontend'):
+
                 data=row[0]
+
+                print data
+
                 if "logging answer" in data:
                     print "got answer"
+
+                    print len(row)
+                    sql="DELETE FROM data_for_frontend WHERE data='logging answer Flase' "
+                    cur.execute("DELETE FROM data_for_frontend WHERE data='logging answer False' ")
+                    conn.commit
+                    print
                     if "True" in data:
+                        print 777
 
-                        sql = 'DELETE FROM data_for_frontend WHERE ?'
-
-                        cur.execute(sql, (data,))
 
                         conn.close()
                         return True
-                    else:
+                    elif "False" in data:
+                        print 6666
                         conn.close()
                         return False
 
@@ -138,13 +147,13 @@ class loginFrame(wx.App):
 
 
 
+
+
+
+
         if check_for_answer_pass():
             self.frame.Close()
             glo_var.stop_loop=False
-
-            check=True
-        else:
-
             return True
 
         wrong_user_name = wx.StaticText(self.panel, -1, "WRONG ",pos=(320,55))

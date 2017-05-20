@@ -55,8 +55,8 @@ def insert_msg(type,database,data):
 
 
     elif type=="reg_internal_frontend_db":
-
-        cur.execute("INSERT INTO data_for_frontend VALUES (?)",data)
+        print "Data : "+ str(data)
+        cur.execute("INSERT INTO data_for_frontend VALUES (?)",[data])
         conn.commit()
     elif type== "mesg_db":
         cur.execute("INSERT INTO client_db_data  VALUES (?,?,?,?)",[data])
