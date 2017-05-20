@@ -46,7 +46,7 @@ def insert_interanl_data(data):
 
     database= "E:\music\client_inter_data.db"
     if "logging" in data:
-
+        print "QQQQQQQQQQQ"
         db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
 
     elif "get_path" in data:
@@ -161,7 +161,7 @@ def put_mesg_for_send():
         if check_for_timming_del:
             cur.execute("delete from data_for_backend ")
             conn.commit()
-
+            conn.close()
     correct_data=[]
     for d in data:
 

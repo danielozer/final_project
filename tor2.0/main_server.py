@@ -44,7 +44,7 @@ class glo_var():
         server_key=""
         client_public_key=""
         server_public_key=""
-
+        counter=0
 
 
 
@@ -217,10 +217,11 @@ def handler(clientsock,addr):
 
             if (check_passwords(sp_data[0],sp_data[1])):
                 print "trueeeeeeeeeeeeeeeeeeeeeeeee"
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True")
+                glo_var.counter+=1
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True"+str(glo_var.counter))
             else:
-
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False")
+                glo_var.counter+=1
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False"+str(glo_var.counter))
 
         elif (mesgtype==Mesg_Type.request):
             print

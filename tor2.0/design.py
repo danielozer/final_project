@@ -43,14 +43,16 @@ def get_all_frontend_data():
 
         cur=conn.cursor()
         # create projects table
-
+        check=False
         for row in cur.execute('SELECT * FROM data_for_frontend'):
 
-
+            print "Row " +row[0]
             glo_var.db_data.insert(len(glo_var.db_data),row[0])
+            check=True
+        if check:
 
-        cur.execute("DELETE FROM data_for_frontend")
-        conn.commit()
+            cur.execute("DELETE FROM data_for_frontend")
+            conn.commit()
         conn.close()
 
 
