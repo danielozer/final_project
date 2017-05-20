@@ -46,11 +46,14 @@ def insert_interanl_data(data):
 
     database= "E:\music\client_inter_data.db"
     if "logging" in data:
-        print "QQQQQQQQQQQ"
+
         db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
 
     elif "get_path" in data:
         db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
+
+    elif "req_answer" in data :
+        db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
 
     elif "relpy" in data :
         db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
@@ -196,14 +199,15 @@ def handler_client_with_server(user_data,sock):
                     pull_next_mesg =pull_next_mesg.split("~")
                 if "logging" in pull_next_mesg[0]:
 
-                    print "yep1"
+
                     sendMesg_client.send_to_server_password(pull_next_mesg[1]+"~"+pull_next_mesg[2],sock,"enter_sender",user_data.server_public_key)
                 elif "request" in pull_next_mesg[0]:
-                    print "yep2"
 
-                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+
+
+                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[1]+'~'+pull_next_mesg[2],sock,user_data.server_public_key)
                 elif "reply" in pull_next_mesg[0]:
-                    print "yep3"
+
 
                     sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],user_data.server_public_key)
 

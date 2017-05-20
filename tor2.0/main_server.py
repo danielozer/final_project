@@ -14,7 +14,7 @@ import thread
 from threading import Thread
 import cPickle as pickle
 import secure
-
+import string
 from sys import argv
 import sys
 import random,time
@@ -45,7 +45,7 @@ class glo_var():
         client_public_key=""
         server_public_key=""
         counter=0
-
+        pickle_client_public_key=""
 
 
 
@@ -191,6 +191,7 @@ def handler(clientsock,addr):
 
     #recv the public key of the client
     recv_data=clientsock.recv(BUFFER)
+    glo_var.pickle_client_public_key=recv_data
     glo_var.client_public_key=secure.get_public_key_from_other_side(recv_data)
 
     print "###############################################################"
@@ -219,7 +220,9 @@ def handler(clientsock,addr):
                 cur=conn.cursor()
 
                 cur.execute("UPDATE passwords SET ip=? WHERE user_name=? AND password=?", (addr[0], sp_data[0],sp_data[1]))
+                cur.execute("UPDATE passwords SET pu_key=? WHERE user_name=? AND password=?", (glo_var.pickle_client_public_key, sp_data[0],sp_data[1]))
                 conn.commit()
+                conn.close()
 
                 glo_var.counter+=1
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True"+str(glo_var.counter))
@@ -228,7 +231,42 @@ def handler(clientsock,addr):
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False"+str(glo_var.counter))
 
         elif (mesgtype==Mesg_Type.request):
-            print
+            ips={}
+            sp_data=recv_data[2].split("~")
+            count=0
+            for ip in get_password_from_db():
+                count+=1
+                if ip[0] != None:
+                    print count
+                    ips.update({count:ip[0]})
+
+            print ips
+            ip=sp_data[0]
+            rounds=sp_data[1]
+            if ip in ips.values():
+                print ip
+                ips.pop(ip)
+                ips.pop(addr[0])
+                path=create_path_for_mesg(ips,rounds,ip)
+                path.insert(0,addr[0])
+                path.insert(len(path),ip)
+
+                uniq_id=''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(32)])
+
+                conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
+                cur=conn.cursor()
+
+                nxt_ip=path[1]
+                cur.execute("INSERT INTO ips_conn_id  VALUES (?,?,?,?,?)",(addr[0],ip,uniq_id,str(path),nxt_ip))
+                conn.commit()
+                conn.close()
+
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+nxt_ip+"~"+"")
+            else:
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~no~xxx~xxx")
+
+
+
         elif(mesgtype==Mesg_Type.request_next_ip):
             print
 
@@ -286,6 +324,7 @@ def handler_client_only_send (ip):
 
                 for msg in glo_var.msg_arr:
 
+                    print msg
                     enc_data=pickle.dumps(secure.EncryptMesg(msg,glo_var.client_public_key))
                     sock.send(enc_data)
                     check_for_timming_del=True

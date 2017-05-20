@@ -36,13 +36,13 @@ def send_to_server_password(str_password,sock,sender_name,key):
     """
     sock.send(create_mesg(str_password,"enter",sender_name,key))
 
-def send_to_server_sendRequest(ip,sock,sender_name,key,):
+def send_to_server_sendRequest(ip,sock,key,):
     """
     this func recv the string mesg  and send it to the server after it encrypt(using secure moudle)
     recv: str mesg, socket
     return:non
     """
-    sock.send(create_mesg(ip,"request",sender_name,key))
+    sock.send(create_mesg(ip,"request","req_xxx",key))
 
 def ask_what_next(mesg,sock,sender_name,key):
 
@@ -59,7 +59,7 @@ def create_mesg(mesg,type,sender_name,key):
     checksum=secure.checksum_md5_text(mesg)
     send_message=checksum+"|"+type+"|"+sender_name+"|"+mesg
 
-    print send_message
+    print "send msg  ; "+send_message
     enc_data=pickle.dumps(secure.EncryptMesg(str(send_message),key))
     print enc_data
     return  enc_data
