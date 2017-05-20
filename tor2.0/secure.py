@@ -49,7 +49,7 @@ def get_public_key_from_other_side(recv_data):
 
     pu_key = RSA.importKey(pickle.loads(recv_data))
 
-    #print("***GOT PUBLIC KEY***"),pu_key.exportKey()
+    print("***GOT PUBLIC KEY***"),pu_key.exportKey()
 
     pu_key = RSA.importKey(pu_key.exportKey())
 
@@ -61,7 +61,7 @@ def create_key():
 
     return key
 
-def Publik_Key(key):
+def Public_Key(key):
     """
     the function create a new public key and return it
 

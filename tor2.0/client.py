@@ -38,30 +38,33 @@ class All_userdata:
         self.recv_mesg=[]#an array of all the mesg that recieved from the main server
         self.mesg_for_next_ip=[]
 
-def user_data_string(user_name,password):
 
-  userdata=str(user_name)+str(password)
-  return userdata
 
-def user_usage(user_data):
 
-    print
-    #show the interface of the password
-    #get_password
+def insert_interanl_data(data):
 
-def insert_interanl_data(type,data):
-        database= "E:\music\client_inter_data.db"
-
-        data="logging answer "+data[0]
+    database= "E:\music\client_inter_data.db"
+    if "logging" in data:
 
         db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
 
+    elif "get_path" in data:
+        db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
+
+    elif "relpy" in data :
+        db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
+
+    elif "next_ip" in data :
+        db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
+
+    elif "mesg" in data:
+        db_sqlite_client.insert_msg("mesg_db",database,data)
 def main(one,tep):
 
     user_data=All_userdata()
 
     key=secure.create_key()
-    public_key=secure.Publik_Key(key)
+    public_key=secure.Public_Key(key)
 
     user_data.client_key=key
     user_data.client_public_key=public_key
@@ -72,6 +75,8 @@ def main(one,tep):
 
     pu_key=sock.recv(BUFFER)
     user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
+
+
 
     sock.send(user_data.client_public_key)
 
@@ -96,21 +101,6 @@ def main(one,tep):
     #thread.start_new_thread(client_server_other_clients, (user_data,port))
 
 
-"""
-    #GET FROM THE USER THE PASSWORD AND USERNAME
-    while 1:
-
-        password="password"
-        sendMesg_client.send_to_server_password(password,sock,user_data.server_public_key,SENDER_NAME)
-
-        #GET AN ANSWER IF THE PASSWORD IS AUTHORIZED
-        check=sock.recv(BUFFER)
-
-        while check is True:
-
-            get_data_from_frame()
-
-"""
 def client_to_other_clients(user_data,client_sock):
     #c-client-->c-server
 
@@ -120,9 +110,12 @@ def client_to_other_clients(user_data,client_sock):
 
 def client_server_recv(clientsock):
     #c-server-->c-client
+    user_data=All_userdata()
+
     while 1:
-        client_recv=clientsock.recv(BUFFER)
-        print  client_recv
+        client_recv=secure.DecryptMesg(clientsock.recv(BUFFER),user_data.client_key)
+        insert_interanl_data(client_recv)
+
         #insert it to database
 
 def client_server_other_clients(user_data,port):
@@ -158,47 +151,64 @@ def put_mesg_for_send():
         for row in cur.execute('SELECT * FROM data_for_backend'):
             data.insert(len(data),row)
 
+        cur.execute("delete from data_for_backend ")
+        conn.commit()
 
-        #%%%%%%%%%%%% need to delete all the data from the backend
+    correct_data=[]
+    for d in data:
 
 
+        correct_data.insert(len(correct_data),d[0])
 
     arr=user_data.mesg_for_next_ip
     user_data.mesg_for_next_ip=[]
 
     for msg in arr:
 
-        data.insert(len(data),msg)
+            correct_data.insert(len(correct_data),msg)
 
+    return correct_data
 
-
-
-    return data
+t=put_mesg_for_send()
+print t
 
 def handler_client_with_server(user_data,sock):
 
-
+    print "handler_client_with_server"
     while 1:
+        arr_msg=put_mesg_for_send()
         #need to put lock
-        if len(user_data.mesg_for_send)>0:
+        for msg in arr_msg:
+            if len(arr_msg)>0:
 
-            arr_mesg_lock.acquire()
+                arr_mesg_lock.acquire()
 
-            pull_next_mesg=user_data.mesg_for_send[0]
-            if pull_next_mesg[1]=="logging":
-                sendMesg_client.send_to_server_password(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
-            elif pull_next_mesg[1]=="request":
-                sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
-            elif pull_next_mesg[1]=="reply":
-                sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+                pull_next_mesg=msg
 
-            elif pull_next_mesg[1]=="mesg_next":
-                sendMesg_client.ask_what_next(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
 
-            user_data.mesg_for_send.remove(pull_next_mesg)
+                if "~" in pull_next_mesg:
+                    pull_next_mesg =pull_next_mesg.split("~")
+                if "logging" in pull_next_mesg[0]:
 
-            arr_mesg_lock.release()
-            time.sleep(0.1)
+                    print "yep1"
+                    sendMesg_client.send_to_server_password(pull_next_mesg[1]+"~"+pull_next_mesg[2],sock,"enter_sender",user_data.server_public_key)
+                elif "request" in pull_next_mesg[0]:
+                    print "yep2"
+
+                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+                elif "reply" in pull_next_mesg[0]:
+                    print "yep3"
+
+                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],user_data.server_public_key)
+
+                elif "mesg_next" in pull_next_mesg[0]:
+                    sendMesg_client.ask_what_next(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
+
+
+
+                arr_mesg_lock.release()
+                time.sleep(0.1)
+
 def handler_server_only_from_server(user_data):
     #c-server-->s-client
     #act as a server for reciving#need to get the port from the server
@@ -218,13 +228,10 @@ def handler_server_only_from_server(user_data):
         print '...connected from:', addr
         thread.start_new_thread(client_server_recv, (clientsock,))
 
-    pu_key=serversock.recv(BUFFER)
-    user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
 
-def control_the_client():
-    #all the usage of the user
-    #its create all the mesg built already
-    print
+
+
+
 
 if __name__=='__main__':
     main(1,1)

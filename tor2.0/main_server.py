@@ -14,7 +14,7 @@ import thread
 from threading import Thread
 import cPickle as pickle
 import secure
-import mng_db
+
 from sys import argv
 import sys
 import random,time
@@ -36,16 +36,35 @@ else:
 file_name="users_data"
 #PATHFILE=argv[1]+ '\\' +file_name
 
+
+
+
+class glo_var():
+        msg_arr=[]
+        server_key=""
+        client_public_key=""
+        server_public_key=""
+
+
+
+
+
 BUFFER=2048
 
-def get_password_from_db(self):
-    print
+def get_password_from_db():
+    conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
+    cur=conn.cursor()
+    data=[]
+    for row in cur.execute('SELECT * FROM passwords '):
+            data.insert(len(data),row)
+    return data
+
 
 def check_passwords(user_name,password):
     data=get_password_from_db()
 
-    true_user_name=data[0]
-    true_password=data[1]
+    true_user_name=data[1]
+    true_password=data[2]
     if (true_password==password and true_user_name==user_name):
         return True
     return False
@@ -146,37 +165,32 @@ def enum(**enums):
     return type('Enum', (), enums)
 
 
-def create_db_if_not_exist(fname):
-    mng_db.init_db(fname)
 
 
 
-db_path = r'E:\music'
-db_fname = 'userpass.db'
-db_path_fname = db_path + '\\' + db_fname
 
-#create_db_if_not_exist(db_path_fname)
 
 def handler(clientsock,addr):
     print "my name is jeff"
 
-    Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next" )
+    Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next",path_request="path" )
 
     recvdata_order=enum(MESGTYPE=0,SENDER_NAME=1,MESG=2)
 
     key=secure.create_key()
-    pickle_key=secure.Publik_Key(key)
+    pickle_key=secure.Public_Key(key)
     #send the client the public key
     clientsock.send(pickle_key)
     print "public key sent "
 
     #recv the public key of the client
     recv_data=clientsock.recv(BUFFER)
-    public_key_client=secure.get_public_key_from_other_side(recv_data)
+    glo_var.client_public_key=secure.get_public_key_from_other_side(recv_data)
 
     print "###############################################################"
-    print public_key_client
+    print glo_var.client_public_key
     print "###############################################################"
+
 
     t = Thread(target=handler_client_only_send, args=(1,))
     t.start()
@@ -195,11 +209,18 @@ def handler(clientsock,addr):
         mesgtype=recv_data[recvdata_order.MESGTYPE]
         mesg_sender_name=recv_data[recvdata_order.SENDER_NAME]
         if (mesgtype==Mesg_Type.ENTER):
-            check_passwords()
+            sp_data=recv_data[2].split("~")
 
+            if (check_passwords(sp_data[0],sp_data[1])):
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True")
+            else:
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False")
         elif (mesgtype==Mesg_Type.request):
             print
         elif(mesgtype==Mesg_Type.request_next_ip):
+            print
+
+        elif (mesgtype==Mesg_Type.path_request):
             print
         else:
             print "error!!!!!!!"
@@ -219,38 +240,44 @@ def break_to_pieces(mesg):
     else:
         return "error!!"
 
-def handler_client_only_send(ip):
+def handler_client_only_recv (ip):
     while 1:
         try:
-            print "trust no one"
+
             port=9393
             ip="127.0.0.1"
 
             sock = socket(AF_INET,SOCK_STREAM)
-            print "%^%"
+
             sock.connect((ip, port))
 
             while 1:
                 sock.send("opsaaaaa")
-                print "%^%^%^%^%^%^%^%^%^%^^%^%^%^%^%^%%%^%^%^%^%^%^%%%^%^%^%^%^%^^%^%^%^%"
+
                 time.sleep(5)
         except:
             p=1
-def handler_client_only_recv(ip):
+
+def handler_client_only_send (ip):
     while 1:
         try:
-            print "trust no one"
+
             port=9393
             ip="127.0.0.1"
 
             sock = socket(AF_INET,SOCK_STREAM)
-            print "%^%"
+
             sock.connect((ip, port))
 
             while 1:
-                sock.send("opsaaaaa")
-                print "%^%^%^%^%^%^%^%^%^%^^%^%^%^%^%^%%%^%^%^%^%^%^%%%^%^%^%^%^%^^%^%^%^%"
-                time.sleep(5)
+                #lock
+                for msg in glo_var.msg_arr:
+
+
+                    sock.send(secure.EncryptMesg(msg,glo_var.client_public_key))
+                glo_var.msg_arr=[]
+
+
         except:
             p=1
 
@@ -277,6 +304,8 @@ def main():
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
         thread.start_new_thread(handler, (clientsock, addr))
+
+
 
 if __name__=='__main__':
     main()

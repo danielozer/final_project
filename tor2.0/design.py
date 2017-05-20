@@ -102,7 +102,7 @@ class loginFrame(wx.App):
         glo_var.kill=True
 
         self.showLoginBox()
-        print "lop"
+
         self.frame.SetBackgroundColour((100, 179, 179))
         self.frame.Show()
         self.frame.Centre()
@@ -132,15 +132,18 @@ class loginFrame(wx.App):
     def check_pass(self,pass_user):
         UserText = pass_user[0]
         PasswordText = pass_user[1]
-        check=False
 
 
-        if UserText=="12":
+
+
+
+        if check_for_answer_pass():
             self.frame.Close()
             glo_var.stop_loop=False
 
             check=True
-        if check:
+        else:
+
             return True
 
         wrong_user_name = wx.StaticText(self.panel, -1, "WRONG ",pos=(320,55))
@@ -563,24 +566,31 @@ def main(one,teo):
 
                 counter=0
                 while glo_var.kill==False:
+
                     print str(counter)
                     counter+=1
+
                     if glo_var.next_frame=="send_reply" and glo_var.return_to_chFrame==False:
+
                         send_app=send_box()
                         send_app.MainLoop()
 
                     elif glo_var.next_frame== "show_mesg" and glo_var.return_to_chFrame==False:
+
                         see_mesg_app=see_mesg_box()
                         see_mesg_app.MainLoop()
+
                     elif glo_var.next_frame== "see_path" and glo_var.return_to_chFrame==False:
 
                         path_app=see_send_path()
                         path_app.MainLoop()
-                        print "yyyyy"
+
                     else:
                         second_app=second_frame()
                         second_app.MainLoop()
+
                         if glo_var.next_frame == "box" and glo_var.kill==False:
+
                             inbox_app=inbox_frame()
                             inbox_app.MainLoop()
 
