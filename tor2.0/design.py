@@ -80,6 +80,7 @@ def insert_interanl_data(type,data):
         elif type=="reply":
             data="reply~"+data[0]+"~"+data[1]
 
+        print "data : "+data
         db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
 
 

@@ -146,13 +146,18 @@ def put_mesg_for_send():
     conn=db_sqlite_client.create_connection(database)
     data=[]
 
+
     if conn is not None:
         cur=conn.cursor()
+        check_for_timming_del=False
         for row in cur.execute('SELECT * FROM data_for_backend'):
-            data.insert(len(data),row)
 
-        cur.execute("delete from data_for_backend ")
-        conn.commit()
+            print row
+            check_for_timming_del=True
+            data.insert(len(data),row)
+        if check_for_timming_del:
+            cur.execute("delete from data_for_backend ")
+            conn.commit()
 
     correct_data=[]
     for d in data:
@@ -169,8 +174,6 @@ def put_mesg_for_send():
 
     return correct_data
 
-t=put_mesg_for_send()
-print t
 
 def handler_client_with_server(user_data,sock):
 

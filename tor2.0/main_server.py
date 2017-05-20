@@ -199,9 +199,6 @@ def handler(clientsock,addr):
 
     while(end==False):
 
-        recv_data=clientsock.recv(BUFFER)
-        print recv_data
-
 
         recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),key)
 

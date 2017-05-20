@@ -10,7 +10,7 @@ Description     :   all the function the have connection the client data-base (s
 #imports
 
 import sqlite3
-
+import sys
 #imports
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -48,9 +48,11 @@ def insert_msg(type,database,data):
 
     if type=="reg_internal_backend_db":
 
-
+        print "goooo"
         cur.execute("INSERT INTO data_for_backend VALUES (?)",[data])
         conn.commit()
+
+
 
     elif type=="reg_internal_frontend_db":
 
