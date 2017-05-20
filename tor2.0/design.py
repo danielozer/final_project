@@ -26,7 +26,7 @@ class glo_var():
     return_to_chFrame=False
     mesg_data=0
     stop_loop=True
-
+    db_data=[]
 
 class glo_current_mesg():
     sender_name=None
@@ -34,49 +34,49 @@ class glo_current_mesg():
     recv_date=None
     data=None
 
-def get_():
-    print
+def get_all_frontend_data():
+    database= "E:\music\client_inter_data.db"
+
+
+    conn=db_sqlite_client.create_connection(database)
+    if conn is not None:
+
+        cur=conn.cursor()
+        # create projects table
+
+        for row in cur.execute('SELECT * FROM data_for_frontend'):
+
+
+            glo_var.db_data.insert(len(glo_var.db_data),row[0])
+
+        cur.execute("DELETE FROM data_for_frontend")
+        conn.commit()
+        conn.close()
+
 
 def check_for_answer_pass():
     database= "E:\music\client_inter_data.db"
-    while 1:
-
-        conn=db_sqlite_client.create_connection(database)
-        if conn is not None:
-
-            cur=conn.cursor()
-            # create projects table
-            print "ppppppppppppppppppppppp"
-            for row in cur.execute('SELECT * FROM data_for_frontend'):
-
-                data=row[0]
-
-                print data
-
-                if "logging answer" in data:
-                    print "got answer"
-
-                    print len(row)
-                    sql="DELETE FROM data_for_frontend WHERE data='logging answer Flase' "
-                    cur.execute("DELETE FROM data_for_frontend WHERE data='logging answer False' ")
-                    conn.commit
-                    print
-                    if "True" in data:
-                        print 777
 
 
-                        conn.close()
-                        return True
-                    elif "False" in data:
-                        print 6666
-                        conn.close()
-                        return False
+    check=True
+    while check :
+        get_all_frontend_data()
+        for data in glo_var.db_data:
 
-            conn.close()
+            if "logging answer" in data:
+                check=False
+
+                glo_var.db_data.remove(data)
 
 
-        else:
-            print("any answer yet")
+                if "True" in data:
+
+                    return True
+
+                elif "False" in data:
+
+                    return False
+
 
 def insert_interanl_data(type,data):
         database= "E:\music\client_inter_data.db"
@@ -142,12 +142,6 @@ class loginFrame(wx.App):
     def check_pass(self,pass_user):
         UserText = pass_user[0]
         PasswordText = pass_user[1]
-
-
-
-
-
-
 
 
 

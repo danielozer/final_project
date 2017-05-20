@@ -63,11 +63,14 @@ def get_password_from_db():
 
 
 def check_passwords(user_name,password):
+    print "?"+user_name
+    print "?"+password
     data=get_password_from_db()
     for d in data:
 
-        true_user_name=data[1]
-        true_password=data[2]
+        true_user_name=d[1]
+        true_password=d[2]
+
         if (true_password==password and true_user_name==user_name):
             return True
 
@@ -213,7 +216,7 @@ def handler(clientsock,addr):
             sp_data=recv_data[2].split("~")
 
             if (check_passwords(sp_data[0],sp_data[1])):
-
+                print "trueeeeeeeeeeeeeeeeeeeeeeeee"
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True")
             else:
 

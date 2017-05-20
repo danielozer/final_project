@@ -114,6 +114,7 @@ def client_server_recv(clientsock):
 
 
     while 1:
+        recv_data=0
         recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),user_data.client_key)
         print "recv  : "+recv_data
         insert_interanl_data(recv_data)
