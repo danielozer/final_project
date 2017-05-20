@@ -53,7 +53,7 @@ def get_all_frontend_data():
 
             cur.execute("DELETE FROM data_for_frontend")
             conn.commit()
-        conn.close()
+    conn.close()
 
 
 def check_for_answer_pass():
@@ -314,9 +314,11 @@ class inbox_frame(wx.App):
     """Application class."""
 
     def OnInit(self):
+
         glo_var.return_to_chFrame=True
         self.frame = MainFrame(None, -1, wx.DefaultPosition, "TOR", (500, 500))
         panel = wx.Panel(self.frame)
+
 
 
         rev = wx.StaticText(panel, -1, "***INBOX***",(200,40),
@@ -596,7 +598,7 @@ def main(one,teo):
                         second_app.MainLoop()
 
                         if glo_var.next_frame == "box" and glo_var.kill==False:
-
+                            print "doss"
                             inbox_app=inbox_frame()
                             inbox_app.MainLoop()
 
@@ -608,7 +610,10 @@ def main(one,teo):
 
 
 
-
+"""
 
 if __name__ == '__main__':
     main(1,1)
+"""
+inbox_app=inbox_frame()
+inbox_app.MainLoop()

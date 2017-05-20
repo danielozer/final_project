@@ -161,7 +161,7 @@ def put_mesg_for_send():
         if check_for_timming_del:
             cur.execute("delete from data_for_backend ")
             conn.commit()
-            conn.close()
+    conn.close()
     correct_data=[]
     for d in data:
 
