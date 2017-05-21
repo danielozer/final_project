@@ -17,7 +17,8 @@ from threading import Thread
 import threading,time
 import db_sqlite_client
 import cPickle as pickle
-
+import string
+import random
 #imports
 
 IP="127.0.0.1"
@@ -53,6 +54,7 @@ def insert_interanl_data(data):
         db_sqlite_client.insert_msg("reg_internal_frontend_db",database,data)
 
     elif "req_answer" in data :
+        print "food"
         db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
 
     elif "relpy" in data :
@@ -177,11 +179,14 @@ def put_mesg_for_send():
     for msg in arr:
 
             correct_data.insert(len(correct_data),msg)
-
+    if correct_data:
+        print "cc " +str(correct_data)
     return correct_data
 
 
 def handler_client_with_server(user_data,sock):
+
+    wait_arr_msg=[]#build from tuples that conatain all the data
 
     print "handler_client_with_server"
     while 1:
@@ -203,9 +208,22 @@ def handler_client_with_server(user_data,sock):
                     sendMesg_client.send_to_server_password(pull_next_mesg[1]+"~"+pull_next_mesg[2],sock,"enter_sender",user_data.server_public_key)
                 elif "request" in pull_next_mesg[0]:
 
+                    uniq_id=''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(32)])
+                    wait_arr_msg.insert(len(wait_arr_msg),(pull_next_mesg[3],uniq_id))
+                    print "wait: "+str(wait_arr_msg)
+                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[1]+'~'+pull_next_mesg[2]+"~"+uniq_id,sock,user_data.server_public_key)
+
+                elif "req_answer" in pull_next_mesg[0]:
+
+                    if "no" in pull_next_mesg[1]:
+                        print
 
 
-                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[1]+'~'+pull_next_mesg[2],sock,user_data.server_public_key)
+                    elif "yes" in pull_next_mesg[1]:
+
+                        print
+
+
                 elif "reply" in pull_next_mesg[0]:
 
 

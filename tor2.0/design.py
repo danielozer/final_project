@@ -13,6 +13,7 @@ import wx
 import db_sqlite_client
 import thread
 import sys, glob
+import socket
 
 #imports
 
@@ -407,20 +408,22 @@ class send_box(wx.App):
         glo_var.next_frame="regular"
         if glo_var.send_mesg_type=="regular":
             ip=self.ip_text.GetValue()
-            choice=self.select_choice.GetString(self.select_choice.GetSelection())
+            if ip!=socket.gethostbyname(socket.gethostname()):
+                choice=self.select_choice.GetString(self.select_choice.GetSelection())
 
-            secu_lvl=4
+                secu_lvl=4
 
-            if choice=="HIGH":
-                secu_lvl=16
-            elif choice=="MEDIUM":
-                secu_lvl=8
+                if choice=="HIGH":
+                    secu_lvl=16
+                elif choice=="MEDIUM":
+                    secu_lvl=8
 
 
-            print ip
-            print secu_lvl
-            insert_interanl_data("request",[ip,str(secu_lvl),mesg])
-
+                print ip
+                print secu_lvl
+                insert_interanl_data("request",[ip,str(secu_lvl),mesg])
+            else:
+                print "try to send himself"
         else:
             conn=glo_current_mesg.conn_id
             insert_interanl_data("reply",[conn,mesg])

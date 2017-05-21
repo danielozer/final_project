@@ -233,23 +233,31 @@ def handler(clientsock,addr):
         elif (mesgtype==Mesg_Type.request):
             ips={}
             sp_data=recv_data[2].split("~")
-            count=0
-            for ip in get_password_from_db():
-                count+=1
-                if ip[0] != None:
-                    print count
-                    ips.update({count:ip[0]})
+            print "sp_data : "+str(sp_data)
 
-            print ips
-            ip=sp_data[0]
+            count=0
+            target_ip=sp_data[0]
             rounds=sp_data[1]
-            if ip in ips.values():
-                print ip
-                ips.pop(ip)
-                ips.pop(addr[0])
-                path=create_path_for_mesg(ips,rounds,ip)
+            uniq_id=sp_data[2]
+            check=False
+
+            for ip_db in get_password_from_db():
+
+
+                if (ip_db[0] != None and ip_db[0]!=target_ip and ip_db[0]!=addr[0]):
+                    count+=1
+                    print count
+                    ips.update({count:ip_db[0]})
+                else:
+                    if ip_db[0]==target_ip:
+                        check=True
+            print "ipssss : "+str(ips)
+
+            if check:
+
+                path=create_path_for_mesg(ips,rounds,target_ip)
                 path.insert(0,addr[0])
-                path.insert(len(path),ip)
+                path.insert(len(path),target_ip)
 
                 uniq_id=''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(32)])
 
@@ -257,7 +265,7 @@ def handler(clientsock,addr):
                 cur=conn.cursor()
 
                 nxt_ip=path[1]
-                cur.execute("INSERT INTO ips_conn_id  VALUES (?,?,?,?,?)",(addr[0],ip,uniq_id,str(path),nxt_ip))
+                cur.execute("INSERT INTO ips_conn_id  VALUES (?,?,?,?,?)",(addr[0],target_ip,uniq_id,str(path),nxt_ip,))
                 conn.commit()
                 conn.close()
 
