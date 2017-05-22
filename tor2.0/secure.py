@@ -33,6 +33,17 @@ pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * PADDING
 EncodeAES = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
 DecodeAES = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(PADDING)
 
+def cut_for_blocks(data):
+
+
+    data_len=len(data)
+
+
+    chunks, chunk_size = data_len, 100
+    blocks=[ data[i:i+chunk_size] for i in range(0, chunks, chunk_size) ]
+    print blocks
+    return blocks
+
 
 
 def create_AES_key():
@@ -101,10 +112,13 @@ def EncryptMesg(data,pu_key):
 
     """
 
-    data_encrypt = pu_key.encrypt(data, 32)#32 is random parameter used by RSA
+    data_encrypt = pu_key.encrypt(data, 128)#32 is random parameter used by RSA
+    print "one "
     print "The Encrypted Data: " , data_encrypt
     print "*************    " ,type(data_encrypt)
     return data_encrypt
+
+
 
 
 def EncryptDB(key, stringMesg):
@@ -150,3 +164,13 @@ def checksum_md5_file(file):
     """
     return hashlib.md5(open(file,'rb').read()).hexdigest()
 
+"""
+key=create_key()
+pu_key=Public_Key(key)
+
+key1=create_key()
+pu_key1=Public_Key(key1)
+
+enc=EncryptMesg("sss",pu_key1)
+
+"""

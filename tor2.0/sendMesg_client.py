@@ -49,7 +49,9 @@ def ask_what_next(mesg,sock,sender_name,key):
 
     sock.send(create_mesg(mesg,"mesg_next",sender_name,key))
 
-def send_mesg_to_client(ip,mesg,PORT):
+def send_mesg_to_client(ip,mesg):
+
+    PORT=8888
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((ip, PORT))
     sock.send(mesg)
@@ -60,6 +62,7 @@ def create_mesg(mesg,type,sender_name,key):
     send_message=checksum+"|"+type+"|"+sender_name+"|"+mesg
 
     print "send msg  ; "+send_message
+
     enc_data=pickle.dumps(secure.EncryptMesg(str(send_message),key))
     print enc_data
     return  enc_data

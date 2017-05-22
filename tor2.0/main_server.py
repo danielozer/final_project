@@ -240,6 +240,7 @@ def handler(clientsock,addr):
             rounds=sp_data[1]
             uniq_id=sp_data[2]
             check=False
+            pu_key_target=""
 
             for ip_db in get_password_from_db():
 
@@ -251,15 +252,16 @@ def handler(clientsock,addr):
                 else:
                     if ip_db[0]==target_ip:
                         check=True
+                        pu_key_target=ip_db[3]
             print "ipssss : "+str(ips)
 
             if check:
 
-                path=create_path_for_mesg(ips,rounds,target_ip)
+                path=create_path_for_mesg(ips,int(rounds))
                 path.insert(0,addr[0])
                 path.insert(len(path),target_ip)
 
-                uniq_id=''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(32)])
+                print "path " + str(path)
 
                 conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
                 cur=conn.cursor()
@@ -269,9 +271,11 @@ def handler(clientsock,addr):
                 conn.commit()
                 conn.close()
 
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+nxt_ip+"~"+"")
+                print "pu "+pu_key_target
+                #PROBLEMMMMMMMMM +str(pu_key_target)
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+str(nxt_ip)+"~"+str(pu_key_target)+"~"+str(uniq_id))
             else:
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~no~xxx~xxx")
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~no~xxx~xxx~"+str(uniq_id))
 
 
 
@@ -331,10 +335,28 @@ def handler_client_only_send (ip):
                 #lock
 
                 for msg in glo_var.msg_arr:
+                    print len(msg)
+                    if len(msg)>128:
+                        print "IN"
+                        blocks=secure.cut_for_blocks(msg)
+                        first_msg=str(len(blocks))+" blocks"
+                        print first_msg
+                        enc_data=pickle.dumps(secure.EncryptMesg(first_msg,glo_var.client_public_key))
+                        print "enc : "+str(enc_data)
+                        sock.send(enc_data)
 
-                    print msg
-                    enc_data=pickle.dumps(secure.EncryptMesg(msg,glo_var.client_public_key))
-                    sock.send(enc_data)
+                        for b in blocks:
+                            print "b : "+b
+                            enc_data=pickle.dumps(secure.EncryptMesg(b,glo_var.client_public_key))
+                            time.sleep(0.1)
+                            sock.send(enc_data)
+
+                    else:
+
+                        enc_data=pickle.dumps(secure.EncryptMesg(msg,glo_var.client_public_key))
+
+                        sock.send(enc_data)
+                        print "send"
                     check_for_timming_del=True
                 if check_for_timming_del:
                     check_for_timming_del=False
@@ -342,6 +364,7 @@ def handler_client_only_send (ip):
 
 
         except:
+            print "errorororo"
             p=1
 
 

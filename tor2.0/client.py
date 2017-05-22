@@ -83,7 +83,7 @@ def main(one,tep):
     user_data.server_public_key=secure.get_public_key_from_other_side(pu_key)
 
 
-
+    print len(user_data.client_public_key)
     sock.send(user_data.client_public_key)
 
     print "###############################################################"
@@ -117,12 +117,38 @@ def client_to_other_clients(user_data,client_sock):
 def client_server_recv(clientsock):
     #c-server-->c-client
 
-
+    check_for_multi=False
+    counter=0
+    times=-1
     while 1:
         recv_data=0
-        recv_data=secure.DecryptMesg(pickle.loads(clientsock.recv(BUFFER)),user_data.client_key)
+        r=clientsock.recv(BUFFER)
+        print "r"
+        recv_data=secure.DecryptMesg(pickle.loads(r),user_data.client_key)
+        if "blocks" in recv_data:
+
+            sp=recv_data.split(" ")
+            times=int(sp[0])
+            all_string=""
+            counter=0
+            check_for_multi=True
+
+        elif   check_for_multi:
+
+            all_string=all_string+recv_data
+
+            counter+=1
+            if counter==times:
+                times=-1
+                counter=0
+                check_for_multi=False
+
+                recv_data=all_string
+
         print "recv  : "+recv_data
-        insert_interanl_data(recv_data)
+        if check_for_multi==False:
+
+            insert_interanl_data(recv_data)
 
         #insert it to database
 
@@ -184,6 +210,12 @@ def put_mesg_for_send():
     return correct_data
 
 
+def find_var_in_aar_tuples(arr,var):
+    for t in arr:
+        for i in t:
+            if i==var:
+                return t
+    return "none"
 def handler_client_with_server(user_data,sock):
 
     wait_arr_msg=[]#build from tuples that conatain all the data
@@ -216,12 +248,20 @@ def handler_client_with_server(user_data,sock):
                 elif "req_answer" in pull_next_mesg[0]:
 
                     if "no" in pull_next_mesg[1]:
-                        print
-
+                        msg_id=pull_next_mesg[4]
+                        tup=find_var_in_aar_tuples(wait_arr_msg,msg_id)
+                        wait_arr_msg.remove(tup)
 
                     elif "yes" in pull_next_mesg[1]:
 
-                        print
+                        pu_key=pull_next_mesg[3]
+                        msg_id=pull_next_mesg[4]
+                        tup=find_var_in_aar_tuples(wait_arr_msg,msg_id)
+                        tup=wait_arr_msg.remove(tup)
+                        mesg_for_send=tup[0]
+
+                        sendMesg_client.send_mesg_to_client()
+
 
 
                 elif "reply" in pull_next_mesg[0]:
