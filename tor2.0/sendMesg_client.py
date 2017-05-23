@@ -10,7 +10,7 @@ Description     :   all the function the client use for sending messeges for the
 #imports
 
 import secure
-import socket
+import socket,time
 import cPickle as pickle
 
 #imports
@@ -66,12 +66,25 @@ def ask_what_next(mesg,sock,sender_name,key):
 
     sock.send(create_mesg(mesg,"mesg_next",sender_name,key))
 
-def send_mesg_to_client(ip,mesg):
-
+def send_mesg_to_client(ip,mesg,type,id_msg):
     PORT=8888
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((ip, PORT))
-    sock.send(mesg)
+
+    if type=="blocks":
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((ip, PORT))
+        for msg in mesg:
+
+
+            sock.send(msg)
+            time.sleep(0.1)
+
+
+    else:
+
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((ip, PORT))
+        sock.send(mesg)
+    sock.send(id_msg)
 
 def create_mesg(mesg,type,sender_name,key):
 

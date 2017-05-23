@@ -55,6 +55,11 @@ def create_AES_key():
 
     return cipher
 
+
+def public_key_nxt_client(p_k):
+
+    pu_key = RSA.importKey(p_k)
+    return pu_key
 def get_public_key_from_other_side(recv_data):
 
 
@@ -112,7 +117,7 @@ def EncryptMesg(data,pu_key):
 
     """
 
-    data_encrypt = pu_key.encrypt(data, 128)#32 is random parameter used by RSA
+    data_encrypt = pu_key.encrypt(data, 32)#32 is random parameter used by RSA
     print "one "
     print "The Encrypted Data: " , data_encrypt
     print "*************    " ,type(data_encrypt)

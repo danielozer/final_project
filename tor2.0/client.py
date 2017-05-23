@@ -60,7 +60,7 @@ def insert_interanl_data(data):
     elif "relpy" in data :
         db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
 
-    elif "next_ip" in data :
+    elif "mesg_next" in data :
         db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
 
     elif "mesg" in data:
@@ -120,8 +120,26 @@ def client_to_other_clients_recv():
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
 
-        recv=clientsock.recv(BUFFER)
-        insert_interanl_data("next_ip~"+recv)
+        all_string=""
+
+        recv_data=clientsock.recv(BUFFER)
+        if "blocks" in recv_data:
+
+            sp=recv_data.split(" ")
+            times=int(sp[0])
+
+
+            for part in range(0,times):
+                recv_data=clientsock.recv(BUFFER)
+                all_string=all_string+recv_data
+
+        else:
+
+            all_string=recv_data
+
+        recv_data=clientsock.recv(BUFFER)
+
+        insert_interanl_data("mesg_next~"+all_string+"~"+recv_data)
 
 def client_server_recv(clientsock):
     #c-server-->c-client
@@ -214,8 +232,7 @@ def put_mesg_for_send():
     for msg in arr:
 
             correct_data.insert(len(correct_data),msg)
-    if correct_data:
-        print "cc " +str(correct_data)
+
     return correct_data
 
 
@@ -223,6 +240,7 @@ def find_var_in_aar_tuples(arr,var):
     for t in arr:
         for i in t:
             if i==var:
+
                 return t
     return "none"
 def handler_client_with_server(user_data,sock):
@@ -264,29 +282,30 @@ def handler_client_with_server(user_data,sock):
                     elif "yes" in pull_next_mesg[1]:
                         nxt_ip=pull_next_mesg[2]
                         pu_key=pull_next_mesg[3]
+
+                        pu_key=secure.get_public_key_from_other_side(str(pu_key))
                         msg_id=pull_next_mesg[4]
 
                         tup=find_var_in_aar_tuples(wait_arr_msg,msg_id)
-                        tup=wait_arr_msg.remove(tup)
+                        wait_arr_msg.remove(tup)
 
-                        mesg_for_send=secure.DecryptMesg(tup[0],pu_key)
-                        msg=mesg_for_send+"~"+msg_id
 
-                        if len(msg)>128:
 
-                            blocks=secure.cut_for_blocks(msg)
+                        if len(tup[0])>128:
+
+                            blocks=secure.cut_for_blocks(tup[0])
                             first_msg=str(len(blocks))+" blocks"
 
-
-
+                            enc_b=[]
                             for b in blocks:
-                                print "b : "+b
-                                sendMesg_client.send_mesg_to_client(nxt_ip,b)
-                                time.sleep(0.1)
+                                enc_b.insert(len(enc_b),secure.EncryptMesg(b,pu_key))
 
+                            msg=[first_msg]+enc_b
+                            sendMesg_client.send_mesg_to_client(nxt_ip,msg,"blocks",msg_id)
 
                         else:
-                            sendMesg_client.send_mesg_to_client(nxt_ip,msg)
+                            mesg_for_send=secure.EncryptMesg(tup[0],pu_key)
+                            sendMesg_client.send_mesg_to_client(nxt_ip,msg,"reg",msg_id)
 
 
 

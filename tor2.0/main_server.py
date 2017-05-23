@@ -170,10 +170,38 @@ def create_path_for_mesg(dic_client1,rounds):
 def enum(**enums):
     return type('Enum', (), enums)
 
+def insert_msg_arr(ip,msg):
+    counter=0
+    for data in glo_var.all_smg_arr_with_data:
+
+        if data[0]==ip:
+            glo_var.all_smg_arr_with_data[counter][3].insert(len(data[3]),msg)
+
+        counter+=1
 
 
+def delete_msg_arr(ip):
 
+    counter=0
+    for data in glo_var.all_smg_arr_with_data:
 
+        if data[0]==ip:
+            glo_var.all_smg_arr_with_data[counter][3]=[]
+
+        counter+=1
+
+def get_data_from_arr(ip,type):
+    counter=0
+    for data in glo_var.all_smg_arr_with_data:
+
+        if data[0]==ip:
+            if type=="client_public_key":
+                return data[1]
+            elif type=="pickle_client_public_key":
+                return data[2]
+            else:
+                return data[3]
+        counter+=1
 
 
 def handler(clientsock,addr):
@@ -198,9 +226,9 @@ def handler(clientsock,addr):
     print client_public_key
     print "###############################################################"
 
-    glo_var.all_smg_arr_with_data.insert(len(glo_var.all_smg_arr_with_data),[addr[0]],client_public_key,pickle_client_public_key,[])
+    glo_var.all_smg_arr_with_data.insert(len(glo_var.all_smg_arr_with_data),[addr[0],client_public_key,pickle_client_public_key,[]])
 
-    t = Thread(target=handler_client_only_send, args=(1,))
+    t = Thread(target=handler_client_only_send, args=(addr[0],))
     t.start()
 
     end=False
@@ -221,15 +249,15 @@ def handler(clientsock,addr):
                 cur=conn.cursor()
 
                 cur.execute("UPDATE passwords SET ip=? WHERE user_name=? AND password=?", (addr[0], sp_data[0],sp_data[1]))
-                cur.execute("UPDATE passwords SET pu_key=? WHERE user_name=? AND password=?", (glo_var.pickle_client_public_key, sp_data[0],sp_data[1]))
+                cur.execute("UPDATE passwords SET pu_key=? WHERE user_name=? AND password=?", (get_data_from_arr(addr[0],"pickle_client_public_key"), sp_data[0],sp_data[1]))
                 conn.commit()
                 conn.close()
 
 
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True")
+                insert_msg_arr(addr[0],"logging answer "+"True")
             else:
 
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False")
+                insert_msg_arr(addr[0],"logging answer "+"False")
 
         elif (mesgtype==Mesg_Type.request):
             ips={}
@@ -274,9 +302,9 @@ def handler(clientsock,addr):
 
                 print "pu "+pu_key_target
 
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+str(nxt_ip)+"~"+str(pu_key_target)+"~"+str(uniq_id))
+                insert_msg_arr(addr[0],"req_answer~"+"yes~"+str(nxt_ip)+"~"+str(pu_key_target)+"~"+str(uniq_id))
             else:
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~no~xxx~xxx~"+str(uniq_id))
+                insert_msg_arr(addr[0],"req_answer~no~xxx~xxx~"+str(uniq_id))
 
         elif(mesgtype==Mesg_Type.reply):
             id_conn=recv_data[2]
@@ -307,7 +335,7 @@ def handler(clientsock,addr):
 
             conn.close()
 
-            glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+str(nxt_ip)+"~"+str(pu_key_target)+"~"+str(uniq_id))
+            insert_msg_arr(addr[0],"req_answer~"+"yes~"+str(nxt_ip)+"~"+pickle.dumps(pu_key_target)+"~"+str(uniq_id))
 
         elif(mesgtype==Mesg_Type.request_next_ip):
             print
@@ -316,7 +344,7 @@ def handler(clientsock,addr):
             id_conn=recv_data[2]
             path=get_path_by_id(id_conn)
 
-            glo_var.msg_arr.insert(len(glo_var.msg_arr),"get_path~"+str(path))
+            insert_msg_arr(addr[0],"get_path~"+str(path))
 
 
         else:
@@ -371,7 +399,7 @@ def handler_client_only_send (ip):
         try:
 
             port=9393
-            ip="127.0.0.1"
+
 
             sock = socket(AF_INET,SOCK_STREAM)
 
@@ -379,34 +407,35 @@ def handler_client_only_send (ip):
             check_for_timming_del=False
             while 1:
                 #lock
-
-                for msg in glo_var.msg_arr:
+                arr=get_data_from_arr(ip,"arr")
+                for msg in arr:
                     print len(msg)
                     if len(msg)>128:
                         print "IN"
                         blocks=secure.cut_for_blocks(msg)
                         first_msg=str(len(blocks))+" blocks"
                         print first_msg
-                        enc_data=pickle.dumps(secure.EncryptMesg(first_msg,glo_var.client_public_key))
+                        enc_data=pickle.dumps(secure.EncryptMesg(first_msg,get_data_from_arr(ip,"client_public_key")))
                         print "enc : "+str(enc_data)
                         sock.send(enc_data)
 
                         for b in blocks:
                             print "b : "+b
-                            enc_data=pickle.dumps(secure.EncryptMesg(b,glo_var.client_public_key))
+
+                            enc_data=pickle.dumps(secure.EncryptMesg(b,get_data_from_arr(ip,"client_public_key")))
                             time.sleep(0.1)
                             sock.send(enc_data)
 
                     else:
 
-                        enc_data=pickle.dumps(secure.EncryptMesg(msg,glo_var.client_public_key))
+                        enc_data=pickle.dumps(secure.EncryptMesg(msg,get_data_from_arr(ip,"client_public_key")))
 
                         sock.send(enc_data)
                         print "send"
                     check_for_timming_del=True
                 if check_for_timming_del:
                     check_for_timming_del=False
-                    glo_var.msg_arr=[]
+                    delete_msg_arr(ip)
 
 
         except:
