@@ -20,6 +20,9 @@ import socket
 
 #global verials
 class glo_var():
+    """
+    all the global var
+    """
     premision=True
     next_frame=4
     send_mesg_type="regular"
@@ -32,12 +35,20 @@ class glo_var():
 
 
 class glo_current_mesg():
+    """
+    save all the data of the the current showing msg
+    """
     sender_name=None
     conn_id=None
     recv_date=None
     data=None
 
 def get_all_frontend_data():
+    """
+    this func take all the data from the data base and insert it to a global array
+    recv: none
+    return:none
+    """
     database= "E:\music\client_inter_data.db"
 
 
@@ -60,7 +71,12 @@ def get_all_frontend_data():
 
 
 def check_for_answer_pass():
-    database= "E:\music\client_inter_data.db"
+    """
+    this func wait for answer and return if the accses for the system is denied or not
+    recv: none
+    return:bool
+    """
+
 
 
     check=True
@@ -84,24 +100,63 @@ def check_for_answer_pass():
 
 
 def insert_interanl_data(type,data):
-        database= "E:\music\client_inter_data.db"
 
-        if type=="logging":
-            data="logging~"+data[0]+"~"+data[1]
+    """
+    this func recv type and data and decied what data going to be insert
+    recv: type(string),data(string)
+    return:none
+    """
+    database= "E:\music\client_inter_data.db"
 
-        elif type=="request":
-            data="request~"+data[0]+"~"+data[1]+"~"+data[2]
-        elif type=="reply":
-            data="reply~"+data[0]+"~"+data[1]
-        elif type=="get_path":
-            data="get_path~"+data[0]
-        print "data : "+data
-        db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
+    if type=="logging":
+        data="logging~"+data[0]+"~"+data[1]
+
+    elif type=="request":
+        data="request~"+data[0]+"~"+data[1]+"~"+data[2]
+    elif type=="reply":
+        data="reply~"+data[0]+"~"+data[1]
+    elif type=="get_path":
+        data="get_path~"+data[0]
+    print "data : "+data
+    db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
+
+def list_of_name(lst_tpls):
+    """
+    this func recv list of tuples with all the data of the messesages
+    recv: list of tuples
+    return:list of senderNames
+    """
+
+    arr=[]
+    i=0
+    for tp in lst_tpls:
+        arr.insert(i,"sender_name:  "+tp[0]+ "     "+tp[1]+ "  conn_ID:  "+ tp[2],)
+        i+=1
+
+    return arr
 
 
 
-def insert_data_to_glo_current_mesg(data):
-    print
+
+
+def put_values(data_when_click,):
+    """
+    this func recv an array of string and put the data in glo_current_mesg
+    recv: array of string
+    return:none
+    """
+    i=0
+    for tp in glo_var.mesg_data:
+        line="sender_name:  "+tp[0]+ "     "+tp[1]+ "  conn_ID:  "+ tp[2]
+        i+=1
+        if data_when_click==line:
+
+            glo_current_mesg.sender_name=tp[0]
+            glo_current_mesg.recv_date=tp[1]
+            glo_current_mesg.conn_id=tp[2]
+            glo_current_mesg.data=tp[3]
+
+
 
 class MainFrame(wx.Frame):
     def __init__(self,  parent, id, pos, title, size):
@@ -110,6 +165,9 @@ class MainFrame(wx.Frame):
 
 
 class loginFrame(wx.App):
+    """
+    the logging frame
+    """
     def OnInit(self):
 
         self.frame = MainFrame(None,-1,wx.DefaultPosition,"Login",(400,300))
@@ -187,7 +245,7 @@ class loginFrame(wx.App):
 
 
 class start_frame(wx.App):
-    """Application class."""
+
 
     def OnInit(self):
 
@@ -280,42 +338,6 @@ class second_frame(wx.App):
 
 
 
-
-def list_of_name(lst_tpls):
-    """
-    this func recv list of tuples with all the data of the messesages
-    recv: list of tuples
-    return:list of senderNames
-    """
-
-    arr=[]
-    i=0
-    for tp in lst_tpls:
-        arr.insert(i,"sender_name:  "+tp[0]+ "     "+tp[1]+ "  conn_ID:  "+ tp[2],)
-        i+=1
-
-    return arr
-
-
-
-
-
-def put_values(data_when_click,):
-    print
-    i=0
-    for tp in glo_var.mesg_data:
-        line="sender_name:  "+tp[0]+ "     "+tp[1]+ "  conn_ID:  "+ tp[2]
-        i+=1
-        if data_when_click==line:
-
-            glo_current_mesg.sender_name=tp[0]
-            glo_current_mesg.recv_date=tp[1]
-            glo_current_mesg.conn_id=tp[2]
-            glo_current_mesg.data=tp[3]
-
-
-class inbox_frame(wx.App):
-    """Application class."""
 class inbox_frame(wx.App):
     """Application class."""
 

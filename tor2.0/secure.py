@@ -34,6 +34,11 @@ EncodeAES = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
 DecodeAES = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(PADDING)
 
 def cut_for_blocks(data):
+    """
+    this func recv the string and cut it to blocks sort by size
+    recv: string
+    return:array of string
+    """
 
 
     data_len=len(data)
@@ -47,6 +52,11 @@ def cut_for_blocks(data):
 
 
 def create_AES_key():
+    """
+    this func create an aes key
+    recv: none
+    return:aes key
+    """
     # generate a random secret key
     secret = os.urandom(BLOCK_SIZE)
 
@@ -57,10 +67,20 @@ def create_AES_key():
 
 
 def public_key_nxt_client(p_k):
+    """
+    this func recv a public key which is not ready for encrpt and made it ready for encrypt
+    recv: public key
+    return: public key
+    """
 
     pu_key = RSA.importKey(p_k)
     return pu_key
 def get_public_key_from_other_side(recv_data):
+    """
+    this func recv  data string and transport it to public key
+    recv: strind data
+    return: public key
+    """
 
 
     pu_key = RSA.importKey(pickle.loads(recv_data))
@@ -72,6 +92,11 @@ def get_public_key_from_other_side(recv_data):
     return pu_key
 
 def create_key():
+    """
+    this func create privtae key(RSA)
+    recv: none
+    return:private key
+    """
     random_generator = Random.new().read#get new random key
     key = RSA.generate(1024, random_generator)#larger is more secure!
 
@@ -81,7 +106,7 @@ def Public_Key(key):
     """
     the function create a new public key and return it
 
-    input: addr
+    input: ket
     output:  the public key
     """
 
@@ -118,7 +143,7 @@ def EncryptMesg(data,pu_key):
     """
 
     data_encrypt = pu_key.encrypt(data, 32)#32 is random parameter used by RSA
-    print "one "
+    print data
     print "The Encrypted Data: " , data_encrypt
     print "*************    " ,type(data_encrypt)
     return data_encrypt
@@ -169,13 +194,3 @@ def checksum_md5_file(file):
     """
     return hashlib.md5(open(file,'rb').read()).hexdigest()
 
-"""
-key=create_key()
-pu_key=Public_Key(key)
-
-key1=create_key()
-pu_key1=Public_Key(key1)
-
-enc=EncryptMesg("sss",pu_key1)
-
-"""

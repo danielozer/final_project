@@ -14,10 +14,11 @@ import sqlite3
 #imports
 
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
+    """
+    create a database connection to the SQLite database
+    specified by db_file
+    recv: db_file: database file
+    return: Connection object or None
     """
     try:
 
@@ -31,7 +32,13 @@ def create_connection(db_file):
 
 
 def msg_disassembly (mesg):
-    #should check next time if the mesg has checksum
+    """
+
+    this func recv mesg then split it and remove the unimportant data
+    input: string (mesg )
+    output :array
+
+    """
     mesg=mesg.split("|")
     if len(mesg)==4:
 
@@ -41,6 +48,31 @@ def msg_disassembly (mesg):
         return mesg
     else:
         return "error!!"
+
+"""
+def get_the_list(database,conn_id):
+
+
+    this func recv mesg then it decrypt the mesg using AES
+    input: string (mesg ),key
+    output :string mesg
+
+
+    data=[]
+    #should doing it with pickle
+    conn = create_connection(database)
+    if conn is not None:
+        cur=conn.cursor()
+        # create projects table
+        for row in cur.execute('SELECT * FROM server_db_data '):
+            data.insert(len(data),row)
+        conn.commit()
+    else:
+        print("Error! cannot create the database connection.")
+    conn.close()
+    print data
+    return data
+
 
 
 def insert_new_conn(database,data):
@@ -57,20 +89,4 @@ def insert_new_conn(database,data):
     else:
         print("Error! cannot create the database connection.")
     conn.close()
-
-def get_the_list(database,conn_id):
-    data=[]
-
-    conn = create_connection(database)
-    if conn is not None:
-        cur=conn.cursor()
-        # create projects table
-        for row in cur.execute('SELECT * FROM server_db_data '):
-            data.insert(len(data),row)
-        conn.commit()
-    else:
-        print("Error! cannot create the database connection.")
-    conn.close()
-    print data
-    return data
-
+"""

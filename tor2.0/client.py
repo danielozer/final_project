@@ -289,9 +289,9 @@ def handler_client_with_server(user_data,sock):
                         tup=find_var_in_aar_tuples(wait_arr_msg,msg_id)
                         wait_arr_msg.remove(tup)
 
+                        print "tup "+tup[0]
 
-
-                        if len(tup[0])>128:
+                        if len(tup[0])>10:
 
                             blocks=secure.cut_for_blocks(tup[0])
                             first_msg=str(len(blocks))+" blocks"
@@ -305,7 +305,7 @@ def handler_client_with_server(user_data,sock):
 
                         else:
                             mesg_for_send=secure.EncryptMesg(tup[0],pu_key)
-                            sendMesg_client.send_mesg_to_client(nxt_ip,msg,"reg",msg_id)
+                            sendMesg_client.send_mesg_to_client(nxt_ip,mesg_for_send,"reg",msg_id)
 
 
 

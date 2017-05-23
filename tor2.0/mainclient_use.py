@@ -16,7 +16,9 @@ import thread,time
 #imports
 
 
-
+"""
+run the thread for all the client usage (frontend,backend)
+"""
 thread.start_new_thread( design.main ,(1,1))
 
 

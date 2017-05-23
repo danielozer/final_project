@@ -62,11 +62,22 @@ def send_to_server_sendRequest_see_path(id_conn,sock,sender_name ,key,):
 
 
 def ask_what_next(mesg,sock,sender_name,key):
-
+    """
+    this func recv the string passwords and username  and send it to the server after it encrypt(using secure moudle)
+    recv: string of password, socket
+    return:non
+    """
 
     sock.send(create_mesg(mesg,"mesg_next",sender_name,key))
 
 def send_mesg_to_client(ip,mesg,type,id_msg):
+    """
+    this func recv the string passwords and username  and send it to the server after it encrypt(using secure moudle)
+    recv: string of password, socket
+    return:non
+    """
+
+
     PORT=8888
 
     if type=="blocks":
@@ -87,7 +98,11 @@ def send_mesg_to_client(ip,mesg,type,id_msg):
     sock.send(id_msg)
 
 def create_mesg(mesg,type,sender_name,key):
-
+    """
+    this func recv the string passwords and username  and send it to the server after it encrypt(using secure moudle)
+    recv: string of password, socket
+    return:non
+    """
     checksum=secure.checksum_md5_text(mesg)
     send_message=checksum+"|"+type+"|"+sender_name+"|"+mesg
 
