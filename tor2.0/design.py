@@ -341,14 +341,20 @@ class inbox_frame(wx.App):
             self.open_btn = wx.Button(panel, label='open mesg',pos=(200,375))
 
             self.Bind(wx.EVT_BUTTON, self.OnButtonClick_open, self.open_btn)
+            self.frame.SetBackgroundColour((100, 179, 179))
+
+            self.frame.Centre()
+            self.frame.Show()
+            return True
         else:
             rev = wx.StaticText(panel, -1, "empty",(220,140),
                 (78, 20))
-        self.frame.SetBackgroundColour((100, 179, 179))
+            self.frame.SetBackgroundColour((100, 179, 179))
 
-        self.frame.Centre()
-        self.frame.Show()
-        return True
+            self.frame.Centre()
+            self.frame.Show()
+            return True
+
     def OnButtonClick_open(self,event):
         glo_var.return_to_chFrame=False
         put_values( self.listBox.GetString(self.listBox.GetSelection()))

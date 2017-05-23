@@ -179,7 +179,7 @@ def enum(**enums):
 def handler(clientsock,addr):
 
 
-    Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next",path_request="path" )
+    Mesg_Type = enum(ENTER="enter",request="request"   ,request_next_ip="mesg_next",path_request="path",reply="reply" )
 
     recvdata_order=enum(MESGTYPE=0,SENDER_NAME=1,MESG=2)
 
@@ -277,7 +277,36 @@ def handler(clientsock,addr):
             else:
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~no~xxx~xxx~"+str(uniq_id))
 
+        elif(mesgtype==Mesg_Type.reply):
+            id_conn=recv_data[2]
+            p=get_path_by_id(id_conn)
+            target_ip=p[1]
+            path=list(reversed(p[0]))
+            nxt_ip=path[1]
 
+            check=False
+            pu_key_target=""
+
+            for ip_db in get_password_from_db():
+
+
+                if (ip_db[0] != None and ip_db[0]!=target_ip and ip_db[0]!=addr[0]):
+                    count+=1
+                    print count
+                    ips.update({count:ip_db[0]})
+                else:
+                    if ip_db[0]==target_ip:
+                        check=True
+                        pu_key_target=ip_db[3]
+
+            conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
+            cur=conn.cursor()
+
+            cur.execute("UPDATE ips_conn_id SET path=? AND nxt_ip=? WHERE conn_id=?", (path,nxt_ip ,id_conn))
+
+            conn.close()
+
+            glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+str(nxt_ip)+"~"+str(pu_key_target)+"~"+str(uniq_id))
 
         elif(mesgtype==Mesg_Type.request_next_ip):
             print
@@ -288,9 +317,20 @@ def handler(clientsock,addr):
             print "error!!!!!!!"
             #error mesg
 
+def get_path_by_id(conn_id):
 
+    conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
+    cur=conn.cursor()
 
+    data=[]
+    for row in cur.execute('SELECT * FROM ips_conn_id '):
 
+            if row[2]==conn_id:
+                conn.close()
+                return (row[3],row[1])
+
+    conn.close()
+    return False
 
 def break_to_pieces(mesg):
     mesg=mesg.split("|")
@@ -396,4 +436,3 @@ def main():
 
 if __name__=='__main__':
     main()
-

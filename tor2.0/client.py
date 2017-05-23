@@ -291,9 +291,12 @@ def handler_client_with_server(user_data,sock):
 
 
                 elif "reply" in pull_next_mesg[0]:
+                    print pull_next_mesg[0]
+                    print pull_next_mesg[1]
+                    print pull_next_mesg[2]
 
-                    wait_arr_msg.insert(len(wait_arr_msg),(pull_next_mesg[3],pull_next_mesg[1]))
-                    sendMesg_client.send_to_server_sendRequest_reply(pull_next_mesg[0],sock,pull_next_mesg[1],user_data.server_public_key)
+                    wait_arr_msg.insert(len(wait_arr_msg),(pull_next_mesg[2],pull_next_mesg[1]))
+                    sendMesg_client.send_to_server_sendRequest_reply(pull_next_mesg[1],sock,SENDER_NAME,user_data.server_public_key)
 
                 elif "mesg_next" in pull_next_mesg[0]:
                     sendMesg_client.ask_what_next(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
