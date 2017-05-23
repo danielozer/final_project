@@ -272,7 +272,7 @@ def handler(clientsock,addr):
                 conn.close()
 
                 print "pu "+pu_key_target
-                #PROBLEMMMMMMMMM +str(pu_key_target)
+
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~"+"yes~"+str(nxt_ip)+"~"+str(pu_key_target)+"~"+str(uniq_id))
             else:
                 glo_var.msg_arr.insert(len(glo_var.msg_arr),"req_answer~no~xxx~xxx~"+str(uniq_id))

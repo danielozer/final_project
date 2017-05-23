@@ -107,12 +107,21 @@ def main(one,tep):
     #thread.start_new_thread(client_server_other_clients, (user_data,port))
 
 
-def client_to_other_clients(user_data,client_sock):
-    #c-client-->c-server
+def client_to_other_clients_recv():
+    port =8888
+    host="127.0.0.1"
+    ADDR = (host, port)
+    serversock = socket(AF_INET, SOCK_STREAM)
+    serversock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    serversock.bind(ADDR)
+    serversock.listen(5)
+    while 1:
+        print 'waiting for connection... listening on port', PORT
+        clientsock, addr = serversock.accept()
+        print '...connected from:', addr
 
-    #def check for right mesg
-    client_sock.send()
-
+        recv=clientsock.recv(BUFFER)
+        insert_interanl_data("next_ip~"+recv)
 
 def client_server_recv(clientsock):
     #c-server-->c-client
@@ -253,21 +262,38 @@ def handler_client_with_server(user_data,sock):
                         wait_arr_msg.remove(tup)
 
                     elif "yes" in pull_next_mesg[1]:
-
+                        nxt_ip=pull_next_mesg[2]
                         pu_key=pull_next_mesg[3]
                         msg_id=pull_next_mesg[4]
+
                         tup=find_var_in_aar_tuples(wait_arr_msg,msg_id)
                         tup=wait_arr_msg.remove(tup)
-                        mesg_for_send=tup[0]
 
-                        sendMesg_client.send_mesg_to_client()
+                        mesg_for_send=secure.DecryptMesg(tup[0],pu_key)
+                        msg=mesg_for_send+"~"+msg_id
+
+                        if len(msg)>128:
+
+                            blocks=secure.cut_for_blocks(msg)
+                            first_msg=str(len(blocks))+" blocks"
+
+
+
+                            for b in blocks:
+                                print "b : "+b
+                                sendMesg_client.send_mesg_to_client(nxt_ip,b)
+                                time.sleep(0.1)
+
+
+                        else:
+                            sendMesg_client.send_mesg_to_client(nxt_ip,msg)
 
 
 
                 elif "reply" in pull_next_mesg[0]:
 
-
-                    sendMesg_client.send_to_server_sendRequest(pull_next_mesg[0],sock,pull_next_mesg[1],user_data.server_public_key)
+                    wait_arr_msg.insert(len(wait_arr_msg),(pull_next_mesg[3],pull_next_mesg[1]))
+                    sendMesg_client.send_to_server_sendRequest_reply(pull_next_mesg[0],sock,pull_next_mesg[1],user_data.server_public_key)
 
                 elif "mesg_next" in pull_next_mesg[0]:
                     sendMesg_client.ask_what_next(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)

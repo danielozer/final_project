@@ -44,6 +44,15 @@ def send_to_server_sendRequest(ip,sock,key,):
     """
     sock.send(create_mesg(ip,"request","req_xxx",key))
 
+def send_to_server_sendRequest_reply(id_conn,sock,key,):
+    """
+    this func recv the string mesg  and send it to the server after it encrypt(using secure moudle)
+    recv: str mesg, socket
+    return:non
+    """
+    sock.send(create_mesg(id_conn,"reply","req_xxx",key))
+
+
 def ask_what_next(mesg,sock,sender_name,key):
 
 
