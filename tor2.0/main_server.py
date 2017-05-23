@@ -40,13 +40,13 @@ file_name="users_data"
 
 
 class glo_var():
-        msg_arr=[]
+        #msg_arr=[]
         server_key=""
-        client_public_key=""
+        #client_public_key=""
         server_public_key=""
-        counter=0
-        pickle_client_public_key=""
 
+        #pickle_client_public_key=""
+        all_smg_arr_with_data=[]#array of array [client_ip,client_public_key,pickle_client_public_key,msg_arr]
 
 
 BUFFER=2048
@@ -191,13 +191,14 @@ def handler(clientsock,addr):
 
     #recv the public key of the client
     recv_data=clientsock.recv(BUFFER)
-    glo_var.pickle_client_public_key=recv_data
-    glo_var.client_public_key=secure.get_public_key_from_other_side(recv_data)
+    pickle_client_public_key=recv_data
+    client_public_key=secure.get_public_key_from_other_side(recv_data)
 
     print "###############################################################"
-    print glo_var.client_public_key
+    print client_public_key
     print "###############################################################"
 
+    glo_var.all_smg_arr_with_data.insert(len(glo_var.all_smg_arr_with_data),[addr[0]],client_public_key,pickle_client_public_key,[])
 
     t = Thread(target=handler_client_only_send, args=(1,))
     t.start()
@@ -224,11 +225,11 @@ def handler(clientsock,addr):
                 conn.commit()
                 conn.close()
 
-                glo_var.counter+=1
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True"+str(glo_var.counter))
+
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"True")
             else:
-                glo_var.counter+=1
-                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False"+str(glo_var.counter))
+
+                glo_var.msg_arr.insert(len(glo_var.msg_arr),"logging answer "+"False")
 
         elif (mesgtype==Mesg_Type.request):
             ips={}
@@ -434,6 +435,8 @@ def main():
         print 'waiting for connection... listening on port', PORT
         clientsock, addr = serversock.accept()
         print '...connected from:', addr
+
+
 
         thread.start_new_thread(handler, (clientsock, addr))
 
