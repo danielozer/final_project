@@ -22,7 +22,7 @@
     <favorites_list name="tor2.0" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5430983">
+    <splitter split-orientation="horizontal" split-proportion="0.7112718">
       <split-first>
         <leaf>
           <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
@@ -84,7 +84,7 @@
           <file leaf-file-name="main_server.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main_server.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="358" column="4" selection-start="9175" selection-end="9175" vertical-scroll-proportion="-1.6421686" vertical-offset="7449" max-vertical-offset="8279">
+                <state line="415" column="47" selection-start="10397" selection-end="10397" vertical-scroll-proportion="0.28169015" vertical-offset="6815" max-vertical-offset="8279">
                   <folding>
                     <element signature="e#280#300#0" expanded="true" />
                   </folding>
@@ -137,13 +137,13 @@
         <option value="$PROJECT_DIR$/db_sqlite.py" />
         <option value="$PROJECT_DIR$/sendMesg_server.py" />
         <option value="$PROJECT_DIR$/db_sqlite_client.py" />
-        <option value="$PROJECT_DIR$/main_server.py" />
         <option value="$PROJECT_DIR$/client.py" />
         <option value="$PROJECT_DIR$/sendMesg_client.py" />
         <option value="$PROJECT_DIR$/secure.py" />
         <option value="$PROJECT_DIR$/design.py" />
         <option value="$PROJECT_DIR$/db_sqlite_server.py" />
         <option value="$PROJECT_DIR$/mainclient_use.py" />
+        <option value="$PROJECT_DIR$/main_server.py" />
       </list>
     </option>
   </component>
@@ -225,7 +225,7 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.mainclient_use">
+  <component name="RunManager" selected="Python.main_server">
     <configuration default="false" name="frame_show" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -534,7 +534,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39934713" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.25244832" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="7" y="5" width="1365" height="725" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.25244832" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="6" y="6" width="1365" height="725" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -916,7 +916,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="358" column="4" selection-start="9175" selection-end="9175" vertical-scroll-proportion="-1.6421686" vertical-offset="7449" max-vertical-offset="8279">
+        <state line="415" column="47" selection-start="10397" selection-end="10397" vertical-scroll-proportion="0.28169015" vertical-offset="6815" max-vertical-offset="8279">
           <folding>
             <element signature="e#280#300#0" expanded="true" />
           </folding>

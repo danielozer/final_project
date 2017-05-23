@@ -296,7 +296,7 @@ def handler(clientsock,addr):
                 cur=conn.cursor()
 
                 nxt_ip=path[1]
-                cur.execute("INSERT INTO ips_conn_id  VALUES (?,?,?,?,?)",(addr[0],target_ip,uniq_id,str(path),nxt_ip,))
+                cur.execute("INSERT INTO ips_conn_id  VALUES (?,?,?,?,?)",(addr[0],target_ip,uniq_id,pickle.dumps(path),nxt_ip,))
                 conn.commit()
                 conn.close()
 
@@ -310,9 +310,13 @@ def handler(clientsock,addr):
             id_conn=recv_data[2]
             p=get_path_by_id(id_conn)
             target_ip=p[1]
+            print "path1 : "+str(p[0])
             path=list(reversed(p[0]))
+            print "path2 : "+str(path)
             nxt_ip=path[1]
-
+            print "nxt_ip : "+nxt_ip
+            count=0
+            ips={}
 
             pu_key_target=""
 
@@ -331,11 +335,12 @@ def handler(clientsock,addr):
             conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
             cur=conn.cursor()
 
-            cur.execute("UPDATE ips_conn_id SET path=? AND nxt_ip=? WHERE conn_id=?", (path,nxt_ip ,id_conn))
 
+            cur.execute("UPDATE ips_conn_id SET path=? AND nxt_ip=? WHERE conn_id=?", (pickle.loads(path),nxt_ip ,id_conn))
+            conn.commit()
             conn.close()
 
-            insert_msg_arr(addr[0],"req_answer~"+"yes~"+str(nxt_ip)+"~"+pickle.dumps(pu_key_target)+"~"+str(uniq_id))
+            insert_msg_arr(addr[0],"req_answer~"+"yes~"+nxt_ip+"~"+pickle.dumps(pu_key_target)+"~"+str(id_conn))
 
         elif(mesgtype==Mesg_Type.request_next_ip):
             print
@@ -356,12 +361,13 @@ def get_path_by_id(conn_id):
     conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
     cur=conn.cursor()
 
-    data=[]
-    for row in cur.execute('SELECT * FROM ips_conn_id '):
 
+    for row in cur.execute('SELECT * FROM ips_conn_id '):
+            print "too "+ row[2]
             if row[2]==conn_id:
                 conn.close()
-                return (row[3],row[1])
+                print row[1]
+                return (pickle.loads(row[3]),row[1])
 
     conn.close()
     return False
