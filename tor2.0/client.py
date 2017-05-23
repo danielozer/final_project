@@ -301,6 +301,8 @@ def handler_client_with_server(user_data,sock):
                 elif "mesg_next" in pull_next_mesg[0]:
                     sendMesg_client.ask_what_next(pull_next_mesg[0],sock,pull_next_mesg[1],pull_next_mesg[2],user_data.server_public_key)
 
+                elif "see_path" in pull_next_mesg[0]:
+                    sendMesg_client.send_to_server_sendRequest_reply(pull_next_mesg[1],sock,SENDER_NAME,user_data.server_public_key)
 
 
                 arr_mesg_lock.release()

@@ -284,7 +284,7 @@ def handler(clientsock,addr):
             path=list(reversed(p[0]))
             nxt_ip=path[1]
 
-            check=False
+
             pu_key_target=""
 
             for ip_db in get_password_from_db():
@@ -296,7 +296,7 @@ def handler(clientsock,addr):
                     ips.update({count:ip_db[0]})
                 else:
                     if ip_db[0]==target_ip:
-                        check=True
+
                         pu_key_target=ip_db[3]
 
             conn=db_sqlite_server.create_connection( "E:\music\server_db.db")
@@ -312,7 +312,12 @@ def handler(clientsock,addr):
             print
 
         elif (mesgtype==Mesg_Type.path_request):
-            print
+            id_conn=recv_data[2]
+            path=get_path_by_id(id_conn)
+
+            glo_var.msg_arr.insert(len(glo_var.msg_arr),"get_path~"+str(path))
+
+
         else:
             print "error!!!!!!!"
             #error mesg

@@ -28,6 +28,8 @@ class glo_var():
     mesg_data=0
     stop_loop=True
     db_data=[]
+    path_ips=[]
+
 
 class glo_current_mesg():
     sender_name=None
@@ -91,7 +93,8 @@ def insert_interanl_data(type,data):
             data="request~"+data[0]+"~"+data[1]+"~"+data[2]
         elif type=="reply":
             data="reply~"+data[0]+"~"+data[1]
-
+        elif type=="get_path":
+            data="get_path~"+data[0]
         print "data : "+data
         db_sqlite_client.insert_msg("reg_internal_backend_db",database,data)
 
@@ -477,7 +480,7 @@ class see_mesg_box(wx.App):
         glo_var.return_to_chFrame=False
         self.frame.Close()
         glo_var.next_frame="see_path"
-
+        insert_interanl_data("get_path",[glo_current_mesg.conn_id])
 
 
     def OnButtonClick_reply(self,event):
@@ -616,7 +619,7 @@ def main(one,teo):
                         second_app.MainLoop()
 
                         if glo_var.next_frame == "box" and glo_var.kill==False:
-                            print "doss"
+
                             inbox_app=inbox_frame()
                             inbox_app.MainLoop()
 
